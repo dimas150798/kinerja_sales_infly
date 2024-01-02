@@ -149,7 +149,7 @@ class C_DashboardAdmin extends CI_Controller
         $data['PerolehanSalesPerbulan'] = $this->M_DataPerolehanSales->Perolehan_Sales_Terminasi_Perbulan($kodePerolehanNow);
 
         // Perolehan Rangked Pertahun Terminasi
-        $data['PerolehanSalesPertahun'] = $this->M_DataPerolehanSales->Perolehan_Sales_Terminasi('2023');
+        $data['PerolehanSalesPertahun'] = $this->M_DataPerolehanSales->Perolehan_Sales_Terminasi(date('Y'));
 
 
         // Load necessary libraries
