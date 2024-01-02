@@ -86,7 +86,7 @@ class M_DataPerolehanSales extends CI_Model
         perolehan_sales
         LEFT JOIN data_pegawai ON perolehan_sales.nama_sales = data_pegawai.nama_pegawai 
     WHERE
-        SUBSTRING(kode_perolehan_sales, 1, 4) = '$KodePerolehan' AND nama_sales != '' AND data_pegawai.status = 'Aktif' AND data_pegawai.jabatan = 'Sales'
+        SUBSTRING(kode_perolehan_sales, 1, 4) = '$KodePerolehan' AND nama_sales != '' AND data_pegawai.status = 'Aktif' AND data_pegawai.jabatan = 'Sales' AND perolehan_sales_terminasi != ''
     GROUP BY
         nama_sales  
     ORDER BY persentase_terminasi ASC");
