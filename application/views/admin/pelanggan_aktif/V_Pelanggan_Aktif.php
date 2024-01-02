@@ -56,12 +56,12 @@
                             <thead>
                                 <tr>
                                     <th width="5%">No</th>
-                                    <th width="10%">Tanggal</th>
-                                    <th width="10%">Nama customer</th>
-                                    <th width="10%">Nama Paket</th>
-                                    <th width="10%">Area</th>
-                                    <th width="10%">Alamat</th>
-                                    <th width="10%">Nama Sales</th>
+                                    <th width="15%">Nama customer</th>
+                                    <th width="15%">Nama Paket</th>
+                                    <th width="15%">Area</th>
+                                    <th width="15%">Tanggal Registrasi</th>
+                                    <th width="20%">Alamat</th>
+                                    <th width="15%">Nama Sales</th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -52,13 +52,12 @@ class M_DataSheets extends CI_Model
 
     public function Pelanggan_All($KodePerolehan)
     {
-        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer,
-        nama_paket, branch_customer, alamat_customer, nama_sales, kode_perolehan, status_customer
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon, status_customer, tanggal_instalasi, nama_sales, keterangan, kode_perolehan
         FROM data_sheets
 
         WHERE kode_perolehan = '$KodePerolehan'
         
-        ORDER BY tanggal_customer DESC");
+        ORDER BY kode_sheet DESC");
 
         return $query->result_array();
     }

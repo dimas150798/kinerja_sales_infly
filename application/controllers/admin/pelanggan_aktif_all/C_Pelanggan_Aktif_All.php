@@ -79,21 +79,28 @@ class C_Pelanggan_Aktif_All extends CI_Controller
         $data = array();
 
         foreach ($result as $dataCustomer) {
+            $tanggal_instalasi = ($dataCustomer['tanggal_instalasi'] == NULL || $dataCustomer['tanggal_instalasi'] == '0000-00-00');
+
             $row = array(
                 ++$no,
-                changeDateFormat('d-m-Y', $dataCustomer['tanggal_customer']),
                 $dataCustomer['nama_customer'],
                 $dataCustomer['nama_paket'],
                 $dataCustomer['branch_customer'],
-                $dataCustomer['status_customer'],
-                $dataCustomer['alamat_customer'],
                 $dataCustomer['nama_sales'],
+                $dataCustomer['status_customer'],
+                $dataCustomer['telepon'],
+                changeDateFormat('d-m-Y', $dataCustomer['tanggal_customer']),
+                $tanggal_instalasi ? '<span class="badge bg-danger">Data Kosong</span>' : '<span class="badge bg-success">' . changeDateFormat('d-m-Y', $dataCustomer['tanggal_instalasi']) . '</span>',
+                $dataCustomer['alamat_customer'],
+                $dataCustomer['keterangan'],
                 '<div class="text-center">
-                <a onclick="EditDataPelanggan(' . $dataCustomer['id_sheet'] . ')" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
+                    <a onclick="EditPelanggan(' . $dataCustomer['id_sheet'] . ')" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
+                    <a onclick="DeletePelanggan(' . $dataCustomer['id_sheet'] . ')" class="btn btn-danger"><i class="bi bi-trash3-fill"></i></a>
                 </div>'
             );
             $data[] = $row;
         }
+
 
 
 

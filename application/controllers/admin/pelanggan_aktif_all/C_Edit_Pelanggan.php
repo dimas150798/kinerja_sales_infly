@@ -33,7 +33,7 @@ class C_Edit_Pelanggan extends CI_Controller
         $this->load->view('template/V_Footer', $data);
     }
 
-    public function TambahPelangganSave()
+    public function EditPelangganSave()
     {
         $months = array(
             1 => 'Januari',
@@ -57,11 +57,15 @@ class C_Edit_Pelanggan extends CI_Controller
         $data['KodeSheets'] = $this->M_DataSheets->generateCode();
 
         date_default_timezone_set("Asia/Jakarta");
+
         // Mendapatkan tanggal sekarang
         $ToDay              = date('d-m-Y');
         $PecahToDay         = explode("-", $ToDay);
+        $kode_perolehan     = $PecahToDay[2] . '-' . $PecahToDay[1];
+
 
         // Mengambil data post pada view
+        $id_sheet = $this->input->post('id_sheet');
         $kode_sheets = $this->input->post('kode_sheets');
         $tanggal_customer = $this->input->post('tanggal_customer');
         $nama_customer = $this->input->post('nama_customer');
@@ -74,12 +78,16 @@ class C_Edit_Pelanggan extends CI_Controller
         $tanggal_instalasi = $this->input->post('tanggal_instalasi');
         $nama_sales = $this->input->post('nama_sales');
         $keterangan = $this->input->post('keterangan');
-        $kode_perolehan = $PecahToDay[2] . '-' . $PecahToDay[1];
-        $nama_bulan = $months[date('n')];
 
+        $Split_TanggalInstalasi = explode("-", $tanggal_instalasi);
+        $Kode_Perolehan_TanggalInstalasi = $Split_TanggalInstalasi[0] . '-' . $Split_TanggalInstalasi[1];
 
-        $CheckPerolehan_Perbulan = $this->M_DataPerolehanPerbulan->Check_Perolehan($kode_perolehan);
-        $CheckPerolehan_Persales = $this->M_DataPerolehanSales->Check_Perolehan($kode_perolehan, $nama_sales);
+        if ($Kode_Perolehan_TanggalInstalasi == '-') {
+            $kode_perolehan_now = $kode_perolehan;
+        } else {
+            $kode_perolehan_now = $Kode_Perolehan_TanggalInstalasi;
+        }
+
         $CheckCustomer           = $this->M_DataSheets->Check_Customer($kode_perolehan);
 
         // Menyimpan data pelanggan ke dalam array
@@ -96,82 +104,23 @@ class C_Edit_Pelanggan extends CI_Controller
             'tanggal_instalasi' => $tanggal_instalasi,
             'nama_sales'        => $nama_sales,
             'keterangan'        => $keterangan,
-            'kode_perolehan'    => $kode_perolehan,
+            'kode_perolehan'    => $kode_perolehan_now,
         );
 
         // Data Customer
         if ($CheckCustomer->kode_sheet != $kode_sheets) {
-            $this->db->insert("data_sheets", $dataSheets);
+            $this->db->where('id_sheet', $id_sheet);
+            $this->db->update('data_sheets', $dataSheets);
         }
 
-        // Perolehan Perbulan
-        if ($CheckPerolehan_Perbulan->kode_perolehan == $kode_perolehan and $CheckPerolehan_Perbulan->nama_bulan == $nama_bulan) {
-            $perolehan_perbulan1 = array(
-                'kode_perolehan'      => $kode_perolehan,
-                'jumlah_perolehan'    => $CheckPerolehan_Perbulan->jumlah_perolehan + 1,
-                'nama_bulan'          => $nama_bulan
-            );
+        // Update Perolehan Perbulan dan Persales
+        $this->M_DataPerolehanPerbulan->index();
+        $this->M_DataPerolehanSales->index();
 
-            if ($status_customer == 'active') {
-                $this->db->where('kode_perolehan', $kode_perolehan);
-                $this->db->where('nama_bulan', $nama_bulan);
-                $this->db->update('perolehan_perbulan', $perolehan_perbulan1);
-            }
-        } else {
-            $perolehan_perbulan2 = array(
-                'kode_perolehan'      => $kode_perolehan,
-                'jumlah_perolehan'    => 1,
-                'nama_bulan'          => $nama_bulan
-            );
-            if ($status_customer == 'active') {
-                $this->db->insert("perolehan_perbulan", $perolehan_perbulan2);
-            }
-        }
+        // Notifikasi Tambah Data Berhasil
+        $this->session->set_flashdata('Success_icon', 'success');
+        $this->session->set_flashdata('Success_title', 'Edit Data Berhasil');
 
-        // Perolehan Persales
-        if ($CheckPerolehan_Persales->kode_perolehan_sales == $kode_perolehan and $CheckPerolehan_Persales->nama_sales == $nama_sales) {
-            if ($status_customer == 'active') {
-                $perolehan_persales_aktif = array(
-                    'kode_perolehan_sales' => $kode_perolehan,
-                    'perolehan_sales_all' => $CheckPerolehan_Persales->perolehan_sales_all + 1,
-                    'perolehan_sales_aktif' => $CheckPerolehan_Persales->perolehan_sales_aktif + 1,
-                    'nama_sales'          => $nama_sales
-                );
-
-                $this->db->where('kode_perolehan_sales', $kode_perolehan);
-                $this->db->where('nama_sales', $nama_sales);
-                $this->db->update('perolehan_sales', $perolehan_persales_aktif);
-            } else {
-                $perolehan_persales = array(
-                    'kode_perolehan_sales' => $kode_perolehan,
-                    'perolehan_sales_all' => $CheckPerolehan_Persales->perolehan_sales_all + 1,
-                    'nama_sales'          => $nama_sales
-                );
-
-                $this->db->where('kode_perolehan_sales', $kode_perolehan);
-                $this->db->where('nama_sales', $nama_sales);
-                $this->db->update('perolehan_sales', $perolehan_persales);
-            }
-        } else {
-            if ($status_customer == 'active') {
-                $perolehan_persales_aktif1 = array(
-                    'kode_perolehan_sales' => $kode_perolehan,
-                    'perolehan_sales_all' => 1,
-                    'perolehan_sales_aktif' => 1,
-                    'nama_sales'          => $nama_sales
-                );
-
-                $this->db->insert("perolehan_sales", $perolehan_persales_aktif1);
-            } else {
-                $perolehan_persales2 = array(
-                    'kode_perolehan_sales' => $kode_perolehan,
-                    'perolehan_sales_all' => 1,
-                    'nama_sales'          => $nama_sales
-                );
-
-                $this->db->insert("perolehan_sales", $perolehan_persales2);
-            }
-        }
         redirect('admin/pelanggan_aktif_all/C_Pelanggan_Aktif_All');
     }
 }

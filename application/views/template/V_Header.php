@@ -40,6 +40,12 @@
     <!-- We use those styles to show code examples, you should remove them in your application.-->
     <link href="<?php echo base_url(); ?>assets/css/examples.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet" />
+
+    <!--CSS Select  -->
+    <link href="<?php echo base_url(); ?>assets/css/select2.min.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/select2-bootstrap-5-theme.min.css" rel="stylesheet" />
+
+
     <!-- SweetAlert2 -->
     <link href="<?php echo base_url(); ?>vendor/SweetAlert2/sweetalert2.min.css" rel="stylesheet" />
 

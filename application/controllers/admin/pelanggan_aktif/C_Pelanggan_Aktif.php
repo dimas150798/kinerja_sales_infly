@@ -82,23 +82,12 @@ class C_Pelanggan_Aktif extends CI_Controller
         foreach ($result as $dataCustomer) {
             $row = array(
                 ++$no,
-                changeDateFormat('d-m-Y', $dataCustomer['tanggal_customer']),
                 $dataCustomer['nama_customer'],
                 $dataCustomer['nama_paket'],
                 $dataCustomer['branch_customer'],
+                changeDateFormat('d-m-Y', $dataCustomer['tanggal_customer']),
                 $dataCustomer['alamat_customer'],
                 $dataCustomer['nama_sales'],
-                // '<div class="text-center">
-                //     <div class="btn-group">
-                //         <button type="button" class="btn btn-sm btn-info dropdown-toggle" data-bs-toggle="dropdown" data-bs-target="#dropdown" aria-expanded="false" aria-controls="dropdown">
-                //             Opsi
-                //         </button>
-                //         <div class="dropdown-menu text-black" style="background-color:aqua;">
-                //             <a onclick="EditDataPelanggan(' . $dataCustomer['id_sheet'] . ')" class="dropdown-item text-black">Edit</a>
-                //             <a onclick="TerminatedPelanggan(' . $dataCustomer['id_sheet'] . ')" class="dropdown-item text-black"><i class="bi bi-trash3-fill"></i> Terminated</a>
-                //         </div>
-                //     </div>
-                // </div>'
             );
             $data[] = $row;
         }
