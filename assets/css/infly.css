@@ -415,4 +415,28 @@
 
 }
 
+/* Gaya untuk tombol */
+.btn-group button {
+    background-color: #17a2b8;
+    color: #fff;
+    border: 1px solid #17a2b8;
+}
+
+/* Gaya untuk dropdown menu */
+.dropdown-menu {
+    background-color: aqua;
+    border: 1px solid #17a2b8;
+}
+
+/* Gaya untuk item di dalam dropdown menu */
+.dropdown-item {
+    color: black;
+}
+
+/* Gaya untuk ikon trash di dalam dropdown menu */
+.dropdown-item i {
+    margin-right: 5px; /* Spasi antara ikon dan teks */
+}
+
+
 

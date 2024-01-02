@@ -141,33 +141,31 @@
         <div class="row">
             <!-- top sales -->
             <div class="col-sm-6 col-lg-6 mb-4">
-                <div class="card top-sales">
-                    <div class="card-body">
-                        <h3 class="mb-1 text-center text-uppercase">Top Sales</h3>
-                        <h5 class="mb-4 text-center text-uppercase"><?php echo $DateNow ?></h5>
-                        <div class="topsales-informasi">
-                            <div class="rank-list">
-                                <?php foreach ($PerolehanSales as $key => $value) : ?>
-                                    <div class="rank-item <?php if ($key + 1 <= 3) echo 'first-three'; ?><?php if ($key + 1 > 3) echo 'rank-four-and-below'; ?>">
+                <div class="card top-sales d-flex justify-content-center">
+                    <h3 class="mb-1 mt-4 text-center text-uppercase">Top Sales</h3>
+                    <h5 class="mb-4 text-center text-uppercase"><?php echo $DateNow ?></h5>
+                    <div class="topsales-informasi">
+                        <div class="rank-list">
+                            <?php foreach ($PerolehanSales as $key => $value) : ?>
+                                <div class="rank-item <?php if ($key + 1 <= 3) echo 'first-three'; ?><?php if ($key + 1 > 3) echo 'rank-four-and-below'; ?>">
 
-                                        <div class="username-container">
-                                            <span class="username"><?= $value['nama_sales']; ?></span>
-                                            <span class="jumlah"><i class="bi bi-person-check-fill"> </i> Perolehan Aktif = <?= $value['perolehan_sales_aktif']; ?></span>
-                                        </div>
-
-                                        <?php if ($key + 1 == 1) : ?>
-                                            <img class="medal" src="<?php echo base_url(); ?>assets/assets/img/medali/thropy_01.png" alt="Medal">
-                                        <?php elseif ($key + 1 == 2) : ?>
-                                            <img class="medal" src="<?php echo base_url(); ?>assets/assets/img/medali/medali_02.png" alt="Medal">
-                                        <?php elseif ($key + 1 == 3) : ?>
-                                            <img class="medal" src="<?php echo base_url(); ?>assets/assets/img/medali/medali_03.png" alt="Medal">
-                                        <?php else : ?>
-                                            <span class="nomor"><?= '#' . $key + 1; ?></span>
-                                        <?php endif; ?>
-
+                                    <div class="username-container">
+                                        <span class="username"><?= $value['nama_sales']; ?></span>
+                                        <span class="jumlah"><i class="bi bi-person-check-fill"> </i> Perolehan Aktif = <?= $value['perolehan_sales_aktif']; ?></span>
                                     </div>
-                                <?php endforeach; ?>
-                            </div>
+
+                                    <?php if ($key + 1 == 1) : ?>
+                                        <img class="medal" src="<?php echo base_url(); ?>assets/assets/img/medali/thropy_01.png" alt="Medal">
+                                    <?php elseif ($key + 1 == 2) : ?>
+                                        <img class="medal" src="<?php echo base_url(); ?>assets/assets/img/medali/medali_02.png" alt="Medal">
+                                    <?php elseif ($key + 1 == 3) : ?>
+                                        <img class="medal" src="<?php echo base_url(); ?>assets/assets/img/medali/medali_03.png" alt="Medal">
+                                    <?php else : ?>
+                                        <span class="nomor"><?= '#' . $key + 1; ?></span>
+                                    <?php endif; ?>
+
+                                </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
@@ -179,76 +177,74 @@
 
             <!-- jumlah terminasi -->
             <div class="col-sm-6 col-lg-6">
-                <div class="card terminasi-perolehan">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between mb-4">
-                            <div>
-                                <h4>Terminasi Terkecil</h4>
-                                <h6><?php echo $MonthNow ?></h6>
-                            </div>
-                            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with buttons">
-                                <div class="btn-group btn-group-toggle mx-3" data-coreui-toggle="buttons">
-                                    <input class="btn-check" id="option2" type="radio" name="options" autocomplete="off" checked="">
-                                    <a href="<?php echo base_url('admin/C_DashboardAdmin') ?>" class="btn btn-outline-secondary">
-                                        <label for="option3">Month</label>
-                                    </a>
-                                    <input class="btn-check" id="option3" type="radio" name="options" autocomplete="off">
-                                    <a href="<?php echo base_url('admin/C_DashboardAdmin/DasboardAdmin_V2') ?>" class="btn btn-outline-secondary">
-                                        <label for="option3">Year</label>
-                                    </a>
-                                </div>
+                <div class="card terminasi-perolehan d-flex justify-content-center">
+                    <div class="d-flex justify-content-between mb-4 mt-4">
+                        <div class="mx-3">
+                            <h4>Terminasi Terkecil</h4>
+                            <h6><?php echo $MonthNow ?></h6>
+                        </div>
+                        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with buttons">
+                            <div class="btn-group btn-group-toggle mx-3" data-coreui-toggle="buttons">
+                                <input class="btn-check" id="option2" type="radio" name="options" autocomplete="off" checked="">
+                                <a href="<?php echo base_url('admin/C_DashboardAdmin') ?>" class="btn btn-outline-secondary">
+                                    <label for="option3">Month</label>
+                                </a>
+                                <input class="btn-check" id="option3" type="radio" name="options" autocomplete="off">
+                                <a href="<?php echo base_url('admin/C_DashboardAdmin/DasboardAdmin_V2') ?>" class="btn btn-outline-secondary">
+                                    <label for="option3">Year</label>
+                                </a>
                             </div>
                         </div>
-                        <div class="topsales-informasi">
-                            <div class="rank-list">
-                                <?php foreach ($PerolehanSalesPerbulan as $key => $value) : ?>
-                                    <div class="rank-item <?php if ($key + 1 <= 1) echo 'first'; ?><?php if ($key + 1 > 1) echo 'rank-two-and-below'; ?>">
+                    </div>
+                    <div class="topsales-informasi">
+                        <div class="rank-list">
+                            <?php foreach ($PerolehanSalesPerbulan as $key => $value) : ?>
+                                <div class="rank-item <?php if ($key + 1 <= 1) echo 'first'; ?><?php if ($key + 1 > 1) echo 'rank-two-and-below'; ?>">
 
-                                        <div class="username-container">
-                                            <span class="username"><?= $value['nama_sales']; ?></span>
-                                            <span class="jumlah"><i class="bi bi-person-check-fill"> </i> Perolehan Aktif = <?= $value['total_aktif']; ?></span>
-                                            <span class="jumlah"><i class="bi bi-wifi-off"></i> Perolehan Terminasi = <?= $value['total_terminasi']; ?></span>
-                                            <span class="jumlah"><i class="bi bi-wifi-off"></i>
-                                                < 6 Bulan&nbsp;=&nbsp;<?= $value['KurangDari_6Bulan']; ?></span>
-                                                    <span class="jumlah"><i class="bi bi-wifi-off"></i> > 6 Bulan&nbsp;=&nbsp;<?= $value['LebihDari_6Bulan']; ?></span>
-                                        </div>
-
-                                        <div class="persentase-container">
-                                            <?php if ($key + 1 == 1) : ?>
-                                                <img class="medal-terminasi" src="<?php echo base_url(); ?>assets/assets/img/medali/thropy_01.png" alt="Medal">
-                                                <span class="jumlah-terminasi"> (<?php
-                                                                                    $persentaseTerminasi = $value['persentase_terminasi'];
-
-                                                                                    if ($persentaseTerminasi == 0) {
-                                                                                        echo "N/A"; // Atur teks atau tindakan lain sesuai kebutuhan
-                                                                                    } else {
-                                                                                        echo number_format($persentaseTerminasi, 2) . " %";
-                                                                                    }
-                                                                                    ?>)</span>
-                                            <?php elseif ($key + 1 == 2) : ?>
-                                                <span class="nomor-terminasi"><?= '#' . $key + 1; ?></span>
-
-                                                <span class="jumlah-terminasi">(<?= number_format($value['persentase_terminasi'], 2); ?> %)</span>
-
-                                            <?php elseif ($key + 1 == 3) : ?>
-                                                <span class="nomor-terminasi"><?= '#' . $key + 1; ?></span>
-
-                                                <span class="jumlah-terminasi">(<?= number_format($value['persentase_terminasi'], 2); ?> %)</span>
-
-
-                                            <?php else : ?>
-                                                <span class="nomor-terminasi"><?= '#' . $key + 1; ?></span>
-                                                <span class="jumlah-terminasi">(<?= number_format($value['persentase_terminasi'], 2); ?> %)</span>
-
-
-                                            <?php endif; ?>
-                                        </div>
-
-
-
+                                    <div class="username-container">
+                                        <span class="username"><?= $value['nama_sales']; ?></span>
+                                        <span class="jumlah"><i class="bi bi-person-check-fill"> </i> Perolehan Aktif = <?= $value['total_aktif']; ?></span>
+                                        <span class="jumlah"><i class="bi bi-wifi-off"></i> Perolehan Terminasi = <?= $value['total_terminasi']; ?></span>
+                                        <span class="jumlah"><i class="bi bi-wifi-off"></i>
+                                            < 6 Bulan&nbsp;=&nbsp;<?= $value['KurangDari_6Bulan']; ?></span>
+                                                <span class="jumlah"><i class="bi bi-wifi-off"></i> > 6 Bulan&nbsp;=&nbsp;<?= $value['LebihDari_6Bulan']; ?></span>
                                     </div>
-                                <?php endforeach; ?>
-                            </div>
+
+                                    <div class="persentase-container">
+                                        <?php if ($key + 1 == 1) : ?>
+                                            <img class="medal-terminasi" src="<?php echo base_url(); ?>assets/assets/img/medali/thropy_01.png" alt="Medal">
+                                            <span class="jumlah-terminasi"> (<?php
+                                                                                $persentaseTerminasi = $value['persentase_terminasi'];
+
+                                                                                if ($persentaseTerminasi == 0) {
+                                                                                    echo "N/A"; // Atur teks atau tindakan lain sesuai kebutuhan
+                                                                                } else {
+                                                                                    echo number_format($persentaseTerminasi, 2) . " %";
+                                                                                }
+                                                                                ?>)</span>
+                                        <?php elseif ($key + 1 == 2) : ?>
+                                            <span class="nomor-terminasi"><?= '#' . $key + 1; ?></span>
+
+                                            <span class="jumlah-terminasi">(<?= number_format($value['persentase_terminasi'], 2); ?> %)</span>
+
+                                        <?php elseif ($key + 1 == 3) : ?>
+                                            <span class="nomor-terminasi"><?= '#' . $key + 1; ?></span>
+
+                                            <span class="jumlah-terminasi">(<?= number_format($value['persentase_terminasi'], 2); ?> %)</span>
+
+
+                                        <?php else : ?>
+                                            <span class="nomor-terminasi"><?= '#' . $key + 1; ?></span>
+                                            <span class="jumlah-terminasi">(<?= number_format($value['persentase_terminasi'], 2); ?> %)</span>
+
+
+                                        <?php endif; ?>
+                                    </div>
+
+
+
+                                </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>

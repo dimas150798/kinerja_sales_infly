@@ -20,6 +20,17 @@
     <!-- CDN Boostrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 
+    <!-- Data Tables -->
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.13.1/af-2.5.1/r-2.4.0/datatables.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/dataTables.semanticui.min.css" />
+
+    <!-- Jquery 3.6.0 -->
+    <script src="<?php echo base_url(); ?>assets/js/jquery-3.6.0.min.js">
+    </script>
+
     <!-- Vendors styles-->
     <link href="<?php echo base_url(); ?>assets/vendors/simplebar/css/simplebar.cs" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/vendors/simplebar.css" rel="stylesheet" />
@@ -29,4 +40,7 @@
     <!-- We use those styles to show code examples, you should remove them in your application.-->
     <link href="<?php echo base_url(); ?>assets/css/examples.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet" />
+    <!-- SweetAlert2 -->
+    <link href="<?php echo base_url(); ?>vendor/SweetAlert2/sweetalert2.min.css" rel="stylesheet" />
+
 </head>

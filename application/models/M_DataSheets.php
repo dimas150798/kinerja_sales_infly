@@ -50,6 +50,18 @@ class M_DataSheets extends CI_Model
         return $query->result_array();
     }
 
+    public function Pelanggan_All($KodePerolehan)
+    {
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer,
+        nama_paket, branch_customer, alamat_customer, nama_sales, kode_perolehan, status_customer
+        FROM data_sheets
+
+        WHERE kode_perolehan = '$KodePerolehan'
+        
+        ORDER BY tanggal_customer DESC");
+
+        return $query->result_array();
+    }
 
 
 
@@ -199,5 +211,69 @@ class M_DataSheets extends CI_Model
         AND kode_perolehan = '$KodePerolehan'");
 
         return $query->num_rows();
+    }
+
+    public function getLastSequenceNumber()
+    {
+        $year = date("Y");
+        $month = date("m");
+
+        $query = $this->db->query("SELECT MAX(SUBSTRING(kode_sheet, 14, 4)) AS last_number
+        FROM data_sheets
+        WHERE SUBSTRING(kode_sheet, 6, 4) = '$year' AND SUBSTRING(kode_sheet, 11, 2) = '$month'");
+        $row = $query->row();
+
+        if ($row->last_number !== null) {
+            // Jika data ditemukan, kembalikan nilai terakhir + 1
+            return (int)substr($row->last_number, -4);
+        } else {
+            // Jika data tidak ada, mulai dari 0
+            return 0;
+        }
+    }
+
+    public function generateCode()
+    {
+        $year = date("Y");
+        $month = date("m");
+
+        // Mendapatkan nomor urut terakhir dari database
+        $lastNumber = $this->getLastSequenceNumber();
+
+        // Membuat nomor urut baru dengan panjang tetap 4 digit
+        $newNumber = sprintf('%04d', $lastNumber + 1);
+
+        // Menggabungkan semua elemen untuk membentuk kode akhir
+        $code = 'CUST/' . $year . '/' . $month . '/' . $newNumber;
+
+        return $code;
+    }
+
+    public function Check_Customer($KodePerolehan)
+    {
+
+        $result   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, status_customer, nama_sales FROM data_sheets
+        WHERE kode_sheet = '$KodePerolehan';
+        ");
+
+        return $result->row();
+        if ($result->num_rows() > 0) {
+            return $result->row();
+        } else {
+            return false;
+        }
+    }
+
+    public function Edit_Sheets($id_sheet)
+    {
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer,
+        nama_paket, branch_customer, alamat_customer, email, telepon, nama_sales, kode_perolehan, status_customer, tanggal_instalasi, keterangan
+        FROM data_sheets
+
+        WHERE id_sheet = '$id_sheet'
+        
+        ORDER BY tanggal_customer DESC");
+
+        return $query->result_array();
     }
 }

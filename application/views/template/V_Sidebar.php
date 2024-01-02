@@ -12,10 +12,10 @@
             <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
                     <i class="bi bi-wifi">&nbsp;</i> Aktif</a>
                 <ul class="nav-group-items">
-                    <li class="nav-item"><a class="nav-link" href="base/accordion.html"><i class="bi bi-clipboard2-data-fill">&nbsp;</i> All</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?php echo base_url('admin/pelanggan_aktif_all/C_Pelanggan_Aktif_All') ?>"><i class="bi bi-clipboard2-data-fill">&nbsp;</i> All</a></li>
                     <li class="nav-item"><a class="nav-link" href="base/breadcrumb.html"><i class="bi bi-clipboard2-data-fill">&nbsp;</i> Survey</a></li>
                     <li class="nav-item"><a class="nav-link" href="base/cards.html"><i class="bi bi-clipboard2-data-fill">&nbsp;</i> On Net</a></li>
-                    <li class="nav-item"><a class="nav-link" href="base/carousel.html"><i class="bi bi-clipboard2-data-fill">&nbsp;</i> Aktif</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?php echo base_url('admin/pelanggan_aktif/C_Pelanggan_Aktif') ?>"><i class="bi bi-clipboard2-data-fill">&nbsp;</i> Aktif</a></li>
                 </ul>
             </li>
             <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">

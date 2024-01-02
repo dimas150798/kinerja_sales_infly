@@ -75,15 +75,15 @@ class C_DashboardAdmin extends CI_Controller
         $data['PerolehanSalesPertahun'] = $this->M_DataPerolehanSales->Perolehan_Sales_Terminasi('2023');
 
         // Load necessary libraries
-        $this->M_Spreadsheet->index();
+        // $this->M_Spreadsheet->index();
 
-        $this->M_SpreadsheetTerminasi->index();
+        // $this->M_SpreadsheetTerminasi->index();
 
-        $this->M_DataPerolehanPerbulan->index();
+        // $this->M_DataPerolehanPerbulan->index();
 
-        $this->M_DataPerolehanSales->index();
+        // $this->M_DataPerolehanSales->index();
 
-        $this->M_DataPerolehanTerminasi->index();
+        // $this->M_DataPerolehanTerminasi->index();
 
         $data['DateNow']    = date('d-m-Y');
         $data['MonthNow']   = $months[(int)$bulanPerolehan];
@@ -153,11 +153,11 @@ class C_DashboardAdmin extends CI_Controller
 
 
         // Load necessary libraries
-        $this->load->model('M_Spreadsheet');
-        $this->load->model('M_SpreadsheetTerminasi');
-        $this->load->model('M_DataPerolehanPerbulan');
-        $this->load->model('M_DataPerolehanSales');
-        $this->load->model('M_DataPerolehanTerminasi');
+        // $this->load->model('M_Spreadsheet');
+        // $this->load->model('M_SpreadsheetTerminasi');
+        // $this->load->model('M_DataPerolehanPerbulan');
+        // $this->load->model('M_DataPerolehanSales');
+        // $this->load->model('M_DataPerolehanTerminasi');
 
         $data['DateNow']    = date('d-m-Y');
         $data['MonthNow']   = $months[(int)$bulanPerolehan];

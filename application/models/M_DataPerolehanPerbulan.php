@@ -62,6 +62,20 @@ class M_DataPerolehanPerbulan extends CI_Model
         }
     }
 
+    public function Check_Perolehan($KodePerolehan)
+    {
+
+        $result   = $this->db->query("SELECT id_perolehan, kode_perolehan, jumlah_perolehan, nama_bulan FROM perolehan_perbulan WHERE kode_perolehan = '$KodePerolehan';
+        ");
+
+        return $result->row();
+        if ($result->num_rows() > 0) {
+            return $result->row();
+        } else {
+            return false;
+        }
+    }
+
     public function getData()
     {
         $query = $this->db->query("SELECT id_perolehan, kode_perolehan, jumlah_perolehan, nama_bulan

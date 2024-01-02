@@ -115,6 +115,25 @@ class M_DataPerolehanSales extends CI_Model
         return $query->result_array();
     }
 
+    public function Check_Perolehan($KodePerolehan, $NamaSales)
+    {
+
+        $result   = $this->db->query("SELECT kode_perolehan_sales, perolehan_sales_all, perolehan_sales_aktif, nama_sales FROM perolehan_sales
+        WHERE kode_perolehan_sales = '$KodePerolehan' AND nama_sales = '$NamaSales';
+        ");
+
+        return $result->row();
+        if ($result->num_rows() > 0) {
+            return $result->row();
+        } else {
+            return false;
+        }
+    }
+
+
+
+
+
     public function getData()
     {
         $query = $this->db->query("SELECT id_perolehan, kode_perolehan, jumlah_perolehan, nama_bulan
