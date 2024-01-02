@@ -100,8 +100,8 @@ class C_DashboardAdmin extends CI_Controller
     {
         date_default_timezone_set("Asia/Jakarta");
 
-        $today = date('2023-12-30');
-        $todayYmd = date('2023-12-30', strtotime($today));
+        $today = date('Y-m-d');
+        $todayYmd = date('Y-m-d', strtotime($today));
 
         // Memisahkan Tanggal Sekarang
         $pecahToday = explode("-", $today);
@@ -115,11 +115,11 @@ class C_DashboardAdmin extends CI_Controller
         $bulanPerolehan = sprintf("%02d", $pecahToday[1]);
 
         // Mendapatkan tanggal 1 bulan sebelumnya
-        $dateOneMonthAgo = date('30-12-2023', strtotime('-1 month', strtotime($todayYmd)));
+        $dateOneMonthAgo = date('d-m-Y', strtotime('-1 month', strtotime($todayYmd)));
 
         if (date('d', strtotime($todayYmd)) == 31) {
             // Ambil tanggal terakhir bulan sebelumnya
-            $dateOneMonthAgo = date('30-12-2023', strtotime('last day of previous month', strtotime($todayYmd)));
+            $dateOneMonthAgo = date('d-m-Y', strtotime('last day of previous month', strtotime($todayYmd)));
         }
 
         // Memisahkan Tanggal 1 Bulan sebelumnya
