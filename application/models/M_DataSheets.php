@@ -60,6 +60,58 @@ class M_DataSheets extends CI_Model
         return $query->result_array();
     }
 
+    // Jumlah aktif
+    public function Jumlah_PelangganAktif($KodePerolehan)
+    {
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon, status_customer, tanggal_instalasi, nama_sales, keterangan, kode_perolehan
+        FROM data_sheets
+
+        WHERE status_customer = 'active' AND kode_perolehan = '$KodePerolehan'
+        
+        ORDER BY id_sheet DESC");
+
+        return $query->num_rows();
+    }
+
+    // Jumlah aktif KBS
+    public function Jumlah_PelangganAktif_KBS($KodePerolehan)
+    {
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon, status_customer, tanggal_instalasi, nama_sales, keterangan, kode_perolehan
+            FROM data_sheets
+    
+            WHERE status_customer = 'active' AND kode_perolehan = '$KodePerolehan' AND branch_customer = 'KBS'
+            
+            ORDER BY id_sheet DESC");
+
+        return $query->num_rows();
+    }
+
+    // Jumlah aktif TRW
+    public function Jumlah_PelangganAktif_TRW($KodePerolehan)
+    {
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon, status_customer, tanggal_instalasi, nama_sales, keterangan, kode_perolehan
+                FROM data_sheets
+        
+                WHERE status_customer = 'active' AND kode_perolehan = '$KodePerolehan' AND branch_customer = 'TRW'
+                
+                ORDER BY id_sheet DESC");
+
+        return $query->num_rows();
+    }
+
+    // Jumlah aktif Kanigaran
+    public function Jumlah_PelangganAktif_Kanigaran($KodePerolehan)
+    {
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon, status_customer, tanggal_instalasi, nama_sales, keterangan, kode_perolehan
+                    FROM data_sheets
+            
+                    WHERE status_customer = 'active' AND kode_perolehan = '$KodePerolehan' AND branch_customer = 'Kanigaran'
+                    
+                    ORDER BY id_sheet DESC");
+
+        return $query->num_rows();
+    }
+
     public function PelangganSurvey($KodePerolehan)
     {
         $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon, status_customer, tanggal_instalasi, nama_sales, keterangan, kode_perolehan

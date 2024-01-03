@@ -1,5 +1,5 @@
 <div class="body flex-grow-1 px-3">
-    <div class="container-lg">
+    <div class="container-fluid">
         <div class="row">
             <div class="card">
                 <div class="card-body">

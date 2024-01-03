@@ -62,8 +62,15 @@ class C_Pelanggan_Aktif extends CI_Controller
             $data['Month']   = $PecahToDay[1];
         }
 
-
         $data['title'] = 'Kinerja Sales';
+
+        $data['Jumlah_PelangganAktif'] = $this->M_DataSheets->Jumlah_PelangganAktif($this->session->userdata('KodePerolehan_Now'));
+        $data['Jumlah_PelangganAktif_KBS'] = $this->M_DataSheets->Jumlah_PelangganAktif_KBS($this->session->userdata('KodePerolehan_Now'));
+        $data['Jumlah_PelangganAktif_TRW'] = $this->M_DataSheets->Jumlah_PelangganAktif_TRW($this->session->userdata('KodePerolehan_Now'));
+        $data['Jumlah_PelangganAktif_KNG'] = $this->M_DataSheets->Jumlah_PelangganAktif_Kanigaran($this->session->userdata('KodePerolehan_Now'));
+
+        // var_dump($data1);
+        // die;
 
         $this->load->view('template/V_Header', $data);
         $this->load->view('template/V_Sidebar', $data);
@@ -94,7 +101,10 @@ class C_Pelanggan_Aktif extends CI_Controller
                 changeDateFormat('d-m-Y', $dataCustomer['tanggal_customer']),
                 $tanggal_instalasi ? '<span class="badge bg-danger">Data Kosong</span>' : '<span class="badge bg-success">' . changeDateFormat('d-m-Y', $dataCustomer['tanggal_instalasi']) . '</span>',
                 $dataCustomer['alamat_customer'],
-                $dataCustomer['keterangan']
+                $dataCustomer['keterangan'],
+                '<div class="text-center">
+                    <a onclick="EditPelangganAktif(' . $dataCustomer['id_sheet'] . ')" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
+                </div>'
             );
             $data[] = $row;
         }

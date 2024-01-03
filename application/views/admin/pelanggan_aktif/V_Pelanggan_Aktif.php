@@ -1,5 +1,5 @@
 <div class="body flex-grow-1 px-3">
-    <div class="container-lg">
+    <div class="container-fluid">
         <div class="row">
             <div class="card">
                 <div class="card-body">
@@ -68,6 +68,7 @@
                                     <th class="fw-bold text-uppercase" width="10%">Tanggal Instalasi</th>
                                     <th class="fw-bold text-uppercase" width="10%">Alamat</th>
                                     <th class="fw-bold text-uppercase" width="10%">Keterangan</th>
+                                    <th class="fw-bold text-uppercase" width="10%">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
