@@ -82,7 +82,7 @@
                     </div>
                 </div>
 
-                <div class="copy-wa">
+                <div class="copy-wa d-none">
                     <div class="card">
                         <div class="card-body" id="codeContainer">
                             <h2 class="mb-4">*Update Schedule Instalasi <?= $hari_schedule ?>, <?= $tanggal_schedule ?> :*</h2> <br>
