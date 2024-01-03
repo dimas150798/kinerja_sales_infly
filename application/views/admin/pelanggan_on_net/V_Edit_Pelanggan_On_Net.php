@@ -104,7 +104,7 @@
                                 </div>
                                 <div class="col-sm-12 col-lg-6 mt-2">
                                     <label class="form-label fs-5 fw-bold">Biaya Instalasi</label>
-                                    <input class="form-control" name="biaya_instalasi" placeholder="Masukkan Biaya Instalasi..."><?php echo $data['biaya_instalasi'] ?></input>
+                                    <input class="form-control" name="biaya_instalasi" value="<?php echo $data['biaya_instalasi'] ?>" placeholder="Masukkan Biaya Instalasi..."></input>
                                 </div>
                             </div>
 
