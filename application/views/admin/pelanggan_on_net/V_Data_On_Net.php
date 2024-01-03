@@ -101,7 +101,7 @@
                             if (empty($tanggal_schedule) || $tanggal_schedule == 'Data Kosong') {
                                 echo 'Data Kosong';
                             } else {
-                                echo "<h2 class='mb-4'>Update Schedule Instalasi $hari_schedule, $tanggal_schedule :</h2>";
+                                echo "<h2 class='mb-4'>*Update Schedule Instalasi $hari_schedule, $tanggal_schedule :*</h2><br>";
                             }
                             ?>
 
