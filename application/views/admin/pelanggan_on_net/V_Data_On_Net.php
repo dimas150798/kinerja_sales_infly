@@ -5,7 +5,11 @@
 
                     <div class="card-body">
                         <form action="<?php echo base_url('admin/pelanggan_on_net/C_Data_On_Net') ?>" method="get" class="row g-3 mt-2">
-                            <h4 class="fs-3 fw-bold">Schedule Pelanggan</h4>
+                            <h4 class="fs-3 fw-bold">Schedule Pelanggan <?php if ($AreaGET == NULL) {
+                                                                            echo $Area;
+                                                                        } else {
+                                                                            echo $AreaGET;
+                                                                        } ?></h4>
                             <div class="col-md-3">
                                 <label for="tahun" class="form-label">Tahun:</label>
                                 <select class="form-control" id="tahun" name="tahun">
