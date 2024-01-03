@@ -4,7 +4,7 @@
             <div class="card">
 
                 <div class="card-body">
-                    <form action="<?php echo base_url('admin/pelanggan_survey/C_Pelanggan_Survey') ?>" method="get" class="row g-3 mt-2">
+                    <form action="<?php echo base_url('admin/pelanggan_on_net/C_Pelanggan_On_Net') ?>" method="get" class="row g-3 mt-2">
                         <h4 class="fs-3 fw-bold">Data Pelanggan On Net</h4>
                         <div class="col-md-3">
                             <label for="tahun" class="form-label">Tahun:</label>

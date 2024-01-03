@@ -78,7 +78,7 @@
                                 <p style="margin-bottom: 10px">
                                     <strong><?= $key + 1 ?>.</strong>
                                     <strong><?= $value['nama_customer'] ?></strong> <br>
-                                    <?= $value['nama_paket'] ?> <br>
+                                    <?= $value['nama_paket'] ?> <span class="copyable"><?= $value['total'] ?></span><br>
                                     <?= $value['alamat_customer'] ?>
                                 </p>
                             </div>
@@ -96,7 +96,7 @@
                                     <p style="margin-bottom: 10px">
                                         <strong>*<?= $key + 1 ?>.*</strong>
                                         <strong class="copyable">*<?= $value['nama_customer'] ?>*</strong> <br>
-                                        <span class="copyable"><?= $value['nama_paket'] ?></span> <br>
+                                        <span class="copyable"><?= $value['nama_paket'] ?></span> <span class="copyable"><?= $value['total'] ?></span><br>
                                         <span class="copyable"><?= $value['alamat_customer'] ?></span>
                                     </p>
                                 </div>

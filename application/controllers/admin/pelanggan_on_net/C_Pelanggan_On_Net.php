@@ -28,7 +28,6 @@ class C_Pelanggan_On_Net extends CI_Controller
 
     public function index()
     {
-
         if (isset($_GET['tahun']) && $_GET['tahun'] !== '' && isset($_GET['bulan']) && $_GET['bulan'] !== '') {
             $tahunGET = $_GET['tahun'];
             $bulanGET = $_GET['bulan'];

@@ -86,14 +86,34 @@ class M_DataSheets extends CI_Model
 
     public function PelangganOnNet_Area($KodePerolehan, $Branch_Customer)
     {
-        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, 
-        nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon, 
-        status_customer, tanggal_instalasi, nama_sales, keterangan, kode_perolehan
-        FROM data_sheets
-        
-        WHERE status_customer = 'on net' AND kode_perolehan = '$KodePerolehan' AND branch_customer = '$Branch_Customer'
-        
-        ORDER BY id_sheet DESC");
+        $query   = $this->db->query("SELECT data_sheets.id_sheet, 
+        data_sheets.kode_sheet, 
+        data_sheets.tanggal_customer, 
+        data_sheets.nama_customer, 
+        data_sheets.nama_paket, 
+        data_sheets.branch_customer, 
+        data_sheets.alamat_customer, 
+        data_sheets.email, 
+        data_sheets.telepon, 
+        data_sheets.status_customer, 
+        data_sheets.tanggal_instalasi, 
+        data_sheets.nama_sales, 
+        data_sheets.keterangan, 
+        data_sheets.kode_perolehan, 
+        data_sheets.biaya_instalasi,
+        data_paket.harga_paket,
+        FORMAT(SUM(COALESCE(data_paket.harga_paket, 0) + COALESCE(data_sheets.biaya_instalasi, 0)), 0) AS total
+
+    FROM 
+        data_sheets
+    LEFT JOIN 
+        data_paket ON data_sheets.nama_paket = data_paket.nama_paket
+    WHERE 
+        data_sheets.status_customer = 'on net' 
+        AND data_sheets.kode_perolehan = '$KodePerolehan' 
+        AND data_sheets.branch_customer = '$Branch_Customer'
+    ORDER BY 
+        data_sheets.id_sheet DESC");
 
         return $query->result_array();
     }
@@ -321,7 +341,7 @@ class M_DataSheets extends CI_Model
     public function Edit_Sheets($id_sheet)
     {
         $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer,
-        nama_paket, branch_customer, alamat_customer, email, telepon, nama_sales, kode_perolehan, status_customer, tanggal_instalasi, keterangan
+        nama_paket, branch_customer, alamat_customer, email, telepon, nama_sales, kode_perolehan, status_customer, tanggal_instalasi, keterangan, biaya_instalasi
         FROM data_sheets
 
         WHERE id_sheet = '$id_sheet'
