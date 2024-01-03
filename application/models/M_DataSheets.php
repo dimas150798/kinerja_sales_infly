@@ -86,7 +86,8 @@ class M_DataSheets extends CI_Model
 
     public function PelangganOnNet_Area($KodePerolehan, $Branch_Customer)
     {
-        $query   = $this->db->query("SELECT data_sheets.id_sheet, 
+        $query   = $this->db->query("SELECT 
+        data_sheets.id_sheet, 
         data_sheets.kode_sheet, 
         data_sheets.tanggal_customer, 
         data_sheets.nama_customer, 
@@ -102,8 +103,8 @@ class M_DataSheets extends CI_Model
         data_sheets.kode_perolehan, 
         data_sheets.biaya_instalasi,
         data_paket.harga_paket,
-        FORMAT(SUM(COALESCE(data_paket.harga_paket, 0) + COALESCE(data_sheets.biaya_instalasi, 0)), 0) AS total
-
+    FORMAT(SUM(COALESCE(data_paket.harga_paket, 0) + COALESCE(data_sheets.biaya_instalasi, 0)), 0) AS total
+    
     FROM 
         data_sheets
     LEFT JOIN 
@@ -112,8 +113,24 @@ class M_DataSheets extends CI_Model
         data_sheets.status_customer = 'on net' 
         AND data_sheets.kode_perolehan = '$KodePerolehan' 
         AND data_sheets.branch_customer = '$Branch_Customer'
+        GROUP BY 
+        data_sheets.id_sheet, 
+        data_sheets.kode_sheet, 
+        data_sheets.tanggal_customer, 
+        data_sheets.nama_customer, 
+        data_sheets.nama_paket, 
+        data_sheets.branch_customer, 
+        data_sheets.alamat_customer, 
+        data_sheets.email, 
+        data_sheets.telepon, 
+        data_sheets.status_customer, 
+        data_sheets.tanggal_instalasi, 
+        data_sheets.nama_sales, 
+        data_sheets.keterangan, 
+        data_sheets.kode_perolehan, 
+        data_sheets.biaya_instalasi
     ORDER BY 
-        data_sheets.id_sheet DESC");
+        data_sheets.id_sheet DESC;");
 
         return $query->result_array();
     }

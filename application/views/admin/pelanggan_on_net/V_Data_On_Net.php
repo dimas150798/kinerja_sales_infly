@@ -58,7 +58,7 @@
                             <div class="col-md-3 mt-5 d-flex justify-content-end align-items-center">
                                 <div class="button-container">
                                     <button type="submit" class="btn btn-primary">Cari</button>
-                                    <a href="<?php echo base_url('admin/pelanggan_on_net/C_Data_On_Net') ?>" class="btn btn-success">Data On Net</a>
+                                    <a href="<?php echo base_url('admin/pelanggan_on_net/C_Pelanggan_On_Net') ?>" class="btn btn-danger">Kembali</a>
                                 </div>
                             </div>
                         </form>
