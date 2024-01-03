@@ -165,6 +165,8 @@ class M_DataSheets extends CI_Model
         data_sheets.status_customer = 'on net' 
         AND data_sheets.kode_perolehan = '$KodePerolehan' 
         AND data_sheets.branch_customer = '$Branch_Customer'
+        AND data_sheets.tanggal_instalasi != ''
+
         GROUP BY 
         data_sheets.id_sheet, 
         data_sheets.kode_sheet, 
@@ -182,7 +184,7 @@ class M_DataSheets extends CI_Model
         data_sheets.kode_perolehan, 
         data_sheets.biaya_instalasi
     ORDER BY 
-        data_sheets.id_sheet DESC;");
+        data_sheets.id_sheet DESC");
 
         return $query->result_array();
     }

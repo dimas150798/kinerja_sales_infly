@@ -35,11 +35,11 @@ class C_Data_On_Net extends CI_Controller
             $areaGET = $_GET['area'];
 
             $BulanPerolehan = sprintf("%02d", $bulanGET);
-            $KodePerolehan_Now = $tahunGET . '-' . $BulanPerolehan;
+            $KodePerolehan = $tahunGET . '-' . $BulanPerolehan;
 
-            $data['KodePerolehan_Now']           = $KodePerolehan_Now;
+            $data['KodePerolehan_Now']           = $KodePerolehan;
 
-            $this->session->set_userdata('KodePerolehan_Now', $KodePerolehan_Now);
+            $this->session->set_userdata('KodePerolehan_Now', $KodePerolehan);
             $this->session->set_userdata('Area_Now', $areaGET);
 
             $data['YearGET']   = $tahunGET;
@@ -79,7 +79,6 @@ class C_Data_On_Net extends CI_Controller
 
         $Tanggal_Schedule = $Check_ON_Net->tanggal_instalasi;
 
-        // Mengubah format tanggal ke format Indonesia
 
         // Mengambil nama hari dalam Bahasa Indonesia
         $Nama_Hari = date('l', strtotime($Tanggal_Schedule));
@@ -110,9 +109,12 @@ class C_Data_On_Net extends CI_Controller
                 break;
         }
 
-        $data['hari_schedule'] = $Hari_Indo;
-        $data['tanggal_schedule'] = date('d F Y', strtotime($Tanggal_Schedule));
+        $tanggal_schedule_display = empty($Tanggal_Schedule) || $Tanggal_Schedule == '0000-00-00'
+            ? 'Data Kosong'
+            : date('d F Y', strtotime($Tanggal_Schedule));
 
+        $data['hari_schedule'] = $Hari_Indo;
+        $data['tanggal_schedule'] = $tanggal_schedule_display;
 
         $this->load->view('template/V_Header', $data);
         $this->load->view('template/V_Sidebar', $data);
