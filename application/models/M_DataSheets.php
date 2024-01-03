@@ -91,7 +91,7 @@ class M_DataSheets extends CI_Model
         status_customer, tanggal_instalasi, nama_sales, keterangan, kode_perolehan
         FROM data_sheets
         
-        WHERE status_customer = 'on net' AND kode_perolehan = '$KodePerolehan' AND branch_customer = '$Branch_Customer'
+        WHERE status_customer = 'on net' AND kode_perolehan = '$KodePerolehan' AND branch_customer = '$Branch_Customer' AND tanggal_instalasi != NULL
         
         ORDER BY id_sheet DESC");
 
@@ -106,7 +106,7 @@ class M_DataSheets extends CI_Model
         status_customer, tanggal_instalasi, nama_sales, keterangan, kode_perolehan
         FROM data_sheets
         
-        WHERE status_customer = 'on net' AND kode_perolehan = '$KodePerolehan' AND branch_customer = '$Branch_Customer'
+        WHERE status_customer = 'on net' AND kode_perolehan = '$KodePerolehan' AND branch_customer = '$Branch_Customer' AND tanggal_instalasi != NULL
         
         ORDER BY id_sheet DESC ");
 
