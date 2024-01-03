@@ -80,7 +80,6 @@
                         }
                         ?>
 
-
                         <?php foreach ($DataPelaggan as $key => $value) : ?>
                             <div class="customer-info">
                                 <p style="margin-bottom: 10px">
@@ -97,7 +96,14 @@
                 <div class="copy-wa d-none">
                     <div class="card">
                         <div class="card-body" id="codeContainer">
-                            <h2 class="mb-4">*Update Schedule Instalasi <?= $hari_schedule ?>, <?= $tanggal_schedule ?> :*</h2> <br>
+
+                            <?php
+                            if (empty($tanggal_schedule) || $tanggal_schedule == 'Data Kosong') {
+                                echo 'Data Kosong';
+                            } else {
+                                echo "<h2 class='mb-4'>Update Schedule Instalasi $hari_schedule, $tanggal_schedule :</h2>";
+                            }
+                            ?>
 
                             <?php foreach ($DataPelaggan as $key => $value) : ?>
                                 <div class="customer-info">
