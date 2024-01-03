@@ -6,6 +6,10 @@ if (!function_exists('changeDateFormat')) {
     }
 }
 
+ini_set('display_errors', 'Off');
+ini_set('error_reporting', E_ALL);
+define('WP_DEBUG', false);
+define('WP_DEBUG_DISPLAY', false);
 
 defined('BASEPATH') or exit('No direct script access allowed');
 // header('Access-Control-Allow-Origin: *');
@@ -78,7 +82,6 @@ class C_Data_On_Net extends CI_Controller
         $Check_ON_Net = $this->M_DataSheets->Check_Pelanggan_On_Net($this->session->userdata('KodePerolehan_Now'), $this->session->userdata('Area_Now'));
 
         $Tanggal_Schedule = $Check_ON_Net->tanggal_instalasi;
-
 
         // Mengambil nama hari dalam Bahasa Indonesia
         $Nama_Hari = date('l', strtotime($Tanggal_Schedule));
