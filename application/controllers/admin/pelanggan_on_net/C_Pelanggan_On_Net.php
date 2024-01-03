@@ -6,10 +6,11 @@ if (!function_exists('changeDateFormat')) {
     }
 }
 
+
 defined('BASEPATH') or exit('No direct script access allowed');
 // header('Access-Control-Allow-Origin: *');
 
-class C_Pelanggan_Aktif extends CI_Controller
+class C_Pelanggan_On_Net extends CI_Controller
 {
 
     public function __construct()
@@ -52,7 +53,6 @@ class C_Pelanggan_Aktif extends CI_Controller
 
             $data['KodePerolehan_Now']           = $KodePerolehan_Now;
 
-
             $this->session->set_userdata('KodePerolehan_Now', $KodePerolehan_Now);
 
             $data['YearGET']   = NULL;
@@ -62,26 +62,24 @@ class C_Pelanggan_Aktif extends CI_Controller
             $data['Month']   = $PecahToDay[1];
         }
 
-
         $data['title'] = 'Kinerja Sales';
 
         $this->load->view('template/V_Header', $data);
         $this->load->view('template/V_Sidebar', $data);
-        $this->load->view('admin/pelanggan_aktif/V_Pelanggan_Aktif', $data);
+        $this->load->view('admin/pelanggan_on_net/V_Pelanggan_On_Net', $data);
         $this->load->view('template/V_Footer', $data);
     }
 
     public function GetDataAjax()
     {
 
-        $result = $this->M_DataSheets->PelangganAktif($this->session->userdata('KodePerolehan_Now'));
+        $result = $this->M_DataSheets->PelangganOnNet($this->session->userdata('KodePerolehan_Now'));
 
         $no = 0;
         $data = array();
 
         foreach ($result as $dataCustomer) {
             $tanggal_instalasi = ($dataCustomer['tanggal_instalasi'] == NULL || $dataCustomer['tanggal_instalasi'] == '0000-00-00');
-
 
             $row = array(
                 ++$no,
@@ -94,7 +92,10 @@ class C_Pelanggan_Aktif extends CI_Controller
                 changeDateFormat('d-m-Y', $dataCustomer['tanggal_customer']),
                 $tanggal_instalasi ? '<span class="badge bg-danger">Data Kosong</span>' : '<span class="badge bg-success">' . changeDateFormat('d-m-Y', $dataCustomer['tanggal_instalasi']) . '</span>',
                 $dataCustomer['alamat_customer'],
-                $dataCustomer['keterangan']
+                $dataCustomer['keterangan'],
+                '<div class="text-center">
+                    <a onclick="EditPelangganOnNet(' . $dataCustomer['id_sheet'] . ')" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
+                </div>'
             );
             $data[] = $row;
         }

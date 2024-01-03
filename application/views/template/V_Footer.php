@@ -67,6 +67,60 @@
     })
 </script>
 
+<!-- Ajax Show Pelanggan Survey -->
+<script>
+    $(document).ready(function() {
+        $('#pelangganSurvey').DataTable({
+            "autoFill": true,
+            "pagingType": 'numbers',
+            "searching": true,
+            "paging": true,
+            "stateSave": true,
+            "processing": true,
+            "serverside": true,
+            "ajax": {
+                "url": "<?= base_url('admin/pelanggan_survey/C_Pelanggan_Survey/GetDataAjax'); ?>",
+            },
+        })
+    })
+</script>
+
+<!-- Ajax Show Pelanggan On Net -->
+<script>
+    $(document).ready(function() {
+        $('#pelangganOnNet').DataTable({
+            "autoFill": true,
+            "pagingType": 'numbers',
+            "searching": true,
+            "paging": true,
+            "stateSave": true,
+            "processing": true,
+            "serverside": true,
+            "ajax": {
+                "url": "<?= base_url('admin/pelanggan_on_net/C_Pelanggan_On_Net/GetDataAjax'); ?>",
+            },
+        })
+    })
+</script>
+
+<!-- Ajax Show Pelanggan On Net Area-->
+<script>
+    $(document).ready(function() {
+        $('#pelangganOnNetArea').DataTable({
+            "autoFill": true,
+            "pagingType": 'numbers',
+            "searching": true,
+            "paging": true,
+            "stateSave": true,
+            "processing": true,
+            "serverside": true,
+            "ajax": {
+                "url": "<?= base_url('admin/pelanggan_on_net/C_Data_On_Net/GetDataAjax'); ?>",
+            },
+        })
+    })
+</script>
+
 <!-- Alert Tambah Data Pelanggan -->
 <script>
     <?php if ($this->session->flashdata('Success_icon')) { ?>
@@ -129,6 +183,70 @@
             }
         })
     }
+</script>
+
+<!-- Edit Data Pelanggan Survey-->
+<script>
+    function EditPelangganSurvey(parameter_id) {
+        Swal.fire({
+            title: 'Yakin Melakukan Edit Data ?',
+            text: "Data yang diedit tidak akan kembali",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Edit Data!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "<?php echo site_url('admin/pelanggan_survey/C_Edit_Pelanggan_Survey/EditPelanggan') ?>/" + parameter_id;
+            }
+        })
+    }
+</script>
+
+<!-- Edit Data Pelanggan On Net-->
+<script>
+    function EditPelangganOnNet(parameter_id) {
+        Swal.fire({
+            title: 'Yakin Melakukan Edit Data ?',
+            text: "Data yang diedit tidak akan kembali",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Edit Data!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "<?php echo site_url('admin/pelanggan_on_net/C_Edit_Pelanggan_On_Net/EditPelanggan') ?>/" + parameter_id;
+            }
+        })
+    }
+</script>
+
+
+<script>
+    document.getElementById('copyButton').addEventListener('click', function() {
+        var codeContainer = document.getElementById('codeContainer');
+
+        // Clone the container, append it to the body, and select its content
+        var clonedContainer = codeContainer.cloneNode(true);
+        clonedContainer.style.position = 'absolute';
+        clonedContainer.style.left = '-9999px';
+        document.body.appendChild(clonedContainer);
+
+        var range = document.createRange();
+        range.selectNodeContents(clonedContainer);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+
+        // Copy the selected content to clipboard
+        document.execCommand('copy');
+
+        // Remove the cloned container
+        document.body.removeChild(clonedContainer);
+
+        alert('Text copied!');
+    });
 </script>
 
 </body>

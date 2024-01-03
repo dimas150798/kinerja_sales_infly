@@ -6,10 +6,11 @@ if (!function_exists('changeDateFormat')) {
     }
 }
 
+
 defined('BASEPATH') or exit('No direct script access allowed');
 // header('Access-Control-Allow-Origin: *');
 
-class C_Pelanggan_Aktif extends CI_Controller
+class C_Data_On_Net extends CI_Controller
 {
 
     public function __construct()
@@ -28,18 +29,22 @@ class C_Pelanggan_Aktif extends CI_Controller
     public function index()
     {
 
-        if (isset($_GET['tahun']) && $_GET['tahun'] !== '' && isset($_GET['bulan']) && $_GET['bulan'] !== '') {
+        if (isset($_GET['tahun']) && $_GET['tahun'] !== '' && isset($_GET['bulan']) && $_GET['bulan'] !== '' && isset($_GET['area']) && $_GET['area'] !== '') {
             $tahunGET = $_GET['tahun'];
             $bulanGET = $_GET['bulan'];
+            $areaGET = $_GET['area'];
 
             $BulanPerolehan = sprintf("%02d", $bulanGET);
             $KodePerolehan_Now = $tahunGET . '-' . $BulanPerolehan;
 
             $data['KodePerolehan_Now']           = $KodePerolehan_Now;
+
             $this->session->set_userdata('KodePerolehan_Now', $KodePerolehan_Now);
+            $this->session->set_userdata('Area_Now', $areaGET);
 
             $data['YearGET']   = $tahunGET;
             $data['MonthGET']   = $bulanGET;
+            $data['AreaGET']   = $areaGET;
         } else {
             date_default_timezone_set("Asia/Jakarta");
             $ToDay = date('d-m-Y');
@@ -52,36 +57,79 @@ class C_Pelanggan_Aktif extends CI_Controller
 
             $data['KodePerolehan_Now']           = $KodePerolehan_Now;
 
-
             $this->session->set_userdata('KodePerolehan_Now', $KodePerolehan_Now);
+            $this->session->set_userdata('Area_Now', 'KBS');
+
 
             $data['YearGET']   = NULL;
             $data['MonthGET']   = NULL;
+            $data['AreaGET']   = NULL;
 
             $data['Year']   = $PecahToDay[2];
             $data['Month']   = $PecahToDay[1];
+            $data['Area']   = 'KBS';
         }
 
-
         $data['title'] = 'Kinerja Sales';
+        $data['DataArea'] = $this->M_DataArea->Data_Area();
+
+        $data['DataPelaggan'] = $this->M_DataSheets->PelangganOnNet_Area($this->session->userdata('KodePerolehan_Now'), $this->session->userdata('Area_Now'));
+
+        $Check_ON_Net = $this->M_DataSheets->Check_Pelanggan_On_Net($this->session->userdata('KodePerolehan_Now'), $this->session->userdata('Area_Now'));
+
+        $Tanggal_Schedule = $Check_ON_Net->tanggal_instalasi;
+
+        // Mengubah format tanggal ke format Indonesia
+
+        // Mengambil nama hari dalam Bahasa Indonesia
+        $Nama_Hari = date('l', strtotime($Tanggal_Schedule));
+        $Hari_Indo = '';
+
+        // Mengonversi nama hari ke dalam Bahasa Indonesia
+        switch ($Nama_Hari) {
+            case 'Monday':
+                $Hari_Indo = 'Senin';
+                break;
+            case 'Tuesday':
+                $Hari_Indo = 'Selasa';
+                break;
+            case 'Wednesday':
+                $Hari_Indo = 'Rabu';
+                break;
+            case 'Thursday':
+                $Hari_Indo = 'Kamis';
+                break;
+            case 'Friday':
+                $Hari_Indo = 'Jumat';
+                break;
+            case 'Saturday':
+                $Hari_Indo = 'Sabtu';
+                break;
+            case 'Sunday':
+                $Hari_Indo = 'Minggu';
+                break;
+        }
+
+        $data['hari_schedule'] = $Hari_Indo;
+        $data['tanggal_schedule'] = date('d F Y', strtotime($Tanggal_Schedule));
+
 
         $this->load->view('template/V_Header', $data);
         $this->load->view('template/V_Sidebar', $data);
-        $this->load->view('admin/pelanggan_aktif/V_Pelanggan_Aktif', $data);
+        $this->load->view('admin/pelanggan_on_net/V_Data_On_Net', $data);
         $this->load->view('template/V_Footer', $data);
     }
 
     public function GetDataAjax()
     {
 
-        $result = $this->M_DataSheets->PelangganAktif($this->session->userdata('KodePerolehan_Now'));
+        $result = $this->M_DataSheets->PelangganOnNet_Area($this->session->userdata('KodePerolehan_Now'), $this->session->userdata('Area_Now'));
 
         $no = 0;
         $data = array();
 
         foreach ($result as $dataCustomer) {
             $tanggal_instalasi = ($dataCustomer['tanggal_instalasi'] == NULL || $dataCustomer['tanggal_instalasi'] == '0000-00-00');
-
 
             $row = array(
                 ++$no,
@@ -94,7 +142,10 @@ class C_Pelanggan_Aktif extends CI_Controller
                 changeDateFormat('d-m-Y', $dataCustomer['tanggal_customer']),
                 $tanggal_instalasi ? '<span class="badge bg-danger">Data Kosong</span>' : '<span class="badge bg-success">' . changeDateFormat('d-m-Y', $dataCustomer['tanggal_instalasi']) . '</span>',
                 $dataCustomer['alamat_customer'],
-                $dataCustomer['keterangan']
+                $dataCustomer['keterangan'],
+                '<div class="text-center">
+                    <a onclick="EditPelangganOnNet(' . $dataCustomer['id_sheet'] . ')" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
+                </div>'
             );
             $data[] = $row;
         }

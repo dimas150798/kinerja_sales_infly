@@ -36,20 +36,6 @@ class M_DataSheets extends CI_Model
         return $query->num_rows();
     }
 
-
-    public function PelangganAktif($KodePerolehan)
-    {
-        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer,
-        nama_paket, branch_customer, alamat_customer, nama_sales, kode_perolehan 
-        FROM data_sheets
-
-        WHERE status_customer = 'active' AND kode_perolehan = '$KodePerolehan'
-        
-        ORDER BY tanggal_customer DESC");
-
-        return $query->result_array();
-    }
-
     public function Pelanggan_All($KodePerolehan)
     {
         $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon, status_customer, tanggal_instalasi, nama_sales, keterangan, kode_perolehan
@@ -57,11 +43,80 @@ class M_DataSheets extends CI_Model
 
         WHERE kode_perolehan = '$KodePerolehan'
         
-        ORDER BY kode_sheet DESC");
+        ORDER BY id_sheet DESC");
 
         return $query->result_array();
     }
 
+    public function PelangganAktif($KodePerolehan)
+    {
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon, status_customer, tanggal_instalasi, nama_sales, keterangan, kode_perolehan
+        FROM data_sheets
+
+        WHERE status_customer = 'active' AND kode_perolehan = '$KodePerolehan'
+        
+        ORDER BY id_sheet DESC");
+
+        return $query->result_array();
+    }
+
+    public function PelangganSurvey($KodePerolehan)
+    {
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon, status_customer, tanggal_instalasi, nama_sales, keterangan, kode_perolehan
+        FROM data_sheets
+        
+        WHERE status_customer = 'survey' AND kode_perolehan = '$KodePerolehan'
+        
+        ORDER BY id_sheet DESC");
+
+        return $query->result_array();
+    }
+
+    public function PelangganOnNet($KodePerolehan)
+    {
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon, status_customer, tanggal_instalasi, nama_sales, keterangan, kode_perolehan
+        FROM data_sheets
+        
+        WHERE status_customer = 'on net' AND kode_perolehan = '$KodePerolehan'
+        
+        ORDER BY id_sheet DESC");
+
+        return $query->result_array();
+    }
+
+    public function PelangganOnNet_Area($KodePerolehan, $Branch_Customer)
+    {
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, 
+        nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon, 
+        status_customer, tanggal_instalasi, nama_sales, keterangan, kode_perolehan
+        FROM data_sheets
+        
+        WHERE status_customer = 'on net' AND kode_perolehan = '$KodePerolehan' AND branch_customer = '$Branch_Customer'
+        
+        ORDER BY id_sheet DESC");
+
+        return $query->result_array();
+    }
+
+    public function Check_Pelanggan_On_Net($KodePerolehan, $Branch_Customer)
+    {
+
+        $result   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, 
+        nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon, 
+        status_customer, tanggal_instalasi, nama_sales, keterangan, kode_perolehan
+        FROM data_sheets
+        
+        WHERE status_customer = 'on net' AND kode_perolehan = '$KodePerolehan' AND branch_customer = '$Branch_Customer'
+        
+        ORDER BY id_sheet DESC ");
+
+        return $result->row();
+        if ($result->num_rows() > 0) {
+            return $result->row();
+        } else {
+            return false;
+        }
+    }
 
 
 

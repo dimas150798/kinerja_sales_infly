@@ -2,10 +2,10 @@
     <div class="container-lg">
         <div class="row">
             <div class="card">
-                <div class="card-body">
-                    <h4 class="fs-3 fw-bold">Data Pelanggan Aktif</h4>
 
-                    <form action="<?php echo base_url('admin/pelanggan_aktif/C_Pelanggan_Aktif') ?>" method="get" class="row g-3">
+                <div class="card-body">
+                    <form action="<?php echo base_url('admin/pelanggan_survey/C_Pelanggan_Survey') ?>" method="get" class="row g-3 mt-2">
+                        <h4 class="fs-3 fw-bold">Data Pelanggan Survey</h4>
                         <div class="col-md-3">
                             <label for="tahun" class="form-label">Tahun:</label>
                             <select class="form-control" id="tahun" name="tahun">
@@ -53,8 +53,9 @@
 
             <div class="card">
                 <div class="card-body">
+
                     <div class="table-responsive">
-                        <table id="mytable" class="table table-bordered responsive nowrap" style="width:100%">
+                        <table id="pelangganSurvey" class="table table-bordered responsive nowrap" style="width:100%">
                             <thead>
                                 <tr>
                                     <th class="fw-bold text-uppercase" width="5%">No</th>
@@ -68,6 +69,7 @@
                                     <th class="fw-bold text-uppercase" width="10%">Tanggal Instalasi</th>
                                     <th class="fw-bold text-uppercase" width="10%">Alamat</th>
                                     <th class="fw-bold text-uppercase" width="10%">Keterangan</th>
+                                    <th class="fw-bold text-uppercase" width="15%">Action</th>
                                 </tr>
                             </thead>
                             <tbody>

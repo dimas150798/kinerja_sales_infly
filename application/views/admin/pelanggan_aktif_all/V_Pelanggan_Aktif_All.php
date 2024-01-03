@@ -59,18 +59,18 @@
                         <table id="pelangganAll" class="table table-bordered responsive nowrap" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th width="5%">No</th>
-                                    <th width="10%">Nama customer</th>
-                                    <th width="10%">Nama Paket</th>
-                                    <th width="10%">Area</th>
-                                    <th width="10%">Nama Sales</th>
-                                    <th width="10%">Status</th>
-                                    <th width="10%">Telepon</th>
-                                    <th width="10%">Tanggal Registrasi</th>
-                                    <th width="10%">Tanggal Instalasi</th>
-                                    <th width="10%">Alamat</th>
-                                    <th width="10%">Keterangan</th>
-                                    <th width="15%">Action</th>
+                                    <th class="fw-bold text-uppercase" width="5%">No</th>
+                                    <th class="fw-bold text-uppercase" width="10%">Nama customer</th>
+                                    <th class="fw-bold text-uppercase" width="10%">Nama Paket</th>
+                                    <th class="fw-bold text-uppercase" width="10%">Area</th>
+                                    <th class="fw-bold text-uppercase" width="10%">Nama Sales</th>
+                                    <th class="fw-bold text-uppercase" width="10%">Status</th>
+                                    <th class="fw-bold text-uppercase" width="10%">Telepon</th>
+                                    <th class="fw-bold text-uppercase" width="10%">Tanggal Registrasi</th>
+                                    <th class="fw-bold text-uppercase" width="10%">Tanggal Instalasi</th>
+                                    <th class="fw-bold text-uppercase" width="10%">Alamat</th>
+                                    <th class="fw-bold text-uppercase" width="10%">Keterangan</th>
+                                    <th class="fw-bold text-uppercase" width="15%">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
