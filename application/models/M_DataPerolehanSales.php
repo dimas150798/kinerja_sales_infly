@@ -67,7 +67,7 @@ class M_DataPerolehanSales extends CI_Model
         WHERE kode_perolehan_sales = '$KodePerolehan' AND perolehan_sales_aktif != 0
         GROUP BY nama_sales
 
-        ORDER BY perolehan_sales_aktif DESC");
+        ORDER BY perolehan_sales_aktif DESC, jabatan ASC");
 
         return $query->result_array();
     }
