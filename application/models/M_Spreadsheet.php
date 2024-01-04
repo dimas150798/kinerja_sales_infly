@@ -7,13 +7,16 @@ class M_Spreadsheet extends CI_Model
     {
         $response = [];
 
-        $json_string = 'https://script.google.com/macros/s/AKfycbyAwwxyrLd_JOxXlOlvaD4K0vHkgLG7EKQrgpHTTBa3foVhCzYW_3tR2ol4XLj8joZK9Q/exec';
+        $json_string = 'https://script.google.com/macros/s/AKfycbxTL6OpZkxFn_RDcy4fKUBBICfceAFGFQNvqCJCJMuoLnwbatrz-opR4FfFCgJfIYsHSw/exec';
         $jsondata = file_get_contents($json_string);
         $obj = json_decode($jsondata, TRUE);
 
         $arrayObj = count($obj);
 
-        $getData = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, status_customer, nama_sales, kode_perolehan FROM data_sheets")->result_array();
+        $getData = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, 
+        nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon, 
+        status_customer, tanggal_instalasi, nama_sales, keterangan, kode_perolehan
+        FROM data_sheets")->result_array();
 
         for ($i = 0; $i < $arrayObj; $i++) {
             $status = false;
@@ -41,8 +44,12 @@ class M_Spreadsheet extends CI_Model
                         'nama_paket' => $obj[$i]['nama_paket'],
                         'branch_customer' => $obj[$i]['branch'],
                         'alamat_customer' => $obj[$i]['alamat'],
+                        'email' => $obj[$i]['email'],
+                        'telepon' => $obj[$i]['telepon'],
                         'status_customer' => $obj[$i]['status'],
                         'nama_sales' => $obj[$i]['sales'],
+                        'tanggal_instalasi' => $obj[$i]['tanggal_instalasi'],
+                        'keterangan' => $obj[$i]['keterangan'],
                         'kode_perolehan' => $KodePerolehan
                     ];
 
