@@ -81,7 +81,7 @@ class C_DashboardAdmin extends CI_Controller
         $data['PerolehanSalesPertahun'] = $this->M_DataPerolehanSales->Perolehan_Sales_Terminasi('2023');
 
         // Load necessary libraries
-        $this->M_Spreadsheet->index();
+        // $this->M_Spreadsheet->index();
 
         // $this->M_SpreadsheetTerminasi->index();
 
