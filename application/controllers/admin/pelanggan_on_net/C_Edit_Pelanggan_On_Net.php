@@ -78,6 +78,7 @@ class C_Edit_Pelanggan_On_Net extends CI_Controller
         $nama_sales = $this->input->post('nama_sales');
         $keterangan = $this->input->post('keterangan');
         $biaya_instalasi = $this->input->post('biaya_instalasi');
+        $biaya_bundling = $this->input->post('biaya_bundling');
 
         $Split_TanggalInstalasi = explode("-", $tanggal_instalasi);
         $Kode_Perolehan_TanggalInstalasi = $Split_TanggalInstalasi[0] . '-' . $Split_TanggalInstalasi[1];
@@ -106,6 +107,7 @@ class C_Edit_Pelanggan_On_Net extends CI_Controller
             'keterangan'        => $keterangan,
             'kode_perolehan'    => $kode_perolehan_now,
             'biaya_instalasi'    => $biaya_instalasi,
+            'biaya_bundling'    => $biaya_bundling,
         );
 
         // Data Customer

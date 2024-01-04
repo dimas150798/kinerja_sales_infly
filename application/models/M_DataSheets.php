@@ -154,8 +154,9 @@ class M_DataSheets extends CI_Model
         data_sheets.keterangan, 
         data_sheets.kode_perolehan, 
         data_sheets.biaya_instalasi,
+        data_sheets.biaya_bundling,
         data_paket.harga_paket,
-    FORMAT(SUM(COALESCE(data_paket.harga_paket, 0) + COALESCE(data_sheets.biaya_instalasi, 0)), 0) AS total
+    FORMAT(SUM(COALESCE(data_paket.harga_paket, 0) + COALESCE(data_sheets.biaya_instalasi, 0) + COALESCE(data_sheets.biaya_bundling, 0)), 0) AS total
     
     FROM 
         data_sheets
@@ -182,7 +183,8 @@ class M_DataSheets extends CI_Model
         data_sheets.nama_sales, 
         data_sheets.keterangan, 
         data_sheets.kode_perolehan, 
-        data_sheets.biaya_instalasi
+        data_sheets.biaya_instalasi,
+        data_sheets.biaya_bundling
     ORDER BY 
         data_sheets.id_sheet DESC");
 
@@ -412,7 +414,8 @@ class M_DataSheets extends CI_Model
     public function Edit_Sheets($id_sheet)
     {
         $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer,
-        nama_paket, branch_customer, alamat_customer, email, telepon, nama_sales, kode_perolehan, status_customer, tanggal_instalasi, keterangan, biaya_instalasi
+        nama_paket, branch_customer, alamat_customer, email, telepon, nama_sales, kode_perolehan, 
+        status_customer, tanggal_instalasi, keterangan, biaya_instalasi, biaya_bundling
         FROM data_sheets
 
         WHERE id_sheet = '$id_sheet'
