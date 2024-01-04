@@ -64,10 +64,10 @@
                                     <th class="fw-bold text-uppercase" width="10%">Nama Paket</th>
                                     <th class="fw-bold text-uppercase" width="10%">Area</th>
                                     <th class="fw-bold text-uppercase" width="10%">Nama Sales</th>
-                                    <th class="fw-bold text-uppercase" width="10%">Status</th>
+                                    <th class="fw-bold text-uppercase" width="5%">Status</th>
                                     <th class="fw-bold text-uppercase" width="10%">Telepon</th>
-                                    <th class="fw-bold text-uppercase" width="10%">Tanggal Registrasi</th>
-                                    <th class="fw-bold text-uppercase" width="10%">Tanggal Instalasi</th>
+                                    <th class="fw-bold text-uppercase" width="10%">Tgl Reg</th>
+                                    <th class="fw-bold text-uppercase" width="10%">Tgl Ins</th>
                                     <th class="fw-bold text-uppercase" width="10%">Alamat</th>
                                     <th class="fw-bold text-uppercase" width="10%">Keterangan</th>
                                     <th class="fw-bold text-uppercase" width="10%">Nama DP</th>
