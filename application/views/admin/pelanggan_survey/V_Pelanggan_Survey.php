@@ -69,6 +69,7 @@
                                     <th class="fw-bold text-uppercase" width="10%">Tanggal Instalasi</th>
                                     <th class="fw-bold text-uppercase" width="10%">Alamat</th>
                                     <th class="fw-bold text-uppercase" width="10%">Keterangan</th>
+                                    <th class="fw-bold text-uppercase" width="10%">Nama DP</th>
                                     <th class="fw-bold text-uppercase" width="15%">Action</th>
                                 </tr>
                             </thead>

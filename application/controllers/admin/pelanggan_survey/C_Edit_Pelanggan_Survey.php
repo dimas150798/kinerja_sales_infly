@@ -77,6 +77,7 @@ class C_Edit_Pelanggan_Survey extends CI_Controller
         $tanggal_instalasi = $this->input->post('tanggal_instalasi');
         $nama_sales = $this->input->post('nama_sales');
         $keterangan = $this->input->post('keterangan');
+        $nama_dp = $this->input->post('nama_dp');
 
         $Split_TanggalInstalasi = explode("-", $tanggal_instalasi);
         $Kode_Perolehan_TanggalInstalasi = $Split_TanggalInstalasi[0] . '-' . $Split_TanggalInstalasi[1];

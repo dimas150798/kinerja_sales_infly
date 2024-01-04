@@ -5,14 +5,22 @@
             <img src="<?php echo base_url(); ?>assets/assets/img/inflynetworks_LogoOnly.png" alt="Infly Networks Logo" width="46" height="46" class="sidebar-brand-narrow">
         </div>
 
+
         <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
             <li class="nav-item"><a class="nav-link" href="<?php echo base_url('admin/C_DashboardAdmin') ?>">
                     <i class="bi bi-speedometer2">&nbsp;</i> Dashboard<span class="badge badge-sm bg-info ms-auto"></span></a></li>
+
+            <!-- <li class="nav-title">Data Master</li> -->
+
+            <!-- <li class="nav-item"><a class="nav-link" href="<?php echo base_url('admin/data_dp/C_Data_DP') ?>">
+                    <i class="bi bi-bookmarks">&nbsp;</i> Data DP<span class="badge badge-sm bg-info ms-auto"></span></a></li> -->
+
             <li class="nav-title">Data Pelanggan</li>
             <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
                     <i class="bi bi-wifi">&nbsp;</i> Aktif</a>
                 <ul class="nav-group-items">
                     <li class="nav-item"><a class="nav-link" href="<?php echo base_url('admin/pelanggan_aktif_all/C_Pelanggan_Aktif_All') ?>"><i class="bi bi-clipboard2-data-fill">&nbsp;</i> All</a></li>
+                    <!-- <li class="nav-item"><a class="nav-link" href="<?php echo base_url('admin/pelanggan_survey/C_Pelanggan_Survey') ?>"><i class="bi bi-clipboard2-data-fill">&nbsp;</i> Need Distribusi</a></li> -->
                     <li class="nav-item"><a class="nav-link" href="<?php echo base_url('admin/pelanggan_survey/C_Pelanggan_Survey') ?>"><i class="bi bi-clipboard2-data-fill">&nbsp;</i> Survey</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?php echo base_url('admin/pelanggan_on_net/C_Pelanggan_On_Net') ?>"><i class="bi bi-clipboard2-data-fill">&nbsp;</i> On Net</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?php echo base_url('admin/pelanggan_aktif/C_Pelanggan_Aktif') ?>"><i class="bi bi-clipboard2-data-fill">&nbsp;</i> Aktif</a></li>

@@ -38,7 +38,9 @@ class M_DataSheets extends CI_Model
 
     public function Pelanggan_All($KodePerolehan)
     {
-        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon, status_customer, tanggal_instalasi, nama_sales, keterangan, kode_perolehan
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, 
+        nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon, 
+        status_customer, tanggal_instalasi, nama_sales, keterangan, nama_dp, kode_perolehan
         FROM data_sheets
 
         WHERE kode_perolehan = '$KodePerolehan'
@@ -50,7 +52,9 @@ class M_DataSheets extends CI_Model
 
     public function PelangganAktif($KodePerolehan)
     {
-        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon, status_customer, tanggal_instalasi, nama_sales, keterangan, kode_perolehan
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, 
+        nama_customer, nama_paket, branch_customer, alamat_customer, email, 
+        telepon, status_customer, tanggal_instalasi, nama_sales, keterangan, nama_dp, kode_perolehan
         FROM data_sheets
 
         WHERE status_customer = 'active' AND kode_perolehan = '$KodePerolehan'
@@ -114,7 +118,9 @@ class M_DataSheets extends CI_Model
 
     public function PelangganSurvey($KodePerolehan)
     {
-        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon, status_customer, tanggal_instalasi, nama_sales, keterangan, kode_perolehan
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, 
+        nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon,
+        status_customer, tanggal_instalasi, nama_sales, keterangan, nama_dp, kode_perolehan
         FROM data_sheets
         
         WHERE status_customer = 'survey' AND kode_perolehan = '$KodePerolehan'
@@ -126,7 +132,9 @@ class M_DataSheets extends CI_Model
 
     public function PelangganOnNet($KodePerolehan)
     {
-        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon, status_customer, tanggal_instalasi, nama_sales, keterangan, kode_perolehan
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer,
+        nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon, 
+        status_customer, tanggal_instalasi, nama_sales, keterangan, nama_dp, kode_perolehan
         FROM data_sheets
         
         WHERE status_customer = 'on net' AND kode_perolehan = '$KodePerolehan'
@@ -152,6 +160,7 @@ class M_DataSheets extends CI_Model
         data_sheets.tanggal_instalasi, 
         data_sheets.nama_sales, 
         data_sheets.keterangan, 
+        data_sheets.nama_dp,
         data_sheets.kode_perolehan, 
         data_sheets.biaya_instalasi,
         data_sheets.biaya_bundling,
@@ -415,7 +424,7 @@ class M_DataSheets extends CI_Model
     {
         $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer,
         nama_paket, branch_customer, alamat_customer, email, telepon, nama_sales, kode_perolehan, 
-        status_customer, tanggal_instalasi, keterangan, biaya_instalasi, biaya_bundling
+        status_customer, tanggal_instalasi, keterangan, nama_dp, biaya_instalasi, biaya_bundling
         FROM data_sheets
 
         WHERE id_sheet = '$id_sheet'

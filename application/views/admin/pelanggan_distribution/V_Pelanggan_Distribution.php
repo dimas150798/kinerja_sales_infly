@@ -2,10 +2,10 @@
     <div class="container-fluid">
         <div class="row">
             <div class="card">
-
                 <div class="card-body">
-                    <form action="<?php echo base_url('admin/pelanggan_on_net/C_Pelanggan_On_Net') ?>" method="get" class="row g-3 mt-2">
-                        <h4 class="fs-3 fw-bold">Data Pelanggan On Net</h4>
+                    <h4 class="fs-3 fw-bold">Data Pelanggan Distibution</h4>
+
+                    <form action="<?php echo base_url('admin/pelanggan_aktif/C_Pelanggan_Aktif') ?>" method="get" class="row g-3">
                         <div class="col-md-3">
                             <label for="tahun" class="form-label">Tahun:</label>
                             <select class="form-control" id="tahun" name="tahun">
@@ -41,7 +41,6 @@
                         <div class="col-md-6 d-flex justify-content-end align-items-center">
                             <div class="button-container">
                                 <button type="submit" class="btn btn-primary">Cari</button>
-                                <a href="<?php echo base_url('admin/pelanggan_on_net/C_Data_On_Net') ?>" class="btn btn-success">Data On Net</a>
                             </div>
                         </div>
                     </form>
@@ -54,9 +53,8 @@
 
             <div class="card">
                 <div class="card-body">
-
                     <div class="table-responsive">
-                        <table id="pelangganOnNet" class="table table-bordered responsive nowrap" style="width:100%">
+                        <table id="mytable" class="table table-bordered responsive nowrap" style="width:100%">
                             <thead>
                                 <tr>
                                     <th class="fw-bold text-uppercase" width="5%">No</th>
@@ -70,8 +68,7 @@
                                     <th class="fw-bold text-uppercase" width="10%">Tanggal Instalasi</th>
                                     <th class="fw-bold text-uppercase" width="10%">Alamat</th>
                                     <th class="fw-bold text-uppercase" width="10%">Keterangan</th>
-                                    <th class="fw-bold text-uppercase" width="10%">Nama DP</th>
-                                    <th class="fw-bold text-uppercase" width="15%">Action</th>
+                                    <th class="fw-bold text-uppercase" width="10%">Action</th>
                                 </tr>
                             </thead>
                             <tbody>

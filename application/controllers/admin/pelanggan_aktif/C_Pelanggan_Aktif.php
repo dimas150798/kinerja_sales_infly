@@ -102,6 +102,7 @@ class C_Pelanggan_Aktif extends CI_Controller
                 $tanggal_instalasi ? '<span class="badge bg-danger">Data Kosong</span>' : '<span class="badge bg-success">' . changeDateFormat('d-m-Y', $dataCustomer['tanggal_instalasi']) . '</span>',
                 $dataCustomer['alamat_customer'],
                 $dataCustomer['keterangan'],
+                $dataCustomer['nama_dp'],
                 '<div class="text-center">
                     <a onclick="EditPelangganAktif(' . $dataCustomer['id_sheet'] . ')" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
                 </div>'

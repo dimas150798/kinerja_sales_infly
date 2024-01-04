@@ -73,6 +73,8 @@ class C_Tambah_Pelanggan extends CI_Controller
         $tanggal_instalasi = $this->input->post('tanggal_instalasi');
         $nama_sales = $this->input->post('nama_sales');
         $keterangan = $this->input->post('keterangan');
+        $nama_dp = $this->input->post('nama_dp');
+
         $kode_perolehan = $PecahToDay[2] . '-' . $PecahToDay[1];
         $nama_bulan = $months[date('n')];
 
@@ -101,6 +103,7 @@ class C_Tambah_Pelanggan extends CI_Controller
             'tanggal_instalasi' => $tanggal_instalasi_change,
             'nama_sales'        => $nama_sales,
             'keterangan'        => $keterangan,
+            'nama_dp'           => $nama_dp,
             'kode_perolehan'    => $kode_perolehan,
         );
 

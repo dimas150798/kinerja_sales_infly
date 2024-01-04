@@ -102,6 +102,10 @@
                                     <label class="form-label fs-5 fw-bold">Keterangan</label>
                                     <textarea class="form-control" id="keterangan" name="keterangan" rows="1"><?php echo $data['keterangan'] ?></textarea>
                                 </div>
+                                <div class="col-sm-12 col-lg-6 mt-2">
+                                    <label class="form-label fs-5 fw-bold">Nama DP</label>
+                                    <input class="form-control" id="nama_dp" name="nama_dp" value="<?php echo $data['nama_dp'] ?>" placeholder="Masukkan Nama DP...">
+                                </div>
                             </div>
 
                             <div class="row mt-3">

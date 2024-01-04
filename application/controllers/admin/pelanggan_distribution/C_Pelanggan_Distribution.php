@@ -6,11 +6,10 @@ if (!function_exists('changeDateFormat')) {
     }
 }
 
-
 defined('BASEPATH') or exit('No direct script access allowed');
 // header('Access-Control-Allow-Origin: *');
 
-class C_Pelanggan_On_Net extends CI_Controller
+class C_Pelanggan_Distribution extends CI_Controller
 {
 
     public function __construct()
@@ -28,57 +27,31 @@ class C_Pelanggan_On_Net extends CI_Controller
 
     public function index()
     {
-        if (isset($_GET['tahun']) && $_GET['tahun'] !== '' && isset($_GET['bulan']) && $_GET['bulan'] !== '') {
-            $tahunGET = $_GET['tahun'];
-            $bulanGET = $_GET['bulan'];
-
-            $BulanPerolehan = sprintf("%02d", $bulanGET);
-            $KodePerolehan_Now = $tahunGET . '-' . $BulanPerolehan;
-
-            $data['KodePerolehan_Now']           = $KodePerolehan_Now;
-            $this->session->set_userdata('KodePerolehan_Now', $KodePerolehan_Now);
-
-            $data['YearGET']   = $tahunGET;
-            $data['MonthGET']   = $bulanGET;
-        } else {
-            date_default_timezone_set("Asia/Jakarta");
-            $ToDay = date('d-m-Y');
-
-            $PecahToDay = explode("-", $ToDay);
-
-            $BulanPerolehan = sprintf("%02d", $PecahToDay[1]);
-
-            $KodePerolehan_Now = $PecahToDay[2] . '-' . $BulanPerolehan;
-
-            $data['KodePerolehan_Now']           = $KodePerolehan_Now;
-
-            $this->session->set_userdata('KodePerolehan_Now', $KodePerolehan_Now);
-
-            $data['YearGET']   = NULL;
-            $data['MonthGET']   = NULL;
-
-            $data['Year']   = $PecahToDay[2];
-            $data['Month']   = $PecahToDay[1];
-        }
 
         $data['title'] = 'Kinerja Sales';
 
+        $data['Jumlah_PelangganAktif'] = $this->M_DataSheets->Jumlah_PelangganAktif($this->session->userdata('KodePerolehan_Now'));
+        $data['Jumlah_PelangganAktif_KBS'] = $this->M_DataSheets->Jumlah_PelangganAktif_KBS($this->session->userdata('KodePerolehan_Now'));
+        $data['Jumlah_PelangganAktif_TRW'] = $this->M_DataSheets->Jumlah_PelangganAktif_TRW($this->session->userdata('KodePerolehan_Now'));
+        $data['Jumlah_PelangganAktif_KNG'] = $this->M_DataSheets->Jumlah_PelangganAktif_Kanigaran($this->session->userdata('KodePerolehan_Now'));
+
         $this->load->view('template/V_Header', $data);
         $this->load->view('template/V_Sidebar', $data);
-        $this->load->view('admin/pelanggan_on_net/V_Pelanggan_On_Net', $data);
+        $this->load->view('admin/pelanggan_distribution/V_Pelanggan_Distribution', $data);
         $this->load->view('template/V_Footer', $data);
     }
 
     public function GetDataAjax()
     {
 
-        $result = $this->M_DataSheets->PelangganOnNet($this->session->userdata('KodePerolehan_Now'));
+        $result = $this->M_DataSheets->PelangganAktif($this->session->userdata('KodePerolehan_Now'));
 
         $no = 0;
         $data = array();
 
         foreach ($result as $dataCustomer) {
             $tanggal_instalasi = ($dataCustomer['tanggal_instalasi'] == NULL || $dataCustomer['tanggal_instalasi'] == '0000-00-00');
+
 
             $row = array(
                 ++$no,
@@ -92,9 +65,8 @@ class C_Pelanggan_On_Net extends CI_Controller
                 $tanggal_instalasi ? '<span class="badge bg-danger">Data Kosong</span>' : '<span class="badge bg-success">' . changeDateFormat('d-m-Y', $dataCustomer['tanggal_instalasi']) . '</span>',
                 $dataCustomer['alamat_customer'],
                 $dataCustomer['keterangan'],
-                $dataCustomer['nama_dp'],
                 '<div class="text-center">
-                    <a onclick="EditPelangganOnNet(' . $dataCustomer['id_sheet'] . ')" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
+                    <a onclick="EditPelangganAktif(' . $dataCustomer['id_sheet'] . ')" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
                 </div>'
             );
             $data[] = $row;
