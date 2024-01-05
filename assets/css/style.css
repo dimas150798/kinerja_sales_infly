@@ -8411,6 +8411,7 @@ html:not([dir=rtl]) .sidebar-close {
   overflow-x: hidden;
   overflow-y: auto;
   list-style: none;
+  font-size: 15px;
 }
 .sidebar-nav .nav-title {
   padding: var(--cui-sidebar-nav-title-padding-y) var(--cui-sidebar-nav-title-padding-x);

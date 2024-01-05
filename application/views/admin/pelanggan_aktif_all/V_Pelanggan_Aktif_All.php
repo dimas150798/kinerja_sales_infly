@@ -40,8 +40,8 @@
 
                         <div class="col-md-6 d-flex justify-content-end align-items-center">
                             <div class="button-container">
-                                <button type="submit" class="btn btn-primary">Cari</button>
-                                <a href="<?php echo base_url('admin/pelanggan_aktif_all/C_Tambah_Pelanggan') ?>" class="btn btn-success">Tambah Customer</a>
+                                <button type="submit" class="btn btn-primary text-white fw-bold">Cari</button>
+                                <a href="<?php echo base_url('admin/pelanggan_aktif_all/C_Tambah_Pelanggan') ?>" class="btn btn-success fw-bold text-white">Tambah Customer</a>
                             </div>
                         </div>
                     </form>
@@ -59,19 +59,19 @@
                         <table id="pelangganAll" class="table table-bordered responsive nowrap" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th class="fw-bold text-uppercase" width="5%">No</th>
-                                    <th class="fw-bold text-uppercase" width="10%">Nama customer</th>
-                                    <th class="fw-bold text-uppercase" width="10%">Nama Paket</th>
-                                    <th class="fw-bold text-uppercase" width="10%">Area</th>
-                                    <th class="fw-bold text-uppercase" width="10%">Nama Sales</th>
-                                    <th class="fw-bold text-uppercase" width="5%">Status</th>
-                                    <th class="fw-bold text-uppercase" width="10%">Telepon</th>
-                                    <th class="fw-bold text-uppercase" width="10%">Tgl Reg</th>
-                                    <th class="fw-bold text-uppercase" width="10%">Tgl Ins</th>
-                                    <th class="fw-bold text-uppercase" width="10%">Alamat</th>
-                                    <th class="fw-bold text-uppercase" width="10%">Keterangan</th>
-                                    <th class="fw-bold text-uppercase" width="10%">Nama DP</th>
-                                    <th class="fw-bold text-uppercase" width="15%">Action</th>
+                                    <th class="fw-bold text-uppercase text-center" width="5%">No</th>
+                                    <th class="fw-bold text-uppercase text-center" width="10%">Nama customer</th>
+                                    <th class="fw-bold text-uppercase text-center" width="5%">Paket</th>
+                                    <th class="fw-bold text-uppercase text-center" width="5%">Area</th>
+                                    <th class="fw-bold text-uppercase text-center" width="10%">Nama Sales</th>
+                                    <th class="fw-bold text-uppercase text-center" width="5%">Status</th>
+                                    <th class="fw-bold text-uppercase text-center" width="10%">Telepon</th>
+                                    <th class="fw-bold text-uppercase text-center" width="10%">Tgl Reg</th>
+                                    <th class="fw-bold text-uppercase text-center" width="10%">Tgl Ins</th>
+                                    <th class="fw-bold text-uppercase text-center" width="10%">Alamat</th>
+                                    <th class="fw-bold text-uppercase text-center" width="10%">Keterangan</th>
+                                    <th class="fw-bold text-uppercase text-center" width="10%">Nama DP</th>
+                                    <th class="fw-bold text-uppercase text-center" width="15%">Action</th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -221,6 +221,21 @@ class M_DataSheets extends CI_Model
     }
 
 
+    // Data Pelanggan Distribution
+    public function PelangganDistribution($KodePerolehan)
+    {
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer,
+        nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon, 
+        status_customer, tanggal_instalasi, nama_sales, keterangan, nama_dp, kode_perolehan
+        FROM data_sheets
+        
+        WHERE status_customer = 'need distribution' AND kode_perolehan = '$KodePerolehan'
+        
+        ORDER BY id_sheet DESC");
+
+        return $query->result_array();
+    }
+
 
 
 

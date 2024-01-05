@@ -121,6 +121,24 @@
     })
 </script>
 
+<!-- Ajax Show Pelanggan Distribution-->
+<script>
+    $(document).ready(function() {
+        $('#pelangganDistribution').DataTable({
+            "autoFill": true,
+            "pagingType": 'numbers',
+            "searching": true,
+            "paging": true,
+            "stateSave": true,
+            "processing": true,
+            "serverside": true,
+            "ajax": {
+                "url": "<?= base_url('admin/pelanggan_distribution/C_Pelanggan_Distribution/GetDataAjax'); ?>",
+            },
+        })
+    })
+</script>
+
 <!-- Alert Tambah Data Pelanggan -->
 <script>
     <?php if ($this->session->flashdata('Success_icon')) { ?>
@@ -237,6 +255,25 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = "<?php echo site_url('admin/pelanggan_aktif/C_Edit_Pelanggan_Aktif/EditPelanggan') ?>/" + parameter_id;
+            }
+        })
+    }
+</script>
+
+<!-- Edit Data Pelanggan Distribution-->
+<script>
+    function EditPelangganDistribution(parameter_id) {
+        Swal.fire({
+            title: 'Yakin Melakukan Edit Data ?',
+            text: "Data yang diedit tidak akan kembali",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Edit Data!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "<?php echo site_url('admin/pelanggan_distribution/C_Edit_Pelanggan_Distribution/EditPelanggan') ?>/" + parameter_id;
             }
         })
     }

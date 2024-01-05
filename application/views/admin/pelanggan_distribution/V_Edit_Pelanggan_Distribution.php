@@ -4,11 +4,11 @@
             <div class="card">
 
                 <div class="card-body">
-                    <h4 class="fs-3 fw-bold">Edit Customer</h4>
+                    <h4 class="fs-3 fw-bold">Edit Customer Distribution</h4>
 
                     <?php foreach ($DataPelanggan as $data) : ?>
 
-                        <form method="POST" action="<?php echo base_url('admin/pelanggan_aktif_all/C_Edit_Pelanggan/EditPelangganSave') ?>">
+                        <form method="POST" action="<?php echo base_url('admin/pelanggan_aktif/C_Edit_Pelanggan_Aktif/EditPelangganSave') ?>">
 
                             <div class="row">
                                 <input class="form-control bg-secondary" type="hidden" id="id_sheet" name="id_sheet" value="<?php echo $data['id_sheet'] ?>" placeholder="Kode Sheet" readonly>
