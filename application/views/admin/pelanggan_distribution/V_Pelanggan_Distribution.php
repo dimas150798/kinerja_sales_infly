@@ -3,7 +3,7 @@
         <div class="row">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="fs-3 fw-bold">Data Pelanggan Distibution</h4>
+                    <h4 class="fs-3 fw-bold">Data Pelanggan Need Distibution</h4>
 
                     <form action="<?php echo base_url('admin/pelanggan_distribution/C_Pelanggan_Distribution') ?>" method="get" class="row g-3">
                         <div class="col-md-3">
