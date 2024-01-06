@@ -27,6 +27,8 @@ class C_DashboardAdmin extends CI_Controller
 
         $this->M_DataPerolehanTerminasi->index();
 
+        $this->M_SpreadsheetTerminasi->index();
+
         date_default_timezone_set("Asia/Jakarta");
 
         $today = date('Y-m-d');
@@ -83,8 +85,6 @@ class C_DashboardAdmin extends CI_Controller
         // Load necessary libraries
         // $this->M_Spreadsheet->index();
 
-        // $this->M_SpreadsheetTerminasi->index();
-
         $data['DateNow']    = date('d-m-Y');
         $data['MonthNow']   = $months[(int)$bulanPerolehan];
         $data['Year']       = date('Y');
@@ -103,6 +103,8 @@ class C_DashboardAdmin extends CI_Controller
         $this->M_DataPerolehanSales->index();
 
         $this->M_DataPerolehanTerminasi->index();
+
+        $this->M_SpreadsheetTerminasi->index();
 
         date_default_timezone_set("Asia/Jakarta");
 
@@ -161,8 +163,6 @@ class C_DashboardAdmin extends CI_Controller
         // $this->M_Spreadsheet->index();
 
         // $this->M_SpreadsheetTerminasi->index();
-
-
 
         $data['DateNow']    = date('d-m-Y');
         $data['MonthNow']   = $months[(int)$bulanPerolehan];

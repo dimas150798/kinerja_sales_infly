@@ -5,100 +5,98 @@ class M_SpreadsheetTerminasi extends CI_Model
 {
     public function index()
     {
-        $response = [];
+        // Fetching terminated data sheets
+        $getDataSheet = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, 
+        nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon, 
+        status_customer, tanggal_instalasi, tanggal_terminasi, nama_sales, keterangan, kode_perolehan
+        FROM data_sheets 
+        WHERE status_customer = 'terminated'")->result_array();
 
-        $json_string = 'https://script.google.com/macros/s/AKfycby-6TuWIw5bh5HVwFF-l5EQj-TW_OlcMzYcvtPtks67YMB90-fJCLO5XsikVl5coZK-Mw/exec';
-        $jsondata = file_get_contents($json_string);
-        $obj = json_decode($jsondata, TRUE);
-
-        $arrayObj = count($obj);
-
-
+        // Fetching termination data
         $getData = $this->db->query("SELECT id_terminasi_sheets, kode_terminasi_sheets, nama_pelanggan, tanggal_registrasi, tanggal_terminasi, nama_sales, area, keterangan FROM terminasi_sheets")->result_array();
 
-        for ($i = 0; $i < $arrayObj; $i++) {
+        foreach ($getDataSheet as $obj) {
             $status = false;
 
-            if (!empty($obj[$i]['nama_sales']) && !empty($obj[$i]['area'])) {
+            if (!empty($obj['nama_sales']) && !empty($obj['branch_customer'])) {
                 foreach ($getData as $value) {
-                    if ($obj[$i]['no'] == $value['kode_terminasi_sheets'] && $obj[$i]['nama_sales'] == $value['nama_sales']) {
+
+                    if ($obj['kode_sheet'] == $value['kode_terminasi_sheets'] && $obj['nama_sales'] == $value['nama_sales']) {
                         $status = true;
 
-                        $TanggalRegistrasi = $obj[$i]['tanggal_registrasi'];
-                        $TanggalTerminasi = $obj[$i]['tanggal_terminasi'];
+                        // Extracting and formatting dates
+                        $TanggalRegistrasi = $obj['tanggal_instalasi'];
+                        $TanggalTerminasi = $obj['tanggal_terminasi'];
 
-                        // Memisahkan Tanggal Terminasi
-                        $pecahDay       = explode("-", $TanggalTerminasi);
+                        // Separating the termination date
+                        $pecahDay = explode("-", $TanggalTerminasi);
 
-                        // Kode Perolehan Tanggal Sekarang
-                        $KodeTerminasi  = $pecahDay[0] . '-' . $pecahDay[1];
+                        // Code Acquisition for the Current Date
+                        $KodeTerminasi = $pecahDay[0] . '-' . $pecahDay[1];
 
-                        // Calculate the difference in months between tanggal_registrasi and tanggal_terminasi
+                        // Calculating the difference in months between tanggal_instalasi and tanggal_customer
                         $diff = date_diff(new DateTime($TanggalRegistrasi), new DateTime($TanggalTerminasi));
                         $diffInMonths = $diff->y * 12 + $diff->m;
 
-                        if ($diffInMonths >= 0 && $diffInMonths <= 5) {
-                            $status = 'Kurang Dari';
-                        } else {
-                            $status = 'Lebih Dari';
-                        }
+                        // Determining status based on the difference in months
+                        $status = ($diffInMonths >= 0 && $diffInMonths <= 5) ? 'Kurang Dari' : 'Lebih Dari';
 
+                        // Update data
                         $updateData = [
-                            'kode_terminasi_sheets' => $obj[$i]['no'],
-                            'nama_pelanggan' => $obj[$i]['nama_pelanggan'],
-                            'tanggal_registrasi' => $obj[$i]['tanggal_registrasi'],
-                            'tanggal_terminasi' => $obj[$i]['tanggal_terminasi'],
-                            'nama_sales' => $obj[$i]['nama_sales'],
-                            'area' => $obj[$i]['area'],
-                            'keterangan' => $obj[$i]['keterangan'],
+                            'kode_terminasi_sheets' => $obj['kode_sheet'],
+                            'nama_pelanggan' => $obj['nama_customer'],
+                            'tanggal_registrasi' => $TanggalRegistrasi,
+                            'tanggal_terminasi' => $TanggalTerminasi,
+                            'nama_sales' => $obj['nama_sales'],
+                            'area' => $obj['branch_customer'],
+                            'keterangan' => $obj['keterangan'],
                             'jumlah_month' => $diffInMonths,
                             'status' => $status,
                             'kode_terminasi' => $KodeTerminasi
                         ];
 
-                        // Memperbarui data
+                        // Update data in the terminasi_sheets table
                         $this->db->where('id_terminasi_sheets', $value['id_terminasi_sheets']);
                         $this->db->update('terminasi_sheets', $updateData);
                     }
                 }
             }
 
-            if (!empty($obj[$i]['nama_sales']) && !empty($obj[$i]['area'])) {
-                if (!$status && !empty($obj[$i]['no'])) {
+            if (!empty($obj['nama_sales']) && !empty($obj['branch_customer'])) {
+                if (!$status && !empty($obj['kode_sheet'])) {
 
-                    $TanggalRegistrasi = $obj[$i]['tanggal_registrasi'];
-                    $TanggalTerminasi = $obj[$i]['tanggal_terminasi'];
+                    // Extracting and formatting dates
+                    $TanggalRegistrasi = $obj['tanggal_instalasi'];
+                    $TanggalTerminasi = $obj['tanggal_terminasi'];
 
-                    // Memisahkan Tanggal Terminasi
-                    $pecahDay       = explode("-", $TanggalTerminasi);
+                    // Separating the termination date
+                    $pecahDay = explode("-", $TanggalTerminasi);
 
-                    // Kode Perolehan Tanggal Sekarang
-                    $KodeTerminasi  = $pecahDay[0] . '-' . $pecahDay[1];
+                    // Code Acquisition for the Current Date
+                    $KodeTerminasi = $pecahDay[0] . '-' . $pecahDay[1];
 
-                    // Calculate the difference in months between tanggal_registrasi and tanggal_terminasi
+                    // Calculating the difference in months between tanggal_instalasi and tanggal_customer
                     $diff = date_diff(new DateTime($TanggalRegistrasi), new DateTime($TanggalTerminasi));
                     $diffInMonths = $diff->y * 12 + $diff->m;
 
-                    if ($diffInMonths >= 0 && $diffInMonths <= 5) {
-                        $status = 'Kurang Dari';
-                    } else {
-                        $status = 'Lebih Dari';
-                    }
+                    // Determining status based on the difference in months
+                    $status = ($diffInMonths >= 0 && $diffInMonths <= 5) ? 'Kurang Dari' : 'Lebih Dari';
 
+                    // Insert new data
                     $insertData = [
-                        'kode_terminasi_sheets' => $obj[$i]['no'],
-                        'nama_pelanggan' => $obj[$i]['nama_pelanggan'],
-                        'tanggal_registrasi' => $obj[$i]['tanggal_registrasi'],
-                        'tanggal_terminasi' => $obj[$i]['tanggal_terminasi'],
-                        'nama_sales' => $obj[$i]['nama_sales'],
-                        'area' => $obj[$i]['area'],
-                        'keterangan' => $obj[$i]['keterangan'],
+                        'kode_terminasi_sheets' => $obj['kode_sheet'],
+                        'nama_pelanggan' => $obj['nama_customer'],
+                        'tanggal_registrasi' => $TanggalRegistrasi,
+                        'tanggal_terminasi' => $TanggalTerminasi,
+                        'nama_sales' => $obj['nama_sales'],
+                        'area' => $obj['branch_customer'],
+                        'keterangan' => $obj['keterangan'],
                         'jumlah_month' => $diffInMonths,
                         'status' => $status,
                         'kode_terminasi' => $KodeTerminasi
                     ];
 
-                    // Menyisipkan data baru
+                    // Insert new data into the terminasi_sheets table
                     $this->db->insert("terminasi_sheets", $insertData);
                 }
             }

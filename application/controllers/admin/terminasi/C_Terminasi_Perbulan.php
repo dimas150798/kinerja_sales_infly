@@ -73,7 +73,6 @@ class C_Terminasi_Perbulan extends CI_Controller
 
             $data['Name_Month'] = $months[(int)$bulanGET];
 
-
             $this->load->view('template/V_Header', $data);
             $this->load->view('template/V_Sidebar', $data);
             $this->load->view('admin/terminasi/V_Terminasi_Perbulan', $data);

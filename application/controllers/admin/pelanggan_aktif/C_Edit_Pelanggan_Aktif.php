@@ -76,6 +76,7 @@ class C_Edit_Pelanggan_Aktif extends CI_Controller
         $telepon = $this->input->post('telepon');
         $status_customer = $this->input->post('status_customer');
         $tanggal_instalasi = $this->input->post('tanggal_instalasi');
+        $tanggal_terminasi = $this->input->post('tanggal_terminasi');
         $nama_sales = $this->input->post('nama_sales');
         $keterangan = $this->input->post('keterangan');
         $nama_dp = $this->input->post('nama_dp');
@@ -103,6 +104,7 @@ class C_Edit_Pelanggan_Aktif extends CI_Controller
             'telepon'           => $telepon,
             'status_customer'   => $status_customer,
             'tanggal_instalasi' => $tanggal_instalasi,
+            'tanggal_terminasi' => $tanggal_terminasi,
             'nama_sales'        => $nama_sales,
             'keterangan'        => $keterangan,
             'nama_dp'        => $nama_dp,
@@ -118,6 +120,8 @@ class C_Edit_Pelanggan_Aktif extends CI_Controller
         // Update Perolehan Perbulan dan Persales
         $this->M_DataPerolehanPerbulan->index();
         $this->M_DataPerolehanSales->index();
+        $this->M_DataPerolehanTerminasi->index();
+        $this->M_SpreadsheetTerminasi->index();
 
         // Notifikasi Tambah Data Berhasil
         $this->session->set_flashdata('Success_icon', 'success');

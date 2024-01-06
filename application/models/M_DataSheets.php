@@ -455,7 +455,7 @@ class M_DataSheets extends CI_Model
     {
         $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer,
         nama_paket, branch_customer, alamat_customer, email, telepon, nama_sales, kode_perolehan, 
-        status_customer, tanggal_instalasi, keterangan, nama_dp, biaya_instalasi, biaya_bundling
+        status_customer, tanggal_instalasi, tanggal_terminasi, keterangan, nama_dp, biaya_instalasi, biaya_bundling
         FROM data_sheets
 
         WHERE id_sheet = '$id_sheet'
