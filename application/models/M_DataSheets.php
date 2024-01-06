@@ -116,6 +116,7 @@ class M_DataSheets extends CI_Model
         return $query->num_rows();
     }
 
+    // Data Pelanggan Berstatus Survey
     public function PelangganSurvey($KodePerolehan)
     {
         $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, 
@@ -128,6 +129,21 @@ class M_DataSheets extends CI_Model
         ORDER BY id_sheet DESC");
 
         return $query->result_array();
+    }
+
+    // Data Pelanggan Berstatus Survey All
+    public function JumlahPelangganSurvey($KodePerolehan)
+    {
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, 
+            nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon,
+            status_customer, tanggal_instalasi, nama_sales, keterangan, nama_dp, kode_perolehan
+            FROM data_sheets
+            
+            WHERE status_customer = 'survey' AND kode_perolehan = '$KodePerolehan'
+            
+            ORDER BY id_sheet DESC");
+
+        return $query->num_rows();
     }
 
     public function PelangganOnNet($KodePerolehan)
@@ -144,7 +160,7 @@ class M_DataSheets extends CI_Model
         return $query->result_array();
     }
 
-    public function PelangganOnNet_Area($KodePerolehan, $Branch_Customer)
+    public function PelangganOnNet_Area($Tanggal_Instalasi, $Branch_Customer)
     {
         $query   = $this->db->query("SELECT 
         data_sheets.id_sheet, 
@@ -173,7 +189,7 @@ class M_DataSheets extends CI_Model
         data_paket ON data_sheets.nama_paket = data_paket.nama_paket
     WHERE 
         data_sheets.status_customer = 'on net' 
-        AND data_sheets.kode_perolehan = '$KodePerolehan' 
+        AND data_sheets.tanggal_instalasi = '$Tanggal_Instalasi' 
         AND data_sheets.branch_customer = '$Branch_Customer'
         AND data_sheets.tanggal_instalasi != ''
 
@@ -200,7 +216,7 @@ class M_DataSheets extends CI_Model
         return $query->result_array();
     }
 
-    public function Check_Pelanggan_On_Net($KodePerolehan, $Branch_Customer)
+    public function Check_Pelanggan_On_Net($Tanggal_Instalasi, $Branch_Customer)
     {
 
         $result   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, 
@@ -208,7 +224,7 @@ class M_DataSheets extends CI_Model
         status_customer, tanggal_instalasi, nama_sales, keterangan, kode_perolehan
         FROM data_sheets
         
-        WHERE status_customer = 'on net' AND kode_perolehan = '$KodePerolehan' AND branch_customer = '$Branch_Customer'
+        WHERE status_customer = 'on net' AND tanggal_instalasi = '$Tanggal_Instalasi' AND branch_customer = '$Branch_Customer'
         
         ORDER BY id_sheet DESC ");
 

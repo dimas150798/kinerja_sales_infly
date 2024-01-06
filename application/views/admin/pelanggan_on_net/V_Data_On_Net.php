@@ -10,36 +10,14 @@
                                                                         } else {
                                                                             echo $AreaGET;
                                                                         } ?></h4>
-                            <div class="col-md-3">
-                                <label for="tahun" class="form-label">Tahun:</label>
-                                <select class="form-control" id="tahun" name="tahun">
-                                    <?php
-                                    $selectedYear = $YearGET ?: $Year;
-
-                                    echo '<option value="" disabled>-- Pilih Tahun --</option>';
-
-                                    for ($i = 2022; $i <= 2025; $i++) {
-                                        $selected = ($selectedYear == $i) ? 'selected' : '';
-                                        echo '<option ' . $selected . ' value=' . $i . '>' . date("Y", mktime(0, 0, 0, 1, 1, $i)) . '</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </div>
 
                             <div class="col-md-3">
-                                <label for="bulan" class="form-label">Bulan:</label>
-                                <select class="form-control" id="bulan" name="bulan">
-                                    <?php
-                                    $selectedMonth = $MonthGET ?: $Month;
-
-                                    echo '<option value="" disabled>-- Pilih Bulan --</option>';
-
-                                    for ($m = 1; $m <= 12; ++$m) {
-                                        $selected = ($selectedMonth == $m) ? 'selected' : '';
-                                        echo '<option ' . $selected . ' value=' . $m . '>' . date('F', mktime(0, 0, 0, $m, 1)) . '</option>';
-                                    }
-                                    ?>
-                                </select>
+                                <label for="tahun" class="form-label">Tanggal :</label>
+                                <input type="date" name="day" id="day" class="form-control" value="<?php if ($DayGET == '') {
+                                                                                                        echo $Day;
+                                                                                                    } else {
+                                                                                                        echo $DayGET;
+                                                                                                    } ?>">
                             </div>
 
                             <div class="col-md-3">
@@ -55,7 +33,7 @@
                             </div>
 
 
-                            <div class="col-md-3 mt-5 d-flex justify-content-end align-items-center">
+                            <div class="col-md-6 mt-5 d-flex justify-content-end align-items-center">
                                 <div class="button-container">
                                     <button type="submit" class="btn btn-primary text-white fw-bold">Cari</button>
                                     <a href="<?php echo base_url('admin/pelanggan_on_net/C_Pelanggan_On_Net') ?>" class="btn btn-danger text-white fw-bold">Kembali</a>

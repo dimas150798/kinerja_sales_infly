@@ -33,55 +33,46 @@ class C_Data_On_Net extends CI_Controller
     public function index()
     {
 
-        if (isset($_GET['tahun']) && $_GET['tahun'] !== '' && isset($_GET['bulan']) && $_GET['bulan'] !== '' && isset($_GET['area']) && $_GET['area'] !== '') {
-            $tahunGET = $_GET['tahun'];
-            $bulanGET = $_GET['bulan'];
+        if ((isset($_GET['day']) && $_GET['day'] != '') && $_GET['area'] !== '') {
+            $dayGET = $_GET['day'];
             $areaGET = $_GET['area'];
 
-            $BulanPerolehan = sprintf("%02d", $bulanGET);
-            $KodePerolehan = $tahunGET . '-' . $BulanPerolehan;
+            $split_dayGET = explode("-", $dayGET);
 
-            $data['KodePerolehan_Now']           = $KodePerolehan;
-
-            $this->session->set_userdata('KodePerolehan_Now', $KodePerolehan);
+            $this->session->set_userdata('Tanggal_Instalasi', $dayGET);
             $this->session->set_userdata('Area_Now', $areaGET);
 
-            $data['YearGET']   = $tahunGET;
-            $data['MonthGET']   = $bulanGET;
+            $data['DayGET']     = $dayGET;
+            $data['YearGET']   = $split_dayGET['0'];
+            $data['MonthGET']   = $split_dayGET['1'];
             $data['AreaGET']   = $areaGET;
         } else {
             date_default_timezone_set("Asia/Jakarta");
-            $ToDay = date('d-m-Y');
+            $ToDay = date('Y-m-d');
 
             $PecahToDay = explode("-", $ToDay);
 
-            $BulanPerolehan = sprintf("%02d", $PecahToDay[1]);
-
-            $KodePerolehan_Now = $PecahToDay[2] . '-' . $BulanPerolehan;
-
-            $data['KodePerolehan_Now']           = $KodePerolehan_Now;
-
-            $this->session->set_userdata('KodePerolehan_Now', $KodePerolehan_Now);
+            $this->session->set_userdata('Tanggal_Instalasi', $ToDay);
             $this->session->set_userdata('Area_Now', 'KBS');
-
 
             $data['YearGET']   = NULL;
             $data['MonthGET']   = NULL;
             $data['AreaGET']   = NULL;
 
+            $data['Day']    = $ToDay;
             $data['Year']   = $PecahToDay[2];
             $data['Month']   = $PecahToDay[1];
             $data['Area']   = 'KBS';
         }
 
         $data['title'] = 'Kinerja Sales';
-        $data['DataArea'] = $this->M_DataArea->Data_Area();
+        $data['DataArea']       = $this->M_DataArea->Data_Area();
 
-        $data['DataPelaggan'] = $this->M_DataSheets->PelangganOnNet_Area($this->session->userdata('KodePerolehan_Now'), $this->session->userdata('Area_Now'));
+        $data['DataPelaggan']   = $this->M_DataSheets->PelangganOnNet_Area($this->session->userdata('Tanggal_Instalasi'), $this->session->userdata('Area_Now'));
 
-        $Check_ON_Net = $this->M_DataSheets->Check_Pelanggan_On_Net($this->session->userdata('KodePerolehan_Now'), $this->session->userdata('Area_Now'));
+        $Check_ON_Net           = $this->M_DataSheets->Check_Pelanggan_On_Net($this->session->userdata('Tanggal_Instalasi'), $this->session->userdata('Area_Now'));
 
-        $Tanggal_Schedule = $Check_ON_Net->tanggal_instalasi;
+        $Tanggal_Schedule       = $Check_ON_Net->tanggal_instalasi;
 
         // Mengambil nama hari dalam Bahasa Indonesia
         $Nama_Hari = date('l', strtotime($Tanggal_Schedule));
