@@ -3,8 +3,7 @@
         <div class="row">
             <div class="card">
                 <div class="card-body">
-                    <form action="<?php echo base_url('admin/terminasi/C_Terminasi_Pertahun') ?>" method="get" class="row g-3">
-
+                    <form action="<?php echo base_url('admin/pelanggan_aktif/C_JumlahPersales_Pertahun') ?>" method="get" class="row g-3">
 
                         <div class="col-md-3">
                             <label for="tahun" class="form-label">Tahun:</label>
@@ -36,7 +35,7 @@
 
         <div class="row mt-4">
             <div class="card top-sales">
-                <h3 class="text-center mt-3 mb-1">Terminasi Sales Terendah Pertahun</h3>
+                <h3 class="text-center mt-3 mb-1">Perolehan Sales Pertahun</h3>
                 <h5 class="text-center mb-3"> <?php if ($YearGET == NULL) {
                                                     echo $Year;
                                                 } else {
@@ -45,40 +44,23 @@
                 <div class="topsales-informasi">
                     <div class="rank-list">
                         <?php foreach ($PerolehanSales as $key => $value) : ?>
-                            <div class="rank-item <?php if ($key + 1 <= 1) echo 'first'; ?><?php if ($key + 1 > 1) echo 'rank-two-and-below'; ?>">
+                            <div class="rank-item <?php if ($key + 1 <= 3) echo 'first-three'; ?><?php if ($key + 1 > 3) echo 'rank-four-and-below'; ?>">
 
                                 <div class="username-container">
                                     <span class="username"><?= $value['nama_sales']; ?></span>
-                                    <span class="jumlah"><i class="bi bi-person-check-fill"> </i> Perolehan Aktif = <?= $value['total_aktif']; ?></span>
-                                    <span class="jumlah"><i class="bi bi-wifi-off"></i> Perolehan Terminasi = <?= $value['total_terminasi']; ?></span>
-                                    <span class="jumlah"><i class="bi bi-wifi-off"></i>
-                                        < 6 Bulan&nbsp;=&nbsp;<?= $value['KurangDari_6Bulan']; ?></span>
-                                            <span class="jumlah"><i class="bi bi-wifi-off"></i> > 6 Bulan&nbsp;=&nbsp;<?= $value['LebihDari_6Bulan']; ?></span>
+                                    <span class="jumlah"><i class="bi bi-person-check-fill"> </i> Perolehan Aktif = <?= $value['perolehan_sales_aktif']; ?></span>
                                 </div>
 
-                                <div class="persentase-container">
-                                    <?php if ($key + 1 == 1) : ?>
-                                        <img class="medal-terminasi" src="<?php echo base_url(); ?>assets/assets/img/medali/thropy_01.png" alt="Medal">
-                                        <span class="jumlah-terminasi">(<?= number_format($value['persentase_terminasi'], 2); ?> %)</span>
+                                <?php if ($key + 1 == 1) : ?>
+                                    <img class="medal" src="<?php echo base_url(); ?>assets/assets/img/medali/thropy_01.png" alt="Medal">
+                                <?php elseif ($key + 1 == 2) : ?>
+                                    <img class="medal" src="<?php echo base_url(); ?>assets/assets/img/medali/medali_02.png" alt="Medal">
+                                <?php elseif ($key + 1 == 3) : ?>
+                                    <img class="medal" src="<?php echo base_url(); ?>assets/assets/img/medali/medali_03.png" alt="Medal">
+                                <?php else : ?>
+                                    <span class="nomor"><?= '#' . $key + 1; ?></span>
+                                <?php endif; ?>
 
-                                    <?php elseif ($key + 1 == 2) : ?>
-                                        <span class="nomor-terminasi"><?= '#' . $key + 1; ?></span>
-
-                                        <span class="jumlah-terminasi">(<?= number_format($value['persentase_terminasi'], 2); ?> %)</span>
-
-                                    <?php elseif ($key + 1 == 3) : ?>
-                                        <span class="nomor-terminasi"><?= '#' . $key + 1; ?></span>
-
-                                        <span class="jumlah-terminasi">(<?= number_format($value['persentase_terminasi'], 2); ?> %)</span>
-
-
-                                    <?php else : ?>
-                                        <span class="nomor-terminasi"><?= '#' . $key + 1; ?></span>
-                                        <span class="jumlah-terminasi">(<?= number_format($value['persentase_terminasi'], 2); ?> %)</span>
-
-
-                                    <?php endif; ?>
-                                </div>
                             </div>
                         <?php endforeach; ?>
                     </div>

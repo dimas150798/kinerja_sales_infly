@@ -114,18 +114,23 @@ class M_DataPerolehanTerminasi extends CI_Model
         nama_sales,
         SUBSTRING(kode_perolehan_sales, 1, 4) AS tahun,
         SUM(perolehan_sales_aktif) AS total_aktif,
-        SUM(perolehan_sales_terminasi_6Month_Plus) AS LebihDari_6Bulan,
-        SUM(perolehan_sales_terminasi_6Month_Minus) AS KurangDari_6Bulan,
-        SUM(perolehan_sales_terminasi) AS total_terminasi,
-        (SUM(perolehan_sales_terminasi) / SUM(perolehan_sales_aktif)) * 100 AS persentase_terminasi
+        SUM(COALESCE(perolehan_sales_terminasi_6Month_Plus, 0)) AS LebihDari_6Bulan,
+        SUM(COALESCE(perolehan_sales_terminasi_6Month_Minus, 0)) AS KurangDari_6Bulan,
+        SUM(COALESCE(perolehan_sales_terminasi, 0)) AS total_terminasi,
+        (SUM(COALESCE(perolehan_sales_terminasi, 0)) / SUM(COALESCE(perolehan_sales_aktif, 1))) * 100 AS persentase_terminasi
     FROM
         perolehan_sales
-        LEFT JOIN data_pegawai ON perolehan_sales.nama_sales = data_pegawai.nama_pegawai 
+    LEFT JOIN
+        data_pegawai ON perolehan_sales.nama_sales = data_pegawai.nama_pegawai 
     WHERE
-        SUBSTRING(kode_perolehan_sales, 1, 4) = '$KodePerolehan' AND nama_sales != '' AND data_pegawai.status = 'Aktif' AND data_pegawai.jabatan = 'Sales' AND perolehan_sales_terminasi != ''
+        SUBSTRING(kode_perolehan_sales, 1, 4) = '$KodePerolehan' AND
+        nama_sales != '' AND
+        data_pegawai.status = 'Aktif' AND
+        data_pegawai.jabatan = 'Sales'
     GROUP BY
         nama_sales  
-    ORDER BY persentase_terminasi ASC");
+    ORDER BY
+        persentase_terminasi ASC, perolehan_sales_aktif DESC");
 
         return $query->result_array();
     }

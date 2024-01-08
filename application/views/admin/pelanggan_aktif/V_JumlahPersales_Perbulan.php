@@ -39,7 +39,7 @@
                         <div class="col-md-6 d-flex justify-content-end align-items-center">
                             <div class="button-container">
                                 <button type="submit" class="btn btn-primary">Cari</button>
-                                <!-- <a href="<?php echo base_url('admin/terminasi/C_Terminasi_Pertahun') ?>" class="btn btn-secondary">Data Pertahun</a> -->
+                                <a href="<?php echo base_url('admin/pelanggan_aktif/C_JumlahPersales_Pertahun') ?>" class="btn btn-secondary">Data Pertahun</a>
                             </div>
                         </div>
                     </form>
