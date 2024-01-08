@@ -84,9 +84,15 @@ class C_Edit_Pelanggan_Distribution extends CI_Controller
         $Kode_Perolehan_TanggalInstalasi = $Split_TanggalInstalasi[0] . '-' . $Split_TanggalInstalasi[1];
 
         if ($Kode_Perolehan_TanggalInstalasi == '-') {
-            $kode_perolehan_now = $kode_perolehan;
+            $kode_perolehan_now = $this->session->userdata('KodePerolehan_Now');
         } else {
             $kode_perolehan_now = $Kode_Perolehan_TanggalInstalasi;
+        }
+
+        if ($tanggal_instalasi = '' or $tanggal_instalasi = '0000-00-00') {
+            $tanggal_instalasi_now = NULL;
+        } else {
+            $tanggal_instalasi_now = $tanggal_instalasi;
         }
 
         $CheckCustomer           = $this->M_DataSheets->Check_Customer($kode_perolehan);
@@ -102,10 +108,10 @@ class C_Edit_Pelanggan_Distribution extends CI_Controller
             'email'             => $email,
             'telepon'           => $telepon,
             'status_customer'   => $status_customer,
-            'tanggal_instalasi' => $tanggal_instalasi,
+            'tanggal_instalasi' => $tanggal_instalasi_now,
             'nama_sales'        => $nama_sales,
             'keterangan'        => $keterangan,
-            'nama_dp'        => $nama_dp,
+            'nama_dp'           => $nama_dp,
             'kode_perolehan'    => $kode_perolehan_now,
         );
 
