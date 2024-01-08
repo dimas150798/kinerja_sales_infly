@@ -139,6 +139,24 @@
     })
 </script>
 
+<!-- Ajax Show Pelanggan Terminasi-->
+<script>
+    $(document).ready(function() {
+        $('#pelangganTerminasi').DataTable({
+            "autoFill": true,
+            "pagingType": 'numbers',
+            "searching": true,
+            "paging": true,
+            "stateSave": true,
+            "processing": true,
+            "serverside": true,
+            "ajax": {
+                "url": "<?= base_url('admin/pelanggan_terminasi/C_Pelanggan_Terminasi/GetDataAjax'); ?>",
+            },
+        })
+    })
+</script>
+
 <!-- Alert Tambah Data Pelanggan -->
 <script>
     <?php if ($this->session->flashdata('Success_icon')) { ?>

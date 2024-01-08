@@ -29,7 +29,7 @@
             <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
                     <i class="bi bi-wifi-off">&nbsp;</i> Terminasi</a>
                 <ul class="nav-group-items">
-                    <li class="nav-item"><a class="nav-link" href="base/accordion.html"><i class="bi bi-clipboard2-data-fill">&nbsp;</i> Data Pelanggan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?php echo base_url('admin/pelanggan_terminasi/C_Pelanggan_Terminasi') ?>"><i class="bi bi-clipboard2-data-fill">&nbsp;</i> Data Pelanggan</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?php echo base_url('admin/terminasi/C_Terminasi_Perbulan') ?>"><i class="bi bi-clipboard2-data-fill">&nbsp;</i> Jumlah Persales</a></li>
                 </ul>
             </li>

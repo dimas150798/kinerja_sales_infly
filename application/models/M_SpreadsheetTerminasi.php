@@ -7,13 +7,17 @@ class M_SpreadsheetTerminasi extends CI_Model
     {
         // Fetching terminated data sheets
         $getDataSheet = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, 
-        nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon, 
-        status_customer, tanggal_instalasi, tanggal_terminasi, nama_sales, keterangan, kode_perolehan
-        FROM data_sheets 
+        nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon,
+        status_customer, tanggal_instalasi, tanggal_terminasi, nama_sales, 
+        keterangan, nama_dp, biaya_instalasi, biaya_bundling, kode_perolehan 
+        FROM data_sheets
         WHERE status_customer = 'terminated'")->result_array();
 
         // Fetching termination data
-        $getData = $this->db->query("SELECT id_terminasi_sheets, kode_terminasi_sheets, nama_pelanggan, tanggal_registrasi, tanggal_terminasi, nama_sales, area, keterangan FROM terminasi_sheets")->result_array();
+        $getData = $this->db->query("SELECT id_terminasi_sheets, kode_terminasi_sheets, 
+        nama_pelanggan, tanggal_registrasi, tanggal_terminasi, nama_sales, nama_paket, 
+        telepon, alamat_customer, area, keterangan, nama_dp, jumlah_month, 
+        status, kode_terminasi FROM terminasi_sheets")->result_array();
 
         foreach ($getDataSheet as $obj) {
             $status = false;
@@ -48,8 +52,12 @@ class M_SpreadsheetTerminasi extends CI_Model
                             'tanggal_registrasi' => $TanggalRegistrasi,
                             'tanggal_terminasi' => $TanggalTerminasi,
                             'nama_sales' => $obj['nama_sales'],
+                            'nama_paket' => $obj['nama_paket'],
+                            'telepon' => $obj['telepon'],
+                            'alamat_customer' => $obj['alamat_customer'],
                             'area' => $obj['branch_customer'],
                             'keterangan' => $obj['keterangan'],
+                            'nama_dp' => $obj['nama_dp'],
                             'jumlah_month' => $diffInMonths,
                             'status' => $status,
                             'kode_terminasi' => $KodeTerminasi
@@ -89,8 +97,12 @@ class M_SpreadsheetTerminasi extends CI_Model
                         'tanggal_registrasi' => $TanggalRegistrasi,
                         'tanggal_terminasi' => $TanggalTerminasi,
                         'nama_sales' => $obj['nama_sales'],
+                        'nama_paket' => $obj['nama_paket'],
+                        'telepon' => $obj['telepon'],
+                        'alamat_customer' => $obj['alamat_customer'],
                         'area' => $obj['branch_customer'],
                         'keterangan' => $obj['keterangan'],
+                        'nama_dp' => $obj['nama_dp'],
                         'jumlah_month' => $diffInMonths,
                         'status' => $status,
                         'kode_terminasi' => $KodeTerminasi

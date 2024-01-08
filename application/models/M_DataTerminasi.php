@@ -5,55 +5,77 @@ $months = array(1 => 'Januari', 2 => 'Februari', 3 => 'Maret', 4 => 'April', 5 =
 
 class M_DataTerminasi extends CI_Model
 {
-    public function index()
+    public function Pelanggan_Terminasi($KodePerolehan)
     {
-        $getPerolehanAktif = $this->db->query("
-        SELECT COUNT(id_sheet) AS jumlah_aktif FROM data_sheet WHERE status = 'active';
-        ")->result_array();
+        $query   = $this->db->query("SELECT id_terminasi_sheets, kode_terminasi_sheets, 
+        nama_pelanggan, tanggal_registrasi, tanggal_terminasi, nama_sales, nama_paket, 
+        telepon, alamat_customer, area, keterangan, nama_dp, jumlah_month, 
+        status, kode_terminasi FROM terminasi_sheets
 
-        $getPerolehanTerminasi = $this->db->query("
-        SELECT COUNT(id_sheet) AS jumlah_terminasi FROM data_sheet WHERE status = 'terminated';
-        ")->result_array();
-
-        $getPerolehanSurvey = $this->db->query("
-        SELECT COUNT(id_sheet) AS jumlah_survey FROM data_sheet WHERE status = 'Survey';
-        ")->result_array();
-
-        $getPerolehanPending = $this->db->query("
-        SELECT COUNT(id_sheet) AS jumlah_pending FROM data_sheet WHERE status = 'Pending';
-        ")->result_array();
-
-        $getPerolehanNeedDistribution = $this->db->query("
-        SELECT COUNT(id_sheet) AS jumlah_need FROM data_sheet WHERE status = 'Need Distribution';
-        ")->result_array();
-
-        foreach ($getPerolehanAktif as $dataPerolehanAktif) {
-            $this->db->update("data_terminasi", ['jumlah' => $dataPerolehanAktif['jumlah_aktif']], ['keterangan' => 'Aktif']);
-        }
-
-        foreach ($getPerolehanTerminasi as $dataPerolehanTerminasi) {
-            $this->db->update("data_terminasi", ['jumlah' => $dataPerolehanTerminasi['jumlah_terminasi']], ['keterangan' => 'Terminated']);
-        }
-
-        foreach ($getPerolehanSurvey as $dataPerolehanSurvey) {
-            $this->db->update("data_terminasi", ['jumlah' => $dataPerolehanSurvey['jumlah_survey']], ['keterangan' => 'Survey']);
-        }
-
-        foreach ($getPerolehanPending as $dataPerolehanPending) {
-            $this->db->update("data_terminasi", ['jumlah' => $dataPerolehanPending['jumlah_pending']], ['keterangan' => 'Pending']);
-        }
-
-        foreach ($getPerolehanNeedDistribution as $dataPerolehanNeedDistribution) {
-            $this->db->update("data_terminasi", ['jumlah' => $dataPerolehanNeedDistribution['jumlah_need']], ['keterangan' => 'Need Distribution']);
-        }
-    }
-
-    public function getData()
-    {
-        $query = $this->db->query("SELECT id_terminasi, keterangan, jumlah
+        WHERE kode_terminasi = '$KodePerolehan'
         
-        FROM data_terminasi");
+        ORDER BY id_terminasi_sheets DESC");
 
         return $query->result_array();
+    }
+
+    // Jumlah Data Pelanggan Berstatus terminated All
+    public function JumlahPelangganTerminasi_All($KodePerolehan)
+    {
+        $query   = $this->db->query("SELECT id_terminasi_sheets, kode_terminasi_sheets, 
+        nama_pelanggan, tanggal_registrasi, tanggal_terminasi, nama_sales, nama_paket, 
+        telepon, alamat_customer, area, keterangan, nama_dp, jumlah_month, 
+        status, kode_terminasi FROM terminasi_sheets
+        
+        WHERE kode_terminasi = '$KodePerolehan'
+        
+        ORDER BY id_terminasi_sheets DESC");
+
+        return $query->num_rows();
+    }
+
+    // Jumlah Data Pelanggan Berstatus terminated KBS
+    public function JumlahPelangganTerminasi_KBS($KodePerolehan)
+    {
+        $query   = $this->db->query("SELECT id_terminasi_sheets, kode_terminasi_sheets, 
+        nama_pelanggan, tanggal_registrasi, tanggal_terminasi, nama_sales, nama_paket, 
+        telepon, alamat_customer, area, keterangan, nama_dp, jumlah_month, 
+        status, kode_terminasi FROM terminasi_sheets
+        
+        WHERE kode_terminasi = '$KodePerolehan' AND area = 'KBS'
+        
+        ORDER BY id_terminasi_sheets DESC");
+
+        return $query->num_rows();
+    }
+
+    // Jumlah Data Pelanggan Berstatus terminated TRW
+    public function JumlahPelangganTerminasi_TRW($KodePerolehan)
+    {
+        $query   = $this->db->query("SELECT id_terminasi_sheets, kode_terminasi_sheets, 
+            nama_pelanggan, tanggal_registrasi, tanggal_terminasi, nama_sales, nama_paket, 
+            telepon, alamat_customer, area, keterangan, nama_dp, jumlah_month, 
+            status, kode_terminasi FROM terminasi_sheets
+            
+            WHERE kode_terminasi = '$KodePerolehan' AND area = 'TRW'
+            
+            ORDER BY id_terminasi_sheets DESC");
+
+        return $query->num_rows();
+    }
+
+    // Jumlah Data Pelanggan Berstatus terminated Kanigaran
+    public function JumlahPelangganTerminasi_Kanigaran($KodePerolehan)
+    {
+        $query   = $this->db->query("SELECT id_terminasi_sheets, kode_terminasi_sheets, 
+                nama_pelanggan, tanggal_registrasi, tanggal_terminasi, nama_sales, nama_paket, 
+                telepon, alamat_customer, area, keterangan, nama_dp, jumlah_month, 
+                status, kode_terminasi FROM terminasi_sheets
+                
+                WHERE kode_terminasi = '$KodePerolehan' AND area = 'Kanigaran'
+                
+                ORDER BY id_terminasi_sheets DESC");
+
+        return $query->num_rows();
     }
 }
