@@ -108,16 +108,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-12 col-lg-6 mt-2">
-                                    <label class="form-label fs-5 fw-bold">Tanggal Instalasi</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text bg-secondary"><i class="bi bi-calendar"></i></span>
-                                        <input class="form-control fw-bold" type="date" id="tanggal_instalasi" name="tanggal_instalasi" value="<?php echo $data['tanggal_instalasi'] ?>">
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="row">
                                 <div class="col-sm-12 col-lg-6 mt-2">
                                     <label class="form-label fs-5 fw-bold">Sales <span class="text-danger">*</span></label>
                                     <div class="input-group">
@@ -131,6 +122,9 @@
                                         </select>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="row">
                                 <div class="col-sm-12 col-lg-6 mt-2">
                                     <label class="form-label fs-5 fw-bold">Keterangan</label>
                                     <div class="input-group">

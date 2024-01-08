@@ -70,20 +70,12 @@ class C_Tambah_Pelanggan extends CI_Controller
         $email = $this->input->post('email');
         $telepon = $this->input->post('telepon');
         $status_customer = $this->input->post('status_customer');
-        $tanggal_instalasi = $this->input->post('tanggal_instalasi');
         $nama_sales = $this->input->post('nama_sales');
         $keterangan = $this->input->post('keterangan');
         $nama_dp = $this->input->post('nama_dp');
 
         $kode_perolehan = $PecahToDay[2] . '-' . $PecahToDay[1];
         $nama_bulan = $months[date('n')];
-
-        if ($tanggal_instalasi == '0000-00-00') {
-            $tanggal_instalasi_change == NULL;
-        } else {
-            $tanggal_instalasi_change == $tanggal_instalasi;
-        }
-
 
         $CheckPerolehan_Perbulan = $this->M_DataPerolehanPerbulan->Check_Perolehan($kode_perolehan);
         $CheckPerolehan_Persales = $this->M_DataPerolehanSales->Check_Perolehan($kode_perolehan, $nama_sales);
@@ -100,7 +92,6 @@ class C_Tambah_Pelanggan extends CI_Controller
             'email'             => $email,
             'telepon'           => $telepon,
             'status_customer'   => $status_customer,
-            'tanggal_instalasi' => $tanggal_instalasi_change,
             'nama_sales'        => $nama_sales,
             'keterangan'        => $keterangan,
             'nama_dp'           => $nama_dp,

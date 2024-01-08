@@ -112,7 +112,7 @@
                                     <label class="form-label fs-5 fw-bold">Tanggal Instalasi</label>
                                     <div class="input-group">
                                         <span class="input-group-text bg-secondary"><i class="bi bi-calendar"></i></span>
-                                        <input class="form-control fw-bold" type="date" id="tanggal_instalasi" name="tanggal_instalasi" value="<?php echo $data['tanggal_instalasi'] ?>">
+                                        <input class="form-control fw-bold" type="date" id="tanggal_instalasi" name="tanggal_instalasi" value="<?php echo $data['tanggal_instalasi'] ?>" required>
                                     </div>
                                 </div>
                             </div>

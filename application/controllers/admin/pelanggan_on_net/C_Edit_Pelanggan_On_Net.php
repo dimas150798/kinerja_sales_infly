@@ -89,12 +89,6 @@ class C_Edit_Pelanggan_On_Net extends CI_Controller
             $kode_perolehan_now = $Kode_Perolehan_TanggalInstalasi;
         }
 
-        if ($tanggal_instalasi = '' or $tanggal_instalasi = '0000-00-00') {
-            $tanggal_instalasi_now = NULL;
-        } else {
-            $tanggal_instalasi_now = $tanggal_instalasi;
-        }
-
         $CheckCustomer           = $this->M_DataSheets->Check_Customer($kode_perolehan);
 
         // Menyimpan data pelanggan ke dalam array
@@ -108,7 +102,7 @@ class C_Edit_Pelanggan_On_Net extends CI_Controller
             'email'             => $email,
             'telepon'           => $telepon,
             'status_customer'   => $status_customer,
-            'tanggal_instalasi' => $tanggal_instalasi_now,
+            'tanggal_instalasi' => $tanggal_instalasi,
             'nama_sales'        => $nama_sales,
             'keterangan'        => $keterangan,
             'kode_perolehan'    => $kode_perolehan_now,
