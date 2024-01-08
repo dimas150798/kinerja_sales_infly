@@ -63,6 +63,12 @@ class C_Pelanggan_On_Net extends CI_Controller
 
         $data['title'] = 'Kinerja Sales';
 
+        $data['JumlahOnNet_All'] = $this->M_DataSheets->JumlahPelangganOnNet_All($this->session->userdata('KodePerolehan_Now'));
+        $data['JumlahOnNet_KBS'] = $this->M_DataSheets->JumlahPelangganOnNet_KBS($this->session->userdata('KodePerolehan_Now'));
+        $data['JumlahOnNet_TRW'] = $this->M_DataSheets->JumlahPelangganOnNet_TRW($this->session->userdata('KodePerolehan_Now'));
+        $data['JumlahOnNet_Kanigaran'] = $this->M_DataSheets->JumlahPelangganOnNet_Kanigaran($this->session->userdata('KodePerolehan_Now'));
+
+
         $this->load->view('template/V_Header', $data);
         $this->load->view('template/V_Sidebar', $data);
         $this->load->view('admin/pelanggan_on_net/V_Pelanggan_On_Net', $data);

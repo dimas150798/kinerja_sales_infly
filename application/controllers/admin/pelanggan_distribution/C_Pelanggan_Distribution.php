@@ -62,6 +62,12 @@ class C_Pelanggan_Distribution extends CI_Controller
 
         $data['title'] = 'Kinerja Sales';
 
+        $data['JumlahDistribution_All'] = $this->M_DataSheets->JumlahPelangganDistribution_All($this->session->userdata('KodePerolehan_Now'));
+        $data['JumlahDistribution_KBS'] = $this->M_DataSheets->JumlahPelangganDistribution_KBS($this->session->userdata('KodePerolehan_Now'));
+        $data['JumlahDistribution_TRW'] = $this->M_DataSheets->JumlahPelangganDistribution_TRW($this->session->userdata('KodePerolehan_Now'));
+        $data['JumlahDistribution_Kanigaran'] = $this->M_DataSheets->JumlahPelangganDistribution_Kanigaran($this->session->userdata('KodePerolehan_Now'));
+
+
         $this->load->view('template/V_Header', $data);
         $this->load->view('template/V_Sidebar', $data);
         $this->load->view('admin/pelanggan_distribution/V_Pelanggan_Distribution', $data);

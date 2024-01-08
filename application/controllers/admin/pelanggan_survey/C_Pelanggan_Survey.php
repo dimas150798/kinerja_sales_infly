@@ -64,10 +64,11 @@ class C_Pelanggan_Survey extends CI_Controller
 
         $data['title'] = 'Kinerja Sales';
 
-        $data1['JumlahSurvey_All'] = $this->M_DataSheets->JumlahPelangganSurvey($this->session->userdata('KodePerolehan_Now'));
+        $data['JumlahSurvey_All'] = $this->M_DataSheets->JumlahPelangganSurvey_All($this->session->userdata('KodePerolehan_Now'));
+        $data['JumlahSurvey_KBS'] = $this->M_DataSheets->JumlahPelangganSurvey_KBS($this->session->userdata('KodePerolehan_Now'));
+        $data['JumlahSurvey_TRW'] = $this->M_DataSheets->JumlahPelangganSurvey_TRW($this->session->userdata('KodePerolehan_Now'));
+        $data['JumlahSurvey_Kanigaran'] = $this->M_DataSheets->JumlahPelangganSurvey_Kanigaran($this->session->userdata('KodePerolehan_Now'));
 
-        // var_dump($data1);
-        // die;
         $this->load->view('template/V_Header', $data);
         $this->load->view('template/V_Sidebar', $data);
         $this->load->view('admin/pelanggan_survey/V_Pelanggan_Survey', $data);

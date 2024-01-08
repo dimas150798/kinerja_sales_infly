@@ -58,28 +58,45 @@
             <div class="card">
                 <div class="card-body">
 
+                    <div class="row mt-4 mb-4">
 
-
-                    <!-- <div class="row mt-4 mb-4">
-                        <div class="col-3 col-sm-3 col-lg-3 d-flex justify-content-center">
+                        <div class="col-3 col-sm-3 col-lg-3 d-flex justify-content-center bg-secondary p-2">
                             <div class="d-flex-column text-center">
-                                <div class="callout callout-info bg-white">
-                                    <h4>Jumlah Survey</h4>
-                                    <h1 id="jumlahAll">0</h1>
+                                <div class="display-perolehan fw-bold">
+                                    <h6 class="fw-bold fs-5">Jumlah All</h6>
+                                    <h4 class="fw-bold fs-5"><?php echo $JumlahSurvey_All; ?></h4>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-3 col-sm-3 col-lg-3 d-flex justify-content-center">
-                            <h1 id="jumlahAll">0</h1>
-                        </div>
-                        <div class="col-3 col-sm-3 col-lg-3 d-flex justify-content-center">
-                            <h1 id="jumlahAll">0</h1>
-                        </div>
-                        <div class="col-3 col-sm-3 col-lg-3 d-flex justify-content-center">
-                            <h1 id="jumlahAll">0</h1>
+
+                        <div class="col-3 col-sm-3 col-lg-3 d-flex justify-content-center bg-secondary p-2">
+                            <div class="d-flex-column text-center">
+                                <div class="display-perolehan">
+                                    <h6 class="fw-bold fs-5">Kebonsari</h6>
+                                    <h4 class="fw-bold fs-5"><?php echo $JumlahSurvey_KBS; ?></h4>
+                                </div>
+                            </div>
                         </div>
 
-                    </div> -->
+                        <div class="col-3 col-sm-3 col-lg-3 d-flex justify-content-center bg-secondary p-2">
+                            <div class="d-flex-column text-center">
+                                <div class="display-perolehan">
+                                    <h6 class="fw-bold fs-5">Triwung</h6>
+                                    <h4 class="fw-bold fs-5"><?php echo $JumlahSurvey_TRW; ?></h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-3 col-sm-3 col-lg-3 d-flex justify-content-center bg-secondary p-2">
+                            <div class="d-flex-column text-center">
+                                <div class="display-perolehan">
+                                    <h6 class="fw-bold fs-5">Kanigaran</h6>
+                                    <h4 class="fw-bold fs-5"><?php echo $JumlahSurvey_Kanigaran; ?></h4>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
 
                     <div class="table-responsive">
                         <table id="pelangganSurvey" class="table table-bordered responsive nowrap" style="width:100%">

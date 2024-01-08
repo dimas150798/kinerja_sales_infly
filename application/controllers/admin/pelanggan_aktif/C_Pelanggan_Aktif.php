@@ -64,13 +64,10 @@ class C_Pelanggan_Aktif extends CI_Controller
 
         $data['title'] = 'Kinerja Sales';
 
-        $data['Jumlah_PelangganAktif'] = $this->M_DataSheets->Jumlah_PelangganAktif($this->session->userdata('KodePerolehan_Now'));
-        $data['Jumlah_PelangganAktif_KBS'] = $this->M_DataSheets->Jumlah_PelangganAktif_KBS($this->session->userdata('KodePerolehan_Now'));
-        $data['Jumlah_PelangganAktif_TRW'] = $this->M_DataSheets->Jumlah_PelangganAktif_TRW($this->session->userdata('KodePerolehan_Now'));
-        $data['Jumlah_PelangganAktif_KNG'] = $this->M_DataSheets->Jumlah_PelangganAktif_Kanigaran($this->session->userdata('KodePerolehan_Now'));
-
-        // var_dump($data1);
-        // die;
+        $data['JumlahPelangganAktif_All'] = $this->M_DataSheets->JumlahPelangganAktif_All($this->session->userdata('KodePerolehan_Now'));
+        $data['JumlahPelangganAktif_KBS'] = $this->M_DataSheets->JumlahPelangganAktif_KBS($this->session->userdata('KodePerolehan_Now'));
+        $data['JumlahPelangganAktif_TRW'] = $this->M_DataSheets->JumlahPelangganAktif_TRW($this->session->userdata('KodePerolehan_Now'));
+        $data['JumlahPelangganAktif_Kanigaran'] = $this->M_DataSheets->JumlahPelangganAktif_Kanigaran($this->session->userdata('KodePerolehan_Now'));
 
         $this->load->view('template/V_Header', $data);
         $this->load->view('template/V_Sidebar', $data);
