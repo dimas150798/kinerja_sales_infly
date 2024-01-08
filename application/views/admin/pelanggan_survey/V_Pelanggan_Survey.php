@@ -60,7 +60,7 @@
 
                     <div class="row mt-4 mb-4">
 
-                        <div class="col-3 col-sm-3 col-lg-3 d-flex justify-content-center bg-secondary p-2">
+                        <div class="col-6 col-sm-3 col-lg-3 d-flex justify-content-center bg-secondary p-2">
                             <div class="d-flex-column text-center">
                                 <div class="display-perolehan fw-bold">
                                     <h6 class="fw-bold fs-5">Jumlah All</h6>
@@ -69,7 +69,7 @@
                             </div>
                         </div>
 
-                        <div class="col-3 col-sm-3 col-lg-3 d-flex justify-content-center bg-secondary p-2">
+                        <div class="col-6 col-sm-3 col-lg-3 d-flex justify-content-center bg-secondary p-2">
                             <div class="d-flex-column text-center">
                                 <div class="display-perolehan">
                                     <h6 class="fw-bold fs-5">Kebonsari</h6>
@@ -78,7 +78,7 @@
                             </div>
                         </div>
 
-                        <div class="col-3 col-sm-3 col-lg-3 d-flex justify-content-center bg-secondary p-2">
+                        <div class="col-6 col-sm-3 col-lg-3 d-flex justify-content-center bg-secondary p-2">
                             <div class="d-flex-column text-center">
                                 <div class="display-perolehan">
                                     <h6 class="fw-bold fs-5">Triwung</h6>
@@ -87,7 +87,7 @@
                             </div>
                         </div>
 
-                        <div class="col-3 col-sm-3 col-lg-3 d-flex justify-content-center bg-secondary p-2">
+                        <div class="col-6 col-sm-3 col-lg-3 d-flex justify-content-center bg-secondary p-2">
                             <div class="d-flex-column text-center">
                                 <div class="display-perolehan">
                                     <h6 class="fw-bold fs-5">Kanigaran</h6>
