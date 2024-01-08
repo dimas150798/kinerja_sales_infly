@@ -35,7 +35,10 @@ class C_Pelanggan_Distribution extends CI_Controller
             $KodePerolehan_Now = $tahunGET . '-' . $BulanPerolehan;
 
             $data['KodePerolehan_Now']           = $KodePerolehan_Now;
-            $this->session->set_userdata('KodePerolehan_Now', $KodePerolehan_Now);
+
+            $this->session->set_userdata('KodePerolehan_GET', $KodePerolehan_Now);
+            $this->session->set_userdata('YearGET', $tahunGET);
+            $this->session->set_userdata('BulantGET', $bulanGET);
 
             $data['YearGET']   = $tahunGET;
             $data['MonthGET']   = $bulanGET;
@@ -52,6 +55,8 @@ class C_Pelanggan_Distribution extends CI_Controller
             $data['KodePerolehan_Now']           = $KodePerolehan_Now;
 
             $this->session->set_userdata('KodePerolehan_Now', $KodePerolehan_Now);
+            $this->session->set_userdata('Year', $PecahToDay[2]);
+            $this->session->set_userdata('Month', $PecahToDay[1]);
 
             $data['YearGET']   = NULL;
             $data['MonthGET']   = NULL;
@@ -77,7 +82,11 @@ class C_Pelanggan_Distribution extends CI_Controller
     public function GetDataAjax()
     {
 
-        $result = $this->M_DataSheets->PelangganDistribution($this->session->userdata('KodePerolehan_Now'));
+        $kodePerolehan = $this->session->userdata('KodePerolehan_GET') != NULL && $this->session->userdata('KodePerolehan_GET') != ''
+            ? $this->session->userdata('KodePerolehan_GET')
+            : $this->session->userdata('KodePerolehan_Now');
+
+        $result = $this->M_DataSheets->PelangganDistribution($kodePerolehan);
 
         $no = 0;
         $data = array();
