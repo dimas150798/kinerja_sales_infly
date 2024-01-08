@@ -86,4 +86,47 @@ class M_DataPerolehanTerminasi extends CI_Model
 
         return $query->result_array();
     }
+
+    public function Perolehan_Sales_Terminasi_Perbulan($KodePerolehan)
+    {
+        $query = $this->db->query("SELECT
+        nama_sales,
+        kode_perolehan_sales,
+        SUM(perolehan_sales_aktif) AS total_aktif,
+        SUM(perolehan_sales_terminasi_6Month_Plus) AS LebihDari_6Bulan,
+        SUM(perolehan_sales_terminasi_6Month_Minus) AS KurangDari_6Bulan,
+        SUM(perolehan_sales_terminasi) AS total_terminasi,
+        (SUM(perolehan_sales_terminasi) / SUM(perolehan_sales_aktif)) * 100 AS persentase_terminasi
+    FROM
+        perolehan_sales
+    WHERE
+        kode_perolehan_sales = '$KodePerolehan' AND perolehan_sales_terminasi != ''
+    GROUP BY
+        nama_sales  
+    ORDER BY persentase_terminasi ASC");
+
+        return $query->result_array();
+    }
+
+    public function Perolehan_Sales_Terminasi_Pertahun($KodePerolehan)
+    {
+        $query = $this->db->query("SELECT
+        nama_sales,
+        SUBSTRING(kode_perolehan_sales, 1, 4) AS tahun,
+        SUM(perolehan_sales_aktif) AS total_aktif,
+        SUM(perolehan_sales_terminasi_6Month_Plus) AS LebihDari_6Bulan,
+        SUM(perolehan_sales_terminasi_6Month_Minus) AS KurangDari_6Bulan,
+        SUM(perolehan_sales_terminasi) AS total_terminasi,
+        (SUM(perolehan_sales_terminasi) / SUM(perolehan_sales_aktif)) * 100 AS persentase_terminasi
+    FROM
+        perolehan_sales
+        LEFT JOIN data_pegawai ON perolehan_sales.nama_sales = data_pegawai.nama_pegawai 
+    WHERE
+        SUBSTRING(kode_perolehan_sales, 1, 4) = '$KodePerolehan' AND nama_sales != '' AND data_pegawai.status = 'Aktif' AND data_pegawai.jabatan = 'Sales' AND perolehan_sales_terminasi != ''
+    GROUP BY
+        nama_sales  
+    ORDER BY persentase_terminasi ASC");
+
+        return $query->result_array();
+    }
 }

@@ -3,7 +3,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 // header('Access-Control-Allow-Origin: *');
 
-class C_Terminasi_Perbulan extends CI_Controller
+class C_JumlahPersales_Perbulan extends CI_Controller
 {
 
     public function __construct()
@@ -26,6 +26,9 @@ class C_Terminasi_Perbulan extends CI_Controller
             $tahunGET                   = $_GET['tahun'];
             $bulanGET                   = $_GET['bulan'];
 
+            // Menambahkan 0 di depan bulan jika kurang dari 10
+            $bulanPerolehan = sprintf("%02d", $bulanGET);
+
             $months = array(
                 1 => 'Januari',
                 2 => 'Februari',
@@ -41,31 +44,22 @@ class C_Terminasi_Perbulan extends CI_Controller
                 12 => 'Desember'
             );
 
-            // Menambahkan 0 di depan bulan jika kurang dari 10
-            $BulanPerolehan = sprintf("%02d", $bulanGET);
-
             date_default_timezone_set("Asia/Jakarta");
-            // Mendapatkan tanggal sekarang
-            $ToDay              = date('d-m-Y');
-
-            // Memisahkan Tanggal Sekarang
-            $PecahToDay         = explode("-", $ToDay);
 
             // Kode Perolehan Tanggal Sekarang
-            $KodePerolehan_Now  = $tahunGET . '-' . $BulanPerolehan;
+            $KodePerolehan_Now  = $tahunGET . '-' . $bulanPerolehan;
 
-            $data['PerolehanSales'] = $this->M_DataPerolehanTerminasi->Perolehan_Sales_Terminasi_Perbulan($KodePerolehan_Now);
+            $data['PerolehanSales'] = $this->M_DataPerolehanSales->Perolehan_Sales_Active_Perbulan($KodePerolehan_Now);
 
-            $data['DateNow'] = $ToDay;
             $data['YearGET']   = $tahunGET;
-            $data['MonthGET']   = $bulanGET;
+            $data['MonthGET']   = $months[$bulanGET];
             $data['title'] = 'Kinerja Sales';
 
             $data['Name_Month'] = $months[(int)$bulanGET];
 
             $this->load->view('template/V_Header', $data);
             $this->load->view('template/V_Sidebar', $data);
-            $this->load->view('admin/terminasi/V_Terminasi_Perbulan', $data);
+            $this->load->view('admin/pelanggan_aktif/V_JumlahPersales_Perbulan', $data);
             $this->load->view('template/V_Footer', $data);
         } else {
             date_default_timezone_set("Asia/Jakarta");
@@ -90,27 +84,26 @@ class C_Terminasi_Perbulan extends CI_Controller
             // Memisahkan Tanggal Sekarang
             $PecahToDay         = explode("-", $ToDay);
 
-            // Menambahkan 0 di depan bulan jika kurang dari 10
-            $BulanPerolehan = sprintf("%02d", $PecahToDay[1]);
-
             // Kode Perolehan Tanggal Sekarang
-            $KodePerolehan_Now  = $PecahToDay[2] . '-' . $BulanPerolehan;
+            $KodePerolehan_Now  = $PecahToDay[2] . '-' . $PecahToDay['1'];
 
-            $data['PerolehanSales'] = $this->M_DataPerolehanTerminasi->Perolehan_Sales_Terminasi_Perbulan($KodePerolehan_Now);
+
+            $data['PerolehanSales'] = $this->M_DataPerolehanSales->Perolehan_Sales_Active_Perbulan($KodePerolehan_Now);
+
 
             $data['DateNow'] = $ToDay;
             $data['YearGET']   = NULL;
             $data['MonthGET']   = NULL;
 
             $data['Year']   = $PecahToDay[2];
-            $data['Month']   = $PecahToDay[1];
+            $data['Month']   = $months[(int)$PecahToDay[1]];
             $data['title'] = 'Kinerja Sales';
 
             $data['Name_Month'] = $months[(int)$PecahToDay[1]];
 
             $this->load->view('template/V_Header', $data);
             $this->load->view('template/V_Sidebar', $data);
-            $this->load->view('admin/terminasi/V_Terminasi_Perbulan', $data);
+            $this->load->view('admin/pelanggan_aktif/V_JumlahPersales_Perbulan', $data);
             $this->load->view('template/V_Footer', $data);
         }
     }

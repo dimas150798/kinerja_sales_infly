@@ -24,6 +24,7 @@
                     <li class="nav-item"><a class="nav-link" href="<?php echo base_url('admin/pelanggan_survey/C_Pelanggan_Survey') ?>"><i class="bi bi-clipboard2-data-fill">&nbsp;</i> Survey</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?php echo base_url('admin/pelanggan_on_net/C_Pelanggan_On_Net') ?>"><i class="bi bi-clipboard2-data-fill">&nbsp;</i> On Net</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?php echo base_url('admin/pelanggan_aktif/C_Pelanggan_Aktif') ?>"><i class="bi bi-clipboard2-data-fill">&nbsp;</i> Aktif</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?php echo base_url('admin/pelanggan_aktif/C_JumlahPersales_Perbulan') ?>"><i class="bi bi-clipboard2-data-fill">&nbsp;</i> Jumlah Persales</a></li>
                 </ul>
             </li>
             <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">

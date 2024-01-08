@@ -74,13 +74,13 @@ class C_DashboardAdmin extends CI_Controller
         $data['TotalPelangganTRW_Before']  = $this->M_DataSheets->TotalPelangganAktif_TRW($kodePerolehan);
         $data['TotalPelangganKNG_Before']  = $this->M_DataSheets->TotalPelangganAktif_KNG($kodePerolehan);
 
-        $data['PerolehanSales']         = $this->M_DataPerolehanSales->Perolehan_Sales_Active($kodePerolehanNow);
+        $data['PerolehanSales']         = $this->M_DataPerolehanSales->Perolehan_Sales_Active_Perbulan($kodePerolehanNow);
 
         // Perolehan Rangked Perbulan Terminasi
-        $data['PerolehanSalesPerbulan'] = $this->M_DataPerolehanSales->Perolehan_Sales_Terminasi_Perbulan($kodePerolehanNow);
+        $data['PerolehanSalesPerbulan'] = $this->M_DataPerolehanTerminasi->Perolehan_Sales_Terminasi_Perbulan($kodePerolehanNow);
 
         // Perolehan Rangked Pertahun Terminasi
-        $data['PerolehanSalesPertahun'] = $this->M_DataPerolehanSales->Perolehan_Sales_Terminasi('2023');
+        $data['PerolehanSalesPertahun'] = $this->M_DataPerolehanTerminasi->Perolehan_Sales_Terminasi_Pertahun('2023');
 
         // Load necessary libraries
         // $this->M_Spreadsheet->index();
@@ -151,13 +151,13 @@ class C_DashboardAdmin extends CI_Controller
         $data['TotalPelangganTRW_Before']  = $this->M_DataSheets->TotalPelangganAktif_TRW($kodePerolehan);
         $data['TotalPelangganKNG_Before']  = $this->M_DataSheets->TotalPelangganAktif_KNG($kodePerolehan);
 
-        $data['PerolehanSales']         = $this->M_DataPerolehanSales->Perolehan_Sales_Active($kodePerolehanNow);
+        $data['PerolehanSales']         = $this->M_DataPerolehanSales->Perolehan_Sales_Active_Perbulan($kodePerolehanNow);
 
         // Perolehan Rangked Perbulan Terminasi
-        $data['PerolehanSalesPerbulan'] = $this->M_DataPerolehanSales->Perolehan_Sales_Terminasi_Perbulan($kodePerolehanNow);
+        $data['PerolehanSalesPerbulan'] = $this->M_DataPerolehanTerminasi->Perolehan_Sales_Terminasi_Perbulan($kodePerolehanNow);
 
         // Perolehan Rangked Pertahun Terminasi
-        $data['PerolehanSalesPertahun'] = $this->M_DataPerolehanSales->Perolehan_Sales_Terminasi(date('Y'));
+        $data['PerolehanSalesPertahun'] = $this->M_DataPerolehanTerminasi->Perolehan_Sales_Terminasi_Pertahun(date('Y'));
 
         // Load necessary libraries
         // $this->M_Spreadsheet->index();

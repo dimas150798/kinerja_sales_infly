@@ -58,59 +58,16 @@ class M_DataPerolehanSales extends CI_Model
         }
     }
 
-    public function Perolehan_Sales_Active($KodePerolehan)
+    public function Perolehan_Sales_Active_Perbulan($KodePerolehan)
     {
         $query = $this->db->query("SELECT * FROM perolehan_sales
 
         LEFT JOIN data_pegawai ON perolehan_sales.nama_sales = data_pegawai.nama_pegawai
-        
+
         WHERE kode_perolehan_sales = '$KodePerolehan' AND perolehan_sales_aktif != 0
         GROUP BY nama_sales
 
         ORDER BY perolehan_sales_aktif DESC");
-
-        return $query->result_array();
-    }
-
-    public function Perolehan_Sales_Terminasi($KodePerolehan)
-    {
-        $query = $this->db->query("SELECT
-        nama_sales,
-        SUBSTRING(kode_perolehan_sales, 1, 4) AS tahun,
-        SUM(perolehan_sales_aktif) AS total_aktif,
-        SUM(perolehan_sales_terminasi_6Month_Plus) AS LebihDari_6Bulan,
-        SUM(perolehan_sales_terminasi_6Month_Minus) AS KurangDari_6Bulan,
-        SUM(perolehan_sales_terminasi) AS total_terminasi,
-        (SUM(perolehan_sales_terminasi) / SUM(perolehan_sales_aktif)) * 100 AS persentase_terminasi
-    FROM
-        perolehan_sales
-        LEFT JOIN data_pegawai ON perolehan_sales.nama_sales = data_pegawai.nama_pegawai 
-    WHERE
-        SUBSTRING(kode_perolehan_sales, 1, 4) = '$KodePerolehan' AND nama_sales != '' AND data_pegawai.status = 'Aktif' AND data_pegawai.jabatan = 'Sales' AND perolehan_sales_terminasi != ''
-    GROUP BY
-        nama_sales  
-    ORDER BY persentase_terminasi ASC");
-
-        return $query->result_array();
-    }
-
-    public function Perolehan_Sales_Terminasi_Perbulan($KodePerolehan)
-    {
-        $query = $this->db->query("SELECT
-        nama_sales,
-        kode_perolehan_sales,
-        SUM(perolehan_sales_aktif) AS total_aktif,
-        SUM(perolehan_sales_terminasi_6Month_Plus) AS LebihDari_6Bulan,
-        SUM(perolehan_sales_terminasi_6Month_Minus) AS KurangDari_6Bulan,
-        SUM(perolehan_sales_terminasi) AS total_terminasi,
-        (SUM(perolehan_sales_terminasi) / SUM(perolehan_sales_aktif)) * 100 AS persentase_terminasi
-    FROM
-        perolehan_sales
-    WHERE
-        kode_perolehan_sales = '$KodePerolehan' AND perolehan_sales_terminasi != ''
-    GROUP BY
-        nama_sales  
-    ORDER BY persentase_terminasi ASC");
 
         return $query->result_array();
     }
@@ -129,10 +86,6 @@ class M_DataPerolehanSales extends CI_Model
             return false;
         }
     }
-
-
-
-
 
     public function getData()
     {

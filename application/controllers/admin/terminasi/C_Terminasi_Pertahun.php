@@ -29,28 +29,11 @@ class C_Terminasi_Pertahun extends CI_Controller
             // Mendapatkan tanggal sekarang
             $ToDay              = date('d-m-Y');
 
-            // Mendapatkan tanggal 1 bulan sebelumnya
-            $DateOneMonthAgo    = date('d-m-Y', strtotime('-1 month', strtotime($ToDay)));
-
-            // Memisahkan Tanggal Sekarang
-            $PecahToDay         = explode("-", $ToDay);
-
-            // Memisahkan Tanggal 1 Bulan sebelumnya
-            $PecahOneMonthAgo   = explode("-", $DateOneMonthAgo);
-
-            // Kode Perolehan Tanggal Sekarang
-            $KodePerolehan_Now  = $PecahToDay[2] . '-' . $PecahToDay[1];
-
-            // Kode Perolehan 1 Bulan Sebelumnnya
-            $KodePerolehan      = $PecahOneMonthAgo[2] . '-' . $PecahOneMonthAgo[1];
-
-            $data['PerolehanSales'] = $this->M_DataPerolehanSales->Perolehan_Sales_Terminasi($tahunGET);
-
+            $data['PerolehanSales'] = $this->M_DataPerolehanTerminasi->Perolehan_Sales_Terminasi_Pertahun($tahunGET);
 
             $data['DateNow'] = $ToDay;
             $data['YearGET']   = $tahunGET;
             $data['title'] = 'Kinerja Sales';
-
 
             $this->load->view('template/V_Header', $data);
             $this->load->view('template/V_Sidebar', $data);
@@ -61,23 +44,10 @@ class C_Terminasi_Pertahun extends CI_Controller
             // Mendapatkan tanggal sekarang
             $ToDay              = date('d-m-Y');
 
-            // Mendapatkan tanggal 1 bulan sebelumnya
-            $DateOneMonthAgo    = date('d-m-Y', strtotime('-1 month', strtotime($ToDay)));
-
             // Memisahkan Tanggal Sekarang
             $PecahToDay         = explode("-", $ToDay);
 
-            // Memisahkan Tanggal 1 Bulan sebelumnya
-            $PecahOneMonthAgo   = explode("-", $DateOneMonthAgo);
-
-            // Kode Perolehan Tanggal Sekarang
-            $KodePerolehan_Now  = $PecahToDay[2] . '-' . $PecahToDay[1];
-
-            // Kode Perolehan 1 Bulan Sebelumnnya
-            $KodePerolehan      = $PecahOneMonthAgo[2] . '-' . $PecahOneMonthAgo[1];
-
-            $data['PerolehanSales'] = $this->M_DataPerolehanSales->Perolehan_Sales_Terminasi($PecahToDay[2]);
-
+            $data['PerolehanSales'] = $this->M_DataPerolehanTerminasi->Perolehan_Sales_Terminasi_Pertahun($PecahToDay['2']);
 
             $data['DateNow'] = $ToDay;
             $data['YearGET']   = NULL;
