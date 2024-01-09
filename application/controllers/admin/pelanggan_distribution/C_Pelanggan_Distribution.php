@@ -31,12 +31,12 @@ class C_Pelanggan_Distribution extends CI_Controller
             $tahunGET = $_GET['tahun'];
             $bulanGET = $_GET['bulan'];
 
-            $BulanPerolehan = sprintf("%02d", $bulanGET);
-            $KodePerolehan_Now = $tahunGET . '-' . $BulanPerolehan;
+            $BulanPerolehan_GET = sprintf("%02d", $bulanGET);
+            $KodePerolehan_GET = $tahunGET . '-' . $BulanPerolehan_GET;
 
-            $data['KodePerolehan_Now']           = $KodePerolehan_Now;
+            $data['KodePerolehan_Now']           = $KodePerolehan_GET;
 
-            $this->session->set_userdata('KodePerolehan_GET', $KodePerolehan_Now);
+            $this->session->set_userdata('KodePerolehan_GET', $KodePerolehan_GET);
             $this->session->set_userdata('YearGET', $tahunGET);
             $this->session->set_userdata('BulantGET', $bulanGET);
 
@@ -65,13 +65,16 @@ class C_Pelanggan_Distribution extends CI_Controller
             $data['Month']   = $PecahToDay[1];
         }
 
+        $kodePerolehan = $this->session->userdata('KodePerolehan_GET') != NULL && $this->session->userdata('KodePerolehan_GET') != ''
+            ? $this->session->userdata('KodePerolehan_GET')
+            : $this->session->userdata('KodePerolehan_Now');
+
         $data['title'] = 'Kinerja Sales';
 
-        $data['JumlahDistribution_All'] = $this->M_DataSheets->JumlahPelangganDistribution_All($this->session->userdata('KodePerolehan_Now'));
-        $data['JumlahDistribution_KBS'] = $this->M_DataSheets->JumlahPelangganDistribution_KBS($this->session->userdata('KodePerolehan_Now'));
-        $data['JumlahDistribution_TRW'] = $this->M_DataSheets->JumlahPelangganDistribution_TRW($this->session->userdata('KodePerolehan_Now'));
-        $data['JumlahDistribution_Kanigaran'] = $this->M_DataSheets->JumlahPelangganDistribution_Kanigaran($this->session->userdata('KodePerolehan_Now'));
-
+        $data['JumlahDistribution_All'] = $this->M_DataSheets->JumlahPelangganDistribution_All($kodePerolehan);
+        $data['JumlahDistribution_KBS'] = $this->M_DataSheets->JumlahPelangganDistribution_KBS($kodePerolehan);
+        $data['JumlahDistribution_TRW'] = $this->M_DataSheets->JumlahPelangganDistribution_TRW($kodePerolehan);
+        $data['JumlahDistribution_Kanigaran'] = $this->M_DataSheets->JumlahPelangganDistribution_Kanigaran($kodePerolehan);
 
         $this->load->view('template/V_Header', $data);
         $this->load->view('template/V_Sidebar', $data);

@@ -34,11 +34,12 @@ class C_Pelanggan_Aktif_All extends CI_Controller
             $bulanGET = $_GET['bulan'];
 
             $BulanPerolehan = sprintf("%02d", $bulanGET);
-            $KodePerolehan_Now = $tahunGET . '-' . $BulanPerolehan;
 
-            $data['KodePerolehan_Now']           = $KodePerolehan_Now;
+            $KodePerolehan_GET = $tahunGET . '-' . $BulanPerolehan;
 
-            $this->session->set_userdata('KodePerolehan_GET', $KodePerolehan_Now);
+            $data['KodePerolehan_Now']           = $KodePerolehan_GET;
+
+            $this->session->set_userdata('KodePerolehan_GET', $KodePerolehan_GET);
             $this->session->set_userdata('YearGET', $tahunGET);
             $this->session->set_userdata('BulantGET', $bulanGET);
 

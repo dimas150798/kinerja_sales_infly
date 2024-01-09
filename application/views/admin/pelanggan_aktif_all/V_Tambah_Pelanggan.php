@@ -23,7 +23,6 @@
                                     <input class="form-control fw-bold" type="date" id="tanggal_customer" name="tanggal_customer" required>
                                 </div>
                             </div>
-
                         </div>
 
                         <div class="row">
@@ -86,7 +85,7 @@
                                 <label class="form-label fs-5 fw-bold">No. Telepon <span class="text-danger">*</span></label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-secondary"><i class="bi bi-telephone-fill"></i></span>
-                                    <input class="form-control fw-bold" id="telepon" name="telepon" placeholder="Masukkan Telepon Disini..." required>
+                                    <input class="form-control fw-bold" type="number" id="telepon" name="telepon" placeholder="Masukkan Telepon Disini..." required>
                                 </div>
                             </div>
                         </div>
@@ -107,7 +106,6 @@
                                 </div>
                             </div>
 
-
                             <div class="col-sm-12 col-lg-6 mt-2">
                                 <label class="form-label fs-5 fw-bold">Sales <span class="text-danger">*</span></label>
                                 <div class="input-group">
@@ -122,11 +120,16 @@
                                     </select>
                                 </div>
                             </div>
-
-
                         </div>
 
                         <div class="row">
+                            <div class="col-sm-12 col-lg-6 mt-2">
+                                <label class="form-label fs-5 fw-bold">Tanggal Instalasi </label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-secondary"><i class="bi bi-calendar"></i></span>
+                                    <input class="form-control fw-bold" type="date" id="tanggal_instalasi" name="tanggal_instalasi">
+                                </div>
+                            </div>
                             <div class="col-sm-12 col-lg-6 mt-2">
                                 <label class="form-label fs-5 fw-bold">Keterangan</label>
                                 <div class="input-group">
@@ -134,7 +137,6 @@
                                     <textarea class="form-control fw-bold" id="keterangan" name="keterangan" rows="1" placeholder="Masukkan Keterangan Disini..."></textarea>
                                 </div>
                             </div>
-
                             <div class="col-sm-12 col-lg-6 mt-2">
                                 <label class="form-label fs-5 fw-bold">Nama DP</label>
                                 <div class="input-group">

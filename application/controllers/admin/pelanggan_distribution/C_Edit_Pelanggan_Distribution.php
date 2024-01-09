@@ -35,39 +35,21 @@ class C_Edit_Pelanggan_Distribution extends CI_Controller
 
     public function EditPelangganSave()
     {
-        $months = array(
-            1 => 'Januari',
-            2 => 'Februari',
-            3 => 'Maret',
-            4 => 'April',
-            5 => 'Mei',
-            6 => 'Juni',
-            7 => 'Juli',
-            8 => 'Agustus',
-            9 => 'September',
-            10 => 'Oktober',
-            11 => 'November',
-            12 => 'Desember'
-        );
-
         $data['DataPegawai'] = $this->M_DataPegawai->Data_Pegawai();
         $data['DataPaket'] = $this->M_DataPaket->Data_Paket();
         $data['DataArea'] = $this->M_DataArea->Data_Area();
         $data['DataStatus'] = $this->M_DataStatus->Data_Status();
         $data['KodeSheets'] = $this->M_DataSheets->generateCode();
 
-        date_default_timezone_set("Asia/Jakarta");
-
-        // Mendapatkan tanggal sekarang
-        $ToDay              = date('d-m-Y');
-        $PecahToDay         = explode("-", $ToDay);
-        $kode_perolehan     = $PecahToDay[2] . '-' . $PecahToDay[1];
-
+        $KodePerolehan_Session = $this->session->userdata('KodePerolehan_GET') != NULL && $this->session->userdata('KodePerolehan_GET') != ''
+            ? $this->session->userdata('KodePerolehan_GET')
+            : $this->session->userdata('KodePerolehan_Now');
 
         // Mengambil data post pada view
         $id_sheet = $this->input->post('id_sheet');
         $kode_sheets = $this->input->post('kode_sheets');
         $tanggal_customer = $this->input->post('tanggal_customer');
+        $tanggal_instalasi = $this->input->post('tanggal_instalasi');
         $nama_customer = $this->input->post('nama_customer');
         $paket = $this->input->post('paket');
         $branch_customer = $this->input->post('branch_customer');
@@ -79,16 +61,14 @@ class C_Edit_Pelanggan_Distribution extends CI_Controller
         $keterangan = $this->input->post('keterangan');
         $nama_dp = $this->input->post('nama_dp');
 
-        $Split_TanggalInstalasi = explode("-", $tanggal_instalasi);
-        $Kode_Perolehan_TanggalInstalasi = $Split_TanggalInstalasi[0] . '-' . $Split_TanggalInstalasi[1];
+        // Check Tanggal Instalasi Buat Kode Perolehan
+        $TanggalInstalasi               = empty($tanggal_instalasi) ? null : $tanggal_instalasi;
+        $PecahTgl_Instalasi             = explode("-", $TanggalInstalasi);
+        $KodePerolehan_Tgl_Instalasi    = $PecahTgl_Instalasi[0] . '-' . $PecahTgl_Instalasi[1];
 
-        if ($Kode_Perolehan_TanggalInstalasi == '-') {
-            $kode_perolehan_now = $this->session->userdata('KodePerolehan_Now');
-        } else {
-            $kode_perolehan_now = $Kode_Perolehan_TanggalInstalasi;
-        }
+        $KodePerolehan_New              = empty($TanggalInstalasi) ? $KodePerolehan_Session : $KodePerolehan_Tgl_Instalasi;
 
-        $CheckCustomer           = $this->M_DataSheets->Check_Customer($kode_perolehan);
+        $CheckCustomer                  = $this->M_DataSheets->Check_Customer($KodePerolehan_New);
 
         // Menyimpan data pelanggan ke dalam array
         $dataSheets = array(
@@ -101,10 +81,11 @@ class C_Edit_Pelanggan_Distribution extends CI_Controller
             'email'             => $email,
             'telepon'           => $telepon,
             'status_customer'   => $status_customer,
+            'tanggal_instalasi' => $TanggalInstalasi,
             'nama_sales'        => $nama_sales,
             'keterangan'        => $keterangan,
             'nama_dp'           => $nama_dp,
-            'kode_perolehan'    => $kode_perolehan_now,
+            'kode_perolehan'    => $KodePerolehan_New,
         );
 
         // Data Customer

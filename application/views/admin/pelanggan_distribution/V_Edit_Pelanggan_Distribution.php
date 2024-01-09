@@ -8,7 +8,7 @@
 
                     <?php foreach ($DataPelanggan as $data) : ?>
 
-                        <form method="POST" action="<?php echo base_url('admin/pelanggan_aktif/C_Edit_Pelanggan_Aktif/EditPelangganSave') ?>">
+                        <form method="POST" action="<?php echo base_url('admin/pelanggan_distribution/C_Edit_Pelanggan_Distribution/EditPelangganSave') ?>">
 
                             <div class="row">
                                 <input class="form-control bg-secondary" type="hidden" id="id_sheet" name="id_sheet" value="<?php echo $data['id_sheet'] ?>" placeholder="Kode Sheet" readonly>
@@ -125,6 +125,13 @@
                             </div>
 
                             <div class="row">
+                                <div class="col-sm-12 col-lg-6 mt-2">
+                                    <label class="form-label fs-5 fw-bold">Tanggal Instalasi </label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-secondary"><i class="bi bi-calendar"></i></span>
+                                        <input class="form-control fw-bold" type="date" id="tanggal_instalasi" name="tanggal_instalasi" value="<?php echo $data['tanggal_instalasi']; ?>">
+                                    </div>
+                                </div>
                                 <div class="col-sm-12 col-lg-6 mt-2">
                                     <label class="form-label fs-5 fw-bold">Keterangan</label>
                                     <div class="input-group">

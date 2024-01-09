@@ -11,7 +11,7 @@
                                 <label for="tahun" class="form-label">Tahun:</label>
                                 <select class="form-control" id="tahun" name="tahun">
                                     <?php
-                                    $selectedYear = $YearGET ?: $Year;
+                                    $selectedYear = $this->session->userdata('YearGET') ?: $this->session->userdata('Year');
 
                                     echo '<option value="" disabled>-- Pilih Tahun --</option>';
 
@@ -27,7 +27,7 @@
                                 <label for="bulan" class="form-label">Bulan:</label>
                                 <select class="form-control" id="bulan" name="bulan">
                                     <?php
-                                    $selectedMonth = $MonthGET ?: $Month;
+                                    $selectedMonth = $this->session->userdata('BulantGET') ?: $this->session->userdata('Month');
 
                                     echo '<option value="" disabled>-- Pilih Bulan --</option>';
 

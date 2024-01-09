@@ -32,11 +32,14 @@ class C_Pelanggan_On_Net extends CI_Controller
             $tahunGET = $_GET['tahun'];
             $bulanGET = $_GET['bulan'];
 
-            $BulanPerolehan = sprintf("%02d", $bulanGET);
-            $KodePerolehan_Now = $tahunGET . '-' . $BulanPerolehan;
+            $BulanPerolehan_GET = sprintf("%02d", $bulanGET);
+            $KodePerolehan_GET = $tahunGET . '-' . $BulanPerolehan_GET;
 
-            $data['KodePerolehan_Now']           = $KodePerolehan_Now;
-            $this->session->set_userdata('KodePerolehan_Now', $KodePerolehan_Now);
+            $data['KodePerolehan_Now']           = $KodePerolehan_GET;
+
+            $this->session->set_userdata('KodePerolehan_GET', $KodePerolehan_GET);
+            $this->session->set_userdata('YearGET', $tahunGET);
+            $this->session->set_userdata('BulantGET', $bulanGET);
 
             $data['YearGET']   = $tahunGET;
             $data['MonthGET']   = $bulanGET;
@@ -53,6 +56,8 @@ class C_Pelanggan_On_Net extends CI_Controller
             $data['KodePerolehan_Now']           = $KodePerolehan_Now;
 
             $this->session->set_userdata('KodePerolehan_Now', $KodePerolehan_Now);
+            $this->session->set_userdata('Year', $PecahToDay[2]);
+            $this->session->set_userdata('Month', $PecahToDay[1]);
 
             $data['YearGET']   = NULL;
             $data['MonthGET']   = NULL;
@@ -61,13 +66,16 @@ class C_Pelanggan_On_Net extends CI_Controller
             $data['Month']   = $PecahToDay[1];
         }
 
+        $kodePerolehan = $this->session->userdata('KodePerolehan_GET') != NULL && $this->session->userdata('KodePerolehan_GET') != ''
+            ? $this->session->userdata('KodePerolehan_GET')
+            : $this->session->userdata('KodePerolehan_Now');
+
         $data['title'] = 'Kinerja Sales';
 
-        $data['JumlahOnNet_All'] = $this->M_DataSheets->JumlahPelangganOnNet_All($this->session->userdata('KodePerolehan_Now'));
-        $data['JumlahOnNet_KBS'] = $this->M_DataSheets->JumlahPelangganOnNet_KBS($this->session->userdata('KodePerolehan_Now'));
-        $data['JumlahOnNet_TRW'] = $this->M_DataSheets->JumlahPelangganOnNet_TRW($this->session->userdata('KodePerolehan_Now'));
-        $data['JumlahOnNet_Kanigaran'] = $this->M_DataSheets->JumlahPelangganOnNet_Kanigaran($this->session->userdata('KodePerolehan_Now'));
-
+        $data['JumlahOnNet_All'] = $this->M_DataSheets->JumlahPelangganOnNet_All($kodePerolehan);
+        $data['JumlahOnNet_KBS'] = $this->M_DataSheets->JumlahPelangganOnNet_KBS($kodePerolehan);
+        $data['JumlahOnNet_TRW'] = $this->M_DataSheets->JumlahPelangganOnNet_TRW($kodePerolehan);
+        $data['JumlahOnNet_Kanigaran'] = $this->M_DataSheets->JumlahPelangganOnNet_Kanigaran($kodePerolehan);
 
         $this->load->view('template/V_Header', $data);
         $this->load->view('template/V_Sidebar', $data);
@@ -78,7 +86,11 @@ class C_Pelanggan_On_Net extends CI_Controller
     public function GetDataAjax()
     {
 
-        $result = $this->M_DataSheets->PelangganOnNet($this->session->userdata('KodePerolehan_Now'));
+        $kodePerolehan = $this->session->userdata('KodePerolehan_GET') != NULL && $this->session->userdata('KodePerolehan_GET') != ''
+            ? $this->session->userdata('KodePerolehan_GET')
+            : $this->session->userdata('KodePerolehan_Now');
+
+        $result = $this->M_DataSheets->PelangganOnNet($kodePerolehan);
 
         $no = 0;
         $data = array();
