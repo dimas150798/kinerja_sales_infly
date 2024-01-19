@@ -24,7 +24,7 @@ class C_Edit_Pelanggan_Aktif extends CI_Controller
         $data['DataPegawai'] = $this->M_DataPegawai->Data_Pegawai();
         $data['DataPaket'] = $this->M_DataPaket->Data_Paket();
         $data['DataArea'] = $this->M_DataArea->Data_Area();
-        $data['DataStatus'] = $this->M_DataStatus->Data_Status();
+        $data['DataStatus'] = $this->M_DataStatus->DataStatus_All();
         $data['KodeSheets'] = $this->M_DataSheets->generateCode();
 
         $this->load->view('template/V_Header', $data);
