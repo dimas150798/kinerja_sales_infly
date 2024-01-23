@@ -61,6 +61,7 @@ class C_Edit_Pelanggan_On_Net extends CI_Controller
         $keterangan = $this->input->post('keterangan');
         $biaya_instalasi = $this->input->post('biaya_instalasi');
         $biaya_bundling = $this->input->post('biaya_bundling');
+        $nama_dp = $this->input->post('nama_dp');
 
         // Check Tanggal Instalasi Buat Kode Perolehan
         $TanggalInstalasi               = empty($tanggal_instalasi) ? null : $tanggal_instalasi;
@@ -86,8 +87,9 @@ class C_Edit_Pelanggan_On_Net extends CI_Controller
             'tanggal_instalasi' => $TanggalInstalasi,
             'nama_sales'        => $nama_sales,
             'keterangan'        => $keterangan,
+            'nama_dp'           => $nama_dp,
             'kode_perolehan'    => $KodePerolehan_New,
-            'biaya_instalasi'    => $biaya_instalasi,
+            'biaya_instalasi'   => $biaya_instalasi,
             'biaya_bundling'    => $biaya_bundling,
         );
 

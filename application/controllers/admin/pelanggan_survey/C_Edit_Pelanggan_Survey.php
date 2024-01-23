@@ -84,6 +84,7 @@ class C_Edit_Pelanggan_Survey extends CI_Controller
             'tanggal_instalasi' => $TanggalInstalasi,
             'nama_sales'        => $nama_sales,
             'keterangan'        => $keterangan,
+            'nama_dp'           => $nama_dp,
             'kode_perolehan'    => $KodePerolehan_New,
         );
 
