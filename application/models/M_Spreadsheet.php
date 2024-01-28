@@ -7,7 +7,7 @@ class M_Spreadsheet extends CI_Model
     {
         $response = [];
 
-        $json_string = 'https://script.google.com/macros/s/AKfycbxTL6OpZkxFn_RDcy4fKUBBICfceAFGFQNvqCJCJMuoLnwbatrz-opR4FfFCgJfIYsHSw/exec';
+        $json_string = 'https://script.google.com/macros/s/AKfycbwGy0zWM2wZNltYVrXkLkau_-h1QCeV7CVmU_KdPEHEE86iu5myKo7a1Qrh2XImtP8B/exec';
         $jsondata = file_get_contents($json_string);
         $obj = json_decode($jsondata, TRUE);
 
@@ -50,7 +50,6 @@ class M_Spreadsheet extends CI_Model
                         'nama_sales' => $obj[$i]['sales'],
                         'tanggal_instalasi' => $obj[$i]['tanggal_instalasi'],
                         'keterangan' => $obj[$i]['keterangan'],
-                        'kode_perolehan' => $KodePerolehan
                     ];
 
                     // Memperbarui data

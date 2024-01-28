@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row informasi-data">
             <!-- Total Aktif -->
-            <div class="col-sm-3 col-lg-3">
+            <div class="col-sm-12 col-lg-12">
                 <div class="card mb-4" style="--cui-card-cap-bg: #3b5998">
                     <div class="card-header text-white position-relative d-flex justify-content-center align-items-center">
                         <h4>Total Aktif</h4>
@@ -117,6 +117,39 @@
                                 <?php
                                 $Total = $TotalPelangganKNG_Now - $TotalPelangganKNG_Before;
                                 $Total_Persentase = ($Total / $TotalPelangganKNG_Before) * 100;
+
+                                if ($Total < 0) {
+                                    echo '<div class="total-persentase">' . number_format($Total_Persentase, 2) . '% Turun</div>';
+                                } elseif ($Total > 0) {
+                                    echo '<div class="total-persentase">' . number_format($Total_Persentase, 2) . '% Naik</div>';
+                                } else {
+                                    echo '<div class="total-persentase">' . number_format($Total_Persentase, 2) . '% Stabil</div>';
+                                }
+                                ?>
+                            </div>
+                            <div class="text-uppercase text-medium-emphasis small">Persentase</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total Dringu -->
+            <div class="col-sm-3 col-lg-3">
+                <div class="card mb-4" style="--cui-card-cap-bg: #3b5998">
+                    <div class="card-header text-white position-relative d-flex justify-content-center align-items-center">
+                        <h4>Total Dringu</h4>
+                    </div>
+                    <div class="card-body row text-center">
+                        <div class="col">
+                            <div class="fs-5 fw-semibold"><?php echo $TotalPelangganDRG_Now ?></div>
+                            <div class="text-uppercase text-medium-emphasis small">Jumlah</div>
+                        </div>
+                        <div class="vr"></div>
+                        <div class="col">
+                            <div class="fs-5 fw-semibold">
+                                <?php
+                                $Total = $TotalPelangganDRG_Now - $TotalPelangganDRG_Before;
+                                $Total_Persentase = ($Total / $TotalPelangganDRG_Before) * 100;
 
                                 if ($Total < 0) {
                                     echo '<div class="total-persentase">' . number_format($Total_Persentase, 2) . '% Turun</div>';

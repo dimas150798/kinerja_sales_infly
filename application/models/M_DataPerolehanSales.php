@@ -22,7 +22,7 @@ class M_DataPerolehanSales extends CI_Model
             WHERE kode_perolehan = '$KodePerolehanDate' AND nama_sales != ''
         GROUP BY
             nama_sales,
-            kode_perolehan;
+            kode_perolehan
         ")->result_array();
 
         foreach ($DataSheet as $dataSheet) {
@@ -33,7 +33,7 @@ class M_DataPerolehanSales extends CI_Model
 
             // Periksa apakah data sudah ada di tabel perolehan_sales
             $existingData = $this->db->get_where('perolehan_sales', [
-                'kode_perolehan_sales' => $KodePerolehan,
+                'kode_perolehan_sales'  => $KodePerolehan,
                 'nama_sales'            => $NamaSales
             ])->row_array();
 

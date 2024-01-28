@@ -21,6 +21,10 @@ class C_DashboardAdmin extends CI_Controller
 
     public function index()
     {
+        $this->M_Spreadsheet->index();
+
+        $this->M_UpdatePerolehanKode->index();
+
         $this->M_DataPerolehanPerbulan->index();
 
         $this->M_DataPerolehanSales->index();
@@ -67,12 +71,14 @@ class C_DashboardAdmin extends CI_Controller
         $data['TotalPelangganKBS_Now']  = $this->M_DataSheets->TotalPelangganAktif_KBS($kodePerolehanNow);
         $data['TotalPelangganTRW_Now']  = $this->M_DataSheets->TotalPelangganAktif_TRW($kodePerolehanNow);
         $data['TotalPelangganKNG_Now']  = $this->M_DataSheets->TotalPelangganAktif_KNG($kodePerolehanNow);
+        $data['TotalPelangganDRG_Now']  = $this->M_DataSheets->TotalPelangganAktif_DRG($kodePerolehanNow);
 
         // Data Tanggal 1 Bulan Sebelumnya
         $data['TotalPelangganAll_Before']  = $this->M_DataSheets->TotalPelangganAktif($kodePerolehan);
         $data['TotalPelangganKBS_Before']  = $this->M_DataSheets->TotalPelangganAktif_KBS($kodePerolehan);
         $data['TotalPelangganTRW_Before']  = $this->M_DataSheets->TotalPelangganAktif_TRW($kodePerolehan);
         $data['TotalPelangganKNG_Before']  = $this->M_DataSheets->TotalPelangganAktif_KNG($kodePerolehan);
+        $data['TotalPelangganDRG_Before']  = $this->M_DataSheets->TotalPelangganAktif_DRG($kodePerolehan);
 
         $data['PerolehanSales']         = $this->M_DataPerolehanSales->Perolehan_Sales_Active_Perbulan($kodePerolehanNow);
 
@@ -83,7 +89,6 @@ class C_DashboardAdmin extends CI_Controller
         $data['PerolehanSalesPertahun'] = $this->M_DataPerolehanTerminasi->Perolehan_Sales_Terminasi_Pertahun('2023');
 
         // Load necessary libraries
-        // $this->M_Spreadsheet->index();
 
         $data['DateNow']    = date('d-m-Y');
         $data['MonthNow']   = $months[(int)$bulanPerolehan];

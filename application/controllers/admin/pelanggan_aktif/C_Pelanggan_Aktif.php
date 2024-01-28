@@ -77,6 +77,7 @@ class C_Pelanggan_Aktif extends CI_Controller
         $data['JumlahPelangganAktif_KBS'] = $this->M_DataSheets->JumlahPelangganAktif_KBS($kodePerolehan);
         $data['JumlahPelangganAktif_TRW'] = $this->M_DataSheets->JumlahPelangganAktif_TRW($kodePerolehan);
         $data['JumlahPelangganAktif_Kanigaran'] = $this->M_DataSheets->JumlahPelangganAktif_Kanigaran($kodePerolehan);
+        $data['JumlahPelangganAktif_Dringu'] = $this->M_DataSheets->JumlahPelangganAktif_Dringu($kodePerolehan);
 
         $this->load->view('template/V_Header', $data);
         $this->load->view('template/V_Sidebar', $data);

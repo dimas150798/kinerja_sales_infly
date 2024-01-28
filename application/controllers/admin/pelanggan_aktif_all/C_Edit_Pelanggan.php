@@ -47,7 +47,6 @@ class C_Edit_Pelanggan extends CI_Controller
 
         // Mengambil data post pada view
         $id_sheet = $this->input->post('id_sheet');
-        $kode_sheets = $this->input->post('kode_sheets');
         $tanggal_customer = $this->input->post('tanggal_customer');
         $tanggal_instalasi = $this->input->post('tanggal_instalasi');
         $nama_customer = $this->input->post('nama_customer');
@@ -68,11 +67,8 @@ class C_Edit_Pelanggan extends CI_Controller
 
         $KodePerolehan_New              = empty($TanggalInstalasi) ? $KodePerolehan_Session : $KodePerolehan_Tgl_Instalasi;
 
-        $CheckCustomer                  = $this->M_DataSheets->Check_Customer($KodePerolehan_New);
-
         // Menyimpan data pelanggan ke dalam array
         $dataSheets = array(
-            'kode_sheet'       => $kode_sheets,
             'tanggal_customer'  => $tanggal_customer,
             'nama_customer'     => $nama_customer,
             'nama_paket'        => $paket,
@@ -89,10 +85,8 @@ class C_Edit_Pelanggan extends CI_Controller
         );
 
         // Data Customer
-        if ($CheckCustomer->kode_sheet != $kode_sheets) {
-            $this->db->where('id_sheet', $id_sheet);
-            $this->db->update('data_sheets', $dataSheets);
-        }
+        $this->db->where('id_sheet', $id_sheet);
+        $this->db->update('data_sheets', $dataSheets);
 
         // Update Perolehan Perbulan dan Persales
         $this->M_DataPerolehanPerbulan->index();

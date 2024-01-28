@@ -85,10 +85,7 @@ class C_Tambah_Pelanggan extends CI_Controller
             'kode_perolehan'    => $KodePerolehan_New,
         );
 
-        // Data Customer
-        if ($CheckCustomer->kode_sheet != $kode_sheets) {
-            $this->db->insert("data_sheets", $dataSheets);
-        }
+        $this->db->insert("data_sheets", $dataSheets);
 
         // Update Perolehan Perbulan dan Persales
         $this->M_DataPerolehanPerbulan->index();

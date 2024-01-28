@@ -36,6 +36,14 @@ class M_DataSheets extends CI_Model
         return $query->num_rows();
     }
 
+    public function TotalPelangganAktif_DRG($KodePerolehan)
+    {
+        $query   = $this->db->query("SELECT id_sheet FROM data_sheets
+        WHERE status_customer = 'active' AND branch_customer = 'DRINGU' AND kode_perolehan = '$KodePerolehan' ");
+
+        return $query->num_rows();
+    }
+
     public function Pelanggan_All($KodePerolehan)
     {
         $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, 
@@ -112,6 +120,19 @@ class M_DataSheets extends CI_Model
             WHERE status_customer = 'active' AND branch_customer = 'Kanigaran' AND kode_perolehan = '$KodePerolehan' 
             
             ORDER BY id_sheet DESC");
+
+        return $query->num_rows();
+    }
+
+    // Jumlah Data Pelanggan Berstatus active Dringu
+    public function JumlahPelangganAktif_Dringu($KodePerolehan)
+    {
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon, status_customer, tanggal_instalasi, nama_sales, keterangan, kode_perolehan
+                FROM data_sheets
+        
+                WHERE status_customer = 'active' AND branch_customer = 'DRINGU' AND kode_perolehan = '$KodePerolehan' 
+                
+                ORDER BY id_sheet DESC");
 
         return $query->num_rows();
     }

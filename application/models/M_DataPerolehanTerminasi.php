@@ -100,7 +100,7 @@ class M_DataPerolehanTerminasi extends CI_Model
     FROM
         perolehan_sales
     WHERE
-        kode_perolehan_sales = '$KodePerolehan' AND perolehan_sales_terminasi != ''
+        kode_perolehan_sales = '$KodePerolehan' AND perolehan_sales_terminasi != '' AND nama_sales != 'Qoderi Tri Riestana'
     GROUP BY
         nama_sales  
     ORDER BY persentase_terminasi ASC");
