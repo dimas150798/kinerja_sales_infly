@@ -6,11 +6,11 @@ class M_DataPerolehanPerbulan extends CI_Model
     {
         date_default_timezone_set("Asia/Jakarta");
 
-        $DataSheet = $this->db->query("SELECT kode_aktif, COUNT(*) AS jumlah_perolehan 
+        $DataSheet = $this->db->query("SELECT kode_perolehan, COUNT(*) AS jumlah_perolehan 
             FROM data_sheets 
-            WHERE status_customer = 'active' AND kode_aktif IS NOT NULL AND kode_aktif != '0000-00'
-            GROUP BY kode_aktif 
-            ORDER BY kode_aktif
+            WHERE status_customer = 'active' AND kode_perolehan IS NOT NULL AND kode_perolehan != '0000-00'
+            GROUP BY kode_perolehan 
+            ORDER BY kode_perolehan
         ")->result_array();
 
         foreach ($DataSheet as $dataSheet) {
@@ -30,7 +30,7 @@ class M_DataPerolehanPerbulan extends CI_Model
                 12 => 'Desember'
             );
 
-            $kodePerolehan = $dataSheet['kode_aktif'];
+            $kodePerolehan = $dataSheet['kode_perolehan'];
             $jumlahPerolehan = $dataSheet['jumlah_perolehan'];
 
             // Memisahkan tahun dan bulan
