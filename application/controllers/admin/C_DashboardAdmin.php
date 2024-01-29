@@ -21,7 +21,7 @@ class C_DashboardAdmin extends CI_Controller
 
     public function index()
     {
-        // $this->M_Spreadsheet->index();
+        $this->M_Spreadsheet->index();
 
         $this->M_UpdatePerolehanKode->index();
 
