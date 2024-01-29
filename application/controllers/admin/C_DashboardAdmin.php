@@ -21,7 +21,7 @@ class C_DashboardAdmin extends CI_Controller
 
     public function index()
     {
-        $this->M_Spreadsheet->index();
+        // $this->M_Spreadsheet->index();
 
         $this->M_UpdatePerolehanKode->index();
 
@@ -103,7 +103,7 @@ class C_DashboardAdmin extends CI_Controller
 
     public function DasboardAdmin_V2()
     {
-        $this->M_Spreadsheet->index();
+        // $this->M_Spreadsheet->index();
 
         $this->M_DataPerolehanPerbulan->index();
 
