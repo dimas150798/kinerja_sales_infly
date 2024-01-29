@@ -419,3 +419,26 @@
     display: none;
 }
 
+/* Perolehan Per Pop */
+.bg-pop {
+    background-color: #0F8392;
+    border: 2px solid #cecaca;
+    border-radius:12px;
+    -webkit-border-radius:12px;
+    -moz-border-radius:12px;
+    -ms-border-radius:12px;
+    -o-border-radius:12px;
+    margin: 1px;
+}
+
+.bg-pop h5 {
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+}
+
+.bg-pop p {
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+}

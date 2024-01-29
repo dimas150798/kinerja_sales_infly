@@ -45,6 +45,60 @@
                             </div>
                         </div>
                     </form>
+
+                    <div class="row">
+                        <div class="col-sm-3 col-lg-4 mt-3">
+                            <div class="card mb-4" style="--cui-card-cap-bg: #3b5998">
+                                <div class="card-header text-white position-relative d-flex justify-content-center align-items-center">
+                                    <h4>Total All Area</h4>
+                                </div>
+                                <div class="card-body row text-center">
+                                    <div class="col">
+                                        <div class="fs-5 fw-semibold"><?php echo $JumlahOnNet_All ?></div>
+                                        <div class="text-uppercase text-medium-emphasis small">All Area</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3 col-lg-4 mt-3">
+                            <div class="card mb-4" style="--cui-card-cap-bg: #3b5998">
+                                <div class="card-header text-white position-relative d-flex justify-content-center align-items-center">
+                                    <h4>Total Kebonsari & Triwung</h4>
+                                </div>
+                                <div class="card-body row text-center">
+                                    <div class="col">
+                                        <div class="fs-5 fw-semibold"><?php echo $JumlahOnNet_KBS ?></div>
+                                        <div class="text-uppercase text-medium-emphasis small">Kebonsari</div>
+                                    </div>
+                                    <div class="vr"></div>
+                                    <div class="col">
+                                        <div class="fs-5 fw-semibold"><?php echo $JumlahOnNet_TRW ?></div>
+                                        <div class="text-uppercase text-medium-emphasis small">Triwung</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3 col-lg-4 mt-3">
+                            <div class="card mb-4" style="--cui-card-cap-bg: #3b5998">
+                                <div class="card-header text-white position-relative d-flex justify-content-center align-items-center">
+                                    <h4>Total Kanigaran & Dringu</h4>
+                                </div>
+                                <div class="card-body row text-center">
+                                    <div class="col">
+                                        <div class="fs-5 fw-semibold"><?php echo $JumlahOnNet_Kanigaran ?></div>
+                                        <div class="text-uppercase text-medium-emphasis small">Kanigaran</div>
+                                    </div>
+                                    <div class="vr"></div>
+                                    <div class="col">
+                                        <div class="fs-5 fw-semibold"><?php echo $JumlahOnNet_Dringu ?></div>
+                                        <div class="text-uppercase text-medium-emphasis small">Dringu</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -54,46 +108,6 @@
 
             <div class="card">
                 <div class="card-body">
-
-                    <div class="row mt-4 mb-4">
-
-                        <div class="col-6 col-sm-3 col-lg-3 d-flex justify-content-center bg-secondary p-2">
-                            <div class="d-flex-column text-center">
-                                <div class="display-perolehan fw-bold">
-                                    <h6 class="fw-bold fs-5">Jumlah All</h6>
-                                    <h4 class="fw-bold fs-5"><?php echo $JumlahOnNet_All; ?></h4>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-sm-3 col-lg-3 d-flex justify-content-center bg-secondary p-2">
-                            <div class="d-flex-column text-center">
-                                <div class="display-perolehan">
-                                    <h6 class="fw-bold fs-5">Kebonsari</h6>
-                                    <h4 class="fw-bold fs-5"><?php echo $JumlahOnNet_KBS; ?></h4>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-sm-3 col-lg-3 d-flex justify-content-center bg-secondary p-2">
-                            <div class="d-flex-column text-center">
-                                <div class="display-perolehan">
-                                    <h6 class="fw-bold fs-5">Triwung</h6>
-                                    <h4 class="fw-bold fs-5"><?php echo $JumlahOnNet_TRW; ?></h4>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6 col-sm-3 col-lg-3 d-flex justify-content-center bg-secondary p-2">
-                            <div class="d-flex-column text-center">
-                                <div class="display-perolehan">
-                                    <h6 class="fw-bold fs-5">Kanigaran</h6>
-                                    <h4 class="fw-bold fs-5"><?php echo $JumlahOnNet_Kanigaran; ?></h4>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
 
                     <div class="table-responsive">
                         <table id="pelangganOnNet" class="table table-bordered responsive nowrap" style="width:100%">

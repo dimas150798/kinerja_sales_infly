@@ -76,6 +76,7 @@ class C_Pelanggan_Survey extends CI_Controller
         $data['JumlahSurvey_KBS'] = $this->M_DataSheets->JumlahPelangganSurvey_KBS($kodePerolehan);
         $data['JumlahSurvey_TRW'] = $this->M_DataSheets->JumlahPelangganSurvey_TRW($kodePerolehan);
         $data['JumlahSurvey_Kanigaran'] = $this->M_DataSheets->JumlahPelangganSurvey_Kanigaran($kodePerolehan);
+        $data['JumlahSurvey_Dringu'] = $this->M_DataSheets->JumlahPelangganSurvey_Dringu($kodePerolehan);
 
         $this->load->view('template/V_Header', $data);
         $this->load->view('template/V_Sidebar', $data);

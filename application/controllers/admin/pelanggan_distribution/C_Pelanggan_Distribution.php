@@ -75,6 +75,7 @@ class C_Pelanggan_Distribution extends CI_Controller
         $data['JumlahDistribution_KBS'] = $this->M_DataSheets->JumlahPelangganDistribution_KBS($kodePerolehan);
         $data['JumlahDistribution_TRW'] = $this->M_DataSheets->JumlahPelangganDistribution_TRW($kodePerolehan);
         $data['JumlahDistribution_Kanigaran'] = $this->M_DataSheets->JumlahPelangganDistribution_Kanigaran($kodePerolehan);
+        $data['JumlahDistribution_Dringu'] = $this->M_DataSheets->JumlahPelangganDistribution_Dringu($kodePerolehan);
 
         $this->load->view('template/V_Header', $data);
         $this->load->view('template/V_Sidebar', $data);

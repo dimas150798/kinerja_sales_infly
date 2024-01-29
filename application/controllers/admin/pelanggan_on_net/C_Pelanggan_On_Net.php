@@ -76,6 +76,7 @@ class C_Pelanggan_On_Net extends CI_Controller
         $data['JumlahOnNet_KBS'] = $this->M_DataSheets->JumlahPelangganOnNet_KBS($kodePerolehan);
         $data['JumlahOnNet_TRW'] = $this->M_DataSheets->JumlahPelangganOnNet_TRW($kodePerolehan);
         $data['JumlahOnNet_Kanigaran'] = $this->M_DataSheets->JumlahPelangganOnNet_Kanigaran($kodePerolehan);
+        $data['JumlahOnNet_Dringu'] = $this->M_DataSheets->JumlahPelangganOnNet_Dringu($kodePerolehan);
 
         $this->load->view('template/V_Header', $data);
         $this->load->view('template/V_Sidebar', $data);

@@ -212,6 +212,21 @@ class M_DataSheets extends CI_Model
         return $query->num_rows();
     }
 
+    // Jumlah Pelanggan Berstatus Survey Dringu
+    public function JumlahPelangganSurvey_Dringu($KodePerolehan)
+    {
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, 
+                            nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon,
+                            status_customer, tanggal_instalasi, nama_sales, keterangan, nama_dp, kode_perolehan
+                            FROM data_sheets
+            
+                            WHERE status_customer = 'survey' AND branch_customer = 'DRINGU' AND kode_perolehan = '$KodePerolehan'
+            
+                            ORDER BY id_sheet DESC");
+
+        return $query->num_rows();
+    }
+
     public function PelangganOnNet($KodePerolehan)
     {
         $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer,
@@ -282,6 +297,21 @@ class M_DataSheets extends CI_Model
                             WHERE status_customer = 'on net' AND branch_customer = 'Kanigaran' AND kode_perolehan = '$KodePerolehan'
                             
                             ORDER BY id_sheet DESC");
+
+        return $query->num_rows();
+    }
+
+    // Jumlah Data Pelanggan Berstatus On Net Dringu
+    public function JumlahPelangganOnNet_Dringu($KodePerolehan)
+    {
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, 
+                                nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon,
+                                status_customer, tanggal_instalasi, nama_sales, keterangan, nama_dp, kode_perolehan
+                                FROM data_sheets
+                                
+                                WHERE status_customer = 'on net' AND branch_customer = 'DRINGU' AND kode_perolehan = '$KodePerolehan'
+                                
+                                ORDER BY id_sheet DESC");
 
         return $query->num_rows();
     }
@@ -434,6 +464,21 @@ class M_DataSheets extends CI_Model
                         WHERE status_customer = 'need distribution' AND branch_customer = 'Kanigaran' AND kode_perolehan = '$KodePerolehan'
                         
                         ORDER BY id_sheet DESC");
+
+        return $query->num_rows();
+    }
+
+    // Jumlah Data Pelanggan Berstatus Need Distribution Dringu
+    public function JumlahPelangganDistribution_Dringu($KodePerolehan)
+    {
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, 
+                            nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon,
+                            status_customer, tanggal_instalasi, nama_sales, keterangan, nama_dp, kode_perolehan
+                            FROM data_sheets
+                            
+                            WHERE status_customer = 'need distribution' AND branch_customer = 'DRINGU' AND kode_perolehan = '$KodePerolehan'
+                            
+                            ORDER BY id_sheet DESC");
 
         return $query->num_rows();
     }
