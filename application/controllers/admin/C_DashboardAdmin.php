@@ -103,6 +103,8 @@ class C_DashboardAdmin extends CI_Controller
 
     public function DasboardAdmin_V2()
     {
+        $this->M_Spreadsheet->index();
+
         $this->M_DataPerolehanPerbulan->index();
 
         $this->M_DataPerolehanSales->index();
