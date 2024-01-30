@@ -22,13 +22,9 @@ class C_DashboardAdmin extends CI_Controller
     public function index()
     {
         $this->M_UpdatePerolehanKode->index();
-
         $this->M_DataPerolehanPerbulan->index();
-
         $this->M_DataPerolehanSales->index();
-
         $this->M_DataPerolehanTerminasi->index();
-
         $this->M_SpreadsheetTerminasi->index();
 
         date_default_timezone_set("Asia/Jakarta");
@@ -99,12 +95,10 @@ class C_DashboardAdmin extends CI_Controller
 
     public function DasboardAdmin_V2()
     {
+        $this->M_UpdatePerolehanKode->index();
         $this->M_DataPerolehanPerbulan->index();
-
         $this->M_DataPerolehanSales->index();
-
         $this->M_DataPerolehanTerminasi->index();
-
         $this->M_SpreadsheetTerminasi->index();
 
         date_default_timezone_set("Asia/Jakarta");

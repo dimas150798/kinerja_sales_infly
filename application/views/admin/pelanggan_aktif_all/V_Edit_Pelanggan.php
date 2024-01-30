@@ -26,7 +26,7 @@
                                     <label class="form-label fs-5 fw-bold">Nama Customer <span class="text-danger">*</span></label>
                                     <div class="input-group">
                                         <span class="input-group-text bg-secondary"><i class="bi bi-person-bounding-box"></i></span>
-                                        <input class="form-control fw-bold" id="nama _customer" name="nama_customer" value="<?php echo $data['nama_customer'] ?>" placeholder="Masukkan Nama Customer..." required>
+                                        <input class="form-control fw-bold" id="nama_customer" name="nama_customer" value="<?php echo $data['nama_customer'] ?>" placeholder="Masukkan Nama Customer..." required>
                                     </div>
                                 </div>
                             </div>
