@@ -235,9 +235,10 @@
                                 <div class="rank-item <?php if ($key + 1 <= 1) echo 'first'; ?><?php if ($key + 1 > 1) echo 'rank-two-and-below'; ?>">
 
                                     <div class="username-container">
-                                        <a onclick="ShowPelangganTerminasi('<?= $value['id_pegawai']; ?>')" class="username">
+                                        <!-- <a onclick="ShowPelangganTerminasi('<?= $value['id_pegawai']; ?>')" class="username">
                                             <?= $value['nama_sales']; ?>
-                                        </a>
+                                        </a> -->
+                                        <span class="username"><?= $value['nama_sales']; ?></span>
                                         <span class="jumlah"><i class="bi bi-person-check-fill"> </i> Perolehan Aktif = <?= $value['total_aktif']; ?></span>
                                         <span class="jumlah"><i class="bi bi-wifi-off"></i> Perolehan Terminasi = <?= $value['total_terminasi']; ?></span>
                                         <span class="jumlah"><i class="bi bi-wifi-off"></i>
