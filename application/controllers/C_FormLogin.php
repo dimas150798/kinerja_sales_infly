@@ -53,18 +53,6 @@ class C_FormLogin extends CI_Controller
         redirect('admin/C_DashboardAdmin');
     }
 
-
-    public function InsertAuto_KinerjaSales()
-    {
-        $this->M_Spreadsheet->index();
-    }
-
-    public function InsertAuto_PerolehanSales()
-    {
-        $this->M_DataPerolehan->index();
-    }
-
-
     public function logout()
     {
         session_start();
