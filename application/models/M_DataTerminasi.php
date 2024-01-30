@@ -78,4 +78,22 @@ class M_DataTerminasi extends CI_Model
 
         return $query->num_rows();
     }
+
+    // Perlanggan Terminasi Persales
+    public function PelangganTerminasi_Persales($KodeTerminasi, $IdSales)
+    {
+        $query   = $this->db->query("SELECT terminasi_sheets.id_terminasi_sheets, terminasi_sheets.kode_terminasi_sheets, 
+        terminasi_sheets.nama_pelanggan, terminasi_sheets.tanggal_registrasi, terminasi_sheets.tanggal_terminasi, terminasi_sheets.nama_sales, terminasi_sheets.nama_paket, 
+        terminasi_sheets.telepon, terminasi_sheets.alamat_customer, terminasi_sheets.area, terminasi_sheets.keterangan, terminasi_sheets.nama_dp, terminasi_sheets.jumlah_month, 
+        terminasi_sheets.status, terminasi_sheets.kode_terminasi, data_pegawai.id_pegawai
+        
+        FROM terminasi_sheets
+        LEFT JOIN data_pegawai ON data_pegawai.nama_pegawai = terminasi_sheets.nama_sales
+
+        WHERE kode_terminasi = '$KodeTerminasi' AND id_pegawai = '$IdSales'
+        
+        ORDER BY id_terminasi_sheets DESC");
+
+        return $query->result_array();
+    }
 }

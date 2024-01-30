@@ -21,8 +21,6 @@ class C_DashboardAdmin extends CI_Controller
 
     public function index()
     {
-        // $this->M_Spreadsheet->index();
-
         $this->M_UpdatePerolehanKode->index();
 
         $this->M_DataPerolehanPerbulan->index();
@@ -88,8 +86,6 @@ class C_DashboardAdmin extends CI_Controller
         // Perolehan Rangked Pertahun Terminasi
         $data['PerolehanSalesPertahun'] = $this->M_DataPerolehanTerminasi->Perolehan_Sales_Terminasi_Pertahun('2023');
 
-        // Load necessary libraries
-
         $data['DateNow']    = date('d-m-Y');
         $data['MonthNow']   = $months[(int)$bulanPerolehan];
         $data['Year']       = date('Y');
@@ -103,8 +99,6 @@ class C_DashboardAdmin extends CI_Controller
 
     public function DasboardAdmin_V2()
     {
-        // $this->M_Spreadsheet->index();
-
         $this->M_DataPerolehanPerbulan->index();
 
         $this->M_DataPerolehanSales->index();
@@ -165,11 +159,6 @@ class C_DashboardAdmin extends CI_Controller
 
         // Perolehan Rangked Pertahun Terminasi
         $data['PerolehanSalesPertahun'] = $this->M_DataPerolehanTerminasi->Perolehan_Sales_Terminasi_Pertahun(date('Y'));
-
-        // Load necessary libraries
-        // $this->M_Spreadsheet->index();
-
-        // $this->M_SpreadsheetTerminasi->index();
 
         $data['DateNow']    = date('d-m-Y');
         $data['MonthNow']   = $months[(int)$bulanPerolehan];

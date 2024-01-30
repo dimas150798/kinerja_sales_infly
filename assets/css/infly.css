@@ -442,3 +442,8 @@
     text-align: center;
     font-weight: bold;
 }
+
+.username-container a {
+    text-decoration: none;
+    color: inherit; /* Optional: Use the same color as the parent container */
+}

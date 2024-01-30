@@ -157,6 +157,24 @@
     })
 </script>
 
+<!-- Ajax Show Pelanggan Terminasi Persales-->
+<script>
+    $(document).ready(function() {
+        $('#terminasiSales').DataTable({
+            "autoFill": true,
+            "pagingType": 'numbers',
+            "searching": true,
+            "paging": true,
+            "stateSave": true,
+            "processing": true,
+            "serverside": true,
+            "ajax": {
+                "url": "<?= base_url('admin/terminasi/C_Terminasi_Persales/GetDataAjax'); ?>",
+            },
+        })
+    })
+</script>
+
 <!-- Alert Tambah Data Pelanggan -->
 <script>
     <?php if ($this->session->flashdata('Success_icon')) { ?>
@@ -292,6 +310,24 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = "<?php echo site_url('admin/pelanggan_distribution/C_Edit_Pelanggan_Distribution/EditPelanggan') ?>/" + parameter_id;
+            }
+        })
+    }
+</script>
+
+<!-- Show Data Pelanggan Terminasi-->
+<script>
+    function ShowPelangganTerminasi(parameter_id) {
+        Swal.fire({
+            title: 'Lihat Data Pelanggan Terminasi ?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Lihat!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "<?php echo site_url('admin/terminasi/C_Terminasi_Persales/ShowPelanggan') ?>/" + parameter_id;
             }
         })
     }
