@@ -93,8 +93,7 @@
                                         <select id="status_customer" name="status_customer" class="form-control fw-bold" required>
                                             <option value="">Pilih Status :</option>
                                             <?php foreach ($DataStatus as $value) : ?>
-                                                <option value="<?php echo $value['nama_status']; ?>">
-                                                    <?php echo $value['nama_status']; ?>
+                                                <option value="<?php echo $value['nama_status'] ?>" <?= $data['status_customer'] == $value['nama_status'] ? "selected" : null ?>><?php echo $value['nama_status'] ?>
                                                 </option>
                                             <?php endforeach; ?>
                                         </select>
