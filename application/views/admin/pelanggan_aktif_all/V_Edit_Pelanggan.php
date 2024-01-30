@@ -4,7 +4,7 @@
             <div class="card">
 
                 <div class="card-body">
-                    <h4 class="fs-3 fw-bold">Edit Customer</h4>
+                    <h4 class="fs-3 fw-bold">Edit Customer All</h4>
 
                     <?php foreach ($DataPelanggan as $data) : ?>
 
@@ -89,6 +89,7 @@
                                     <label class="form-label fs-5 fw-bold">Status <span class="text-danger">*</span></label>
                                     <div class="input-group">
                                         <span class="input-group-text bg-secondary"><i class="bi bi-bookmarks-fill"></i></span>
+                                        <input class="form-control bg-secondary fw-bold" style="text-transform: uppercase;" value="<?php echo $data['status_customer'] ?>" readonly>
                                         <select id="status_customer" name="status_customer" class="form-control fw-bold" required>
                                             <option value="">Pilih Status :</option>
                                             <?php foreach ($DataStatus as $value) : ?>
