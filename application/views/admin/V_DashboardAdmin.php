@@ -234,17 +234,19 @@
                             <?php foreach ($PerolehanSalesPerbulan as $key => $value) : ?>
                                 <div class="rank-item <?php if ($key + 1 <= 1) echo 'first'; ?><?php if ($key + 1 > 1) echo 'rank-two-and-below'; ?>">
 
-                                    <div class="username-container">
-                                        <!-- <a onclick="ShowPelangganTerminasi('<?= $value['id_pegawai']; ?>')" class="username">
-                                            <?= $value['nama_sales']; ?>
-                                        </a> -->
+                                    <div class="username-terminasi">
                                         <span class="username"><?= $value['nama_sales']; ?></span>
                                         <span class="jumlah"><i class="bi bi-person-check-fill"> </i> Perolehan Aktif = <?= $value['total_aktif']; ?></span>
                                         <span class="jumlah"><i class="bi bi-wifi-off"></i> Perolehan Terminasi = <?= $value['total_terminasi']; ?></span>
                                         <span class="jumlah"><i class="bi bi-wifi-off"></i>
-                                            < 6 Bulan&nbsp;=&nbsp;<?= $value['KurangDari_6Bulan']; ?></span>
+                                            < 6 Bulan&nbsp;=&nbsp;<?= $value['KurangDari_6Bulan']; ?> </span>
+
                                                 <span class="jumlah"><i class="bi bi-wifi-off"></i> > 6 Bulan&nbsp;=&nbsp;<?= $value['LebihDari_6Bulan']; ?></span>
+
+                                                <div class="terminated-customers-container" data-sales-name="<?= $value['nama_sales']; ?>">
+                                                </div>
                                     </div>
+
 
                                     <div class="persentase-container">
                                         <?php if ($key + 1 == 1) : ?>
@@ -276,11 +278,9 @@
 
                                         <?php endif; ?>
                                     </div>
-
-
-
                                 </div>
                             <?php endforeach; ?>
+
                         </div>
                     </div>
                 </div>

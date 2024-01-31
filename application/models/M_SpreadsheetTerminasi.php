@@ -25,7 +25,7 @@ class M_SpreadsheetTerminasi extends CI_Model
             if (!empty($obj['nama_sales']) && !empty($obj['branch_customer'])) {
                 foreach ($getData as $value) {
 
-                    if ($obj['kode_sheet'] == $value['kode_terminasi_sheets'] && $obj['nama_sales'] == $value['nama_sales']) {
+                    if ($obj['id_sheet'] == $value['kode_terminasi_sheets'] && $obj['nama_sales'] == $value['nama_sales']) {
                         $status = true;
 
                         // Extracting and formatting dates
@@ -47,7 +47,7 @@ class M_SpreadsheetTerminasi extends CI_Model
 
                         // Update data
                         $updateData = [
-                            'kode_terminasi_sheets' => $obj['kode_sheet'],
+                            'kode_terminasi_sheets' => $obj['id_sheet'],
                             'nama_pelanggan' => $obj['nama_customer'],
                             'tanggal_registrasi' => $TanggalRegistrasi,
                             'tanggal_terminasi' => $TanggalTerminasi,
@@ -72,7 +72,7 @@ class M_SpreadsheetTerminasi extends CI_Model
             }
 
             if (!empty($obj['nama_sales']) && !empty($obj['branch_customer'])) {
-                if (!$status && !empty($obj['kode_sheet'])) {
+                if (!$status && !empty($obj['id_sheet'])) {
 
                     // Extracting and formatting dates
                     $TanggalRegistrasi = $obj['tanggal_instalasi'];
@@ -93,7 +93,7 @@ class M_SpreadsheetTerminasi extends CI_Model
 
                     // Insert new data
                     $insertData = [
-                        'kode_terminasi_sheets' => $obj['kode_sheet'],
+                        'kode_terminasi_sheets' => $obj['id_sheet'],
                         'nama_pelanggan' => $obj['nama_customer'],
                         'tanggal_registrasi' => $TanggalRegistrasi,
                         'tanggal_terminasi' => $TanggalTerminasi,

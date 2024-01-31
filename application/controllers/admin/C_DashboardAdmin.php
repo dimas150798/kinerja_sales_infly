@@ -164,4 +164,36 @@ class C_DashboardAdmin extends CI_Controller
         $this->load->view('admin/V_DashboardAdmin_V2', $data);
         $this->load->view('template/V_Footer', $data);
     }
+
+    public function get_terminated_customers()
+    {
+        date_default_timezone_set("Asia/Jakarta");
+
+        $today = date('Y-m-d');
+
+        // Memisahkan Tanggal Sekarang
+        $pecahToday = explode("-", $today);
+
+        // Kode Perolehan Tanggal Sekarang
+        $MONTH  = $pecahToday[1];
+        $YEAR   = $pecahToday[0];
+
+        // Load the model
+        // Get the sales name from the POST data
+        $salesName = $this->input->post('salesName');
+
+        // Fetch terminated customers from the model
+        $terminatedCustomers = $this->M_DataSheets->Pelanggan_Terminasi($YEAR, $MONTH, $salesName);
+        // Generate HTML for terminated customers
+
+        $html = "<div>";
+        foreach ($terminatedCustomers as $customer) {
+            $html .= "<div class='ct_terminasi'><i class='bi bi-exclamation-triangle-fill'></i> {$customer['nama_customer']} ({$customer['nama_paket']})</div>";
+            $html .= "<div class='ad_terminasi'><i class=''></i>{$customer['alamat_customer']} </div>";
+        }
+        $html .= "</div>";
+
+        // Return the HTML to be displayed in the AJAX response
+        echo $html;
+    }
 }

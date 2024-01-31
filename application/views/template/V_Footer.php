@@ -359,6 +359,36 @@
     });
 </script>
 
+<script>
+    $(document).ready(function() {
+        // Iterate over each terminated-customers-container
+        $(".terminated-customers-container").each(function() {
+            // Get the sales name from the data attribute
+            var salesName = $(this).data("sales-name");
+
+            // Reference to the current container for later use
+            var container = $(this);
+
+            // Make an AJAX request to fetch terminated customer data
+            $.ajax({
+                url: "<?= base_url('admin/C_DashboardAdmin/get_terminated_customers'); ?>",
+                type: "POST",
+                data: {
+                    salesName: salesName
+                },
+                success: function(data) {
+                    // Update the corresponding terminated-customers-ajax-container with the fetched data
+                    container.html(data);
+                },
+                error: function() {
+                    // Handle errors if needed
+                    container.html("Error fetching terminated customers.");
+                }
+            });
+        });
+    });
+</script>
+
 </body>
 
 </html>
