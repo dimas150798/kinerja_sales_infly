@@ -390,8 +390,8 @@
 /* Rangked Perolehan Sales Terminasi */
 @media only screen and (max-width: 600px) {
     .medal-terminasi {
-        width: 40px;
-        height: 40px;
+        width: 35px;
+        height: 35px;
         filter: drop-shadow(16px 7px 8px );
         -webkit-filter: drop-shadow(0px 0px 5px  #000000);
         margin-left: -60px;
@@ -431,7 +431,7 @@
         display: flex;
         align-self: center;
         color: #000000;
-        margin-left: -45px;
+        margin-left: -55px;
     }
 
     .rank-item.rank-two-and-below .jumlah-terminasi {
@@ -442,7 +442,7 @@
     }
 
     .rank-item.first .jumlah-terminasi {
-        font-size: 15px;
+        font-size: 13px;
         font-weight: bold;
         color: #000000;
         font-weight: bold;
