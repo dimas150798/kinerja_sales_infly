@@ -186,9 +186,25 @@ class C_DashboardAdmin extends CI_Controller
         $terminatedCustomers = $this->M_DataSheets->Pelanggan_Terminasi($YEAR, $MONTH, $salesName);
         // Generate HTML for terminated customers
 
+        $months = array(
+            1 => 'Januari', 2 => 'Februari', 3 => 'Maret', 4 => 'April', 5 => 'Mei', 6 => 'Juni',
+            7 => 'Juli', 8 => 'Agustus', 9 => 'September', 10 => 'Oktober', 11 => 'November', 12 => 'Desember'
+        );
+
         $html = "<div>";
         foreach ($terminatedCustomers as $customer) {
-            $html .= "<div class='ct_terminasi'><i class='bi bi-exclamation-triangle-fill'></i> {$customer['nama_customer']} ({$customer['nama_paket']})</div>";
+            $YearInstal     = $customer['YearInstal'];
+            $MonthInstal    = $customer['MonthInstal'];
+
+            $tgl_instalasi  = $months[(int)$MonthInstal] . '/' . $YearInstal;
+
+            $YearTerm       = $customer['YearTerm'];
+            $MonthTerm      = $customer['MonthTerm'];
+
+            $tgl_terminasi  = $months[(int)$MonthTerm] . '/' . $YearTerm;
+
+
+            $html .= "<div class='ct_terminasi'><i class='bi bi-exclamation-triangle-fill'></i> {$customer['nama_customer']} <br> ({$tgl_instalasi} <i class='bi bi-arrow-right'></i> {$tgl_terminasi})</div>";
             $html .= "<div class='ad_terminasi'><i class=''></i>{$customer['alamat_customer']} </div>";
         }
         $html .= "</div>";

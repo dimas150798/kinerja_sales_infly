@@ -100,12 +100,12 @@
 }
 
 .topsales-informasi {
-    margin: auto;
+    /* margin: auto; */
     display: flex;
     color: #fff;
     padding: 0.4rem; 
     margin-bottom: 5px;
-    width: 90%;
+    /* width: 90%; */
 }
 
 .rank-list {
@@ -487,10 +487,9 @@
 /* Daftar Pelanggan Terminasi Pada Dashboard */
 .ct_terminasi {
     margin-top: 10px;
-    font-size: 15px;
+    font-size: 14px;
     color: #000000;
     font-weight: bold;
-    text-transform: uppercase;
 
 }
 

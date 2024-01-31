@@ -77,7 +77,7 @@ class M_DataSheets extends CI_Model
     {
         $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, 
         nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon, 
-        status_customer, tanggal_instalasi, tanggal_terminasi, nama_sales, keterangan, nama_dp, kode_perolehan
+        status_customer, tanggal_instalasi, tanggal_terminasi, nama_sales, keterangan, nama_dp, kode_perolehan, YEAR(tanggal_instalasi) as YearInstal, MONTH(tanggal_instalasi) as MonthInstal, YEAR(tanggal_terminasi) as YearTerm, MONTH(tanggal_terminasi) as MonthTerm
         FROM data_sheets
 
         WHERE YEAR(tanggal_terminasi) = '$YEAR' AND MONTH(tanggal_terminasi) = '$MONTH' AND nama_sales = '$NamaSales' AND status_customer = 'terminated'
