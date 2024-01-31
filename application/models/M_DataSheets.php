@@ -82,7 +82,7 @@ class M_DataSheets extends CI_Model
         FROM terminasi_sheets
 
         WHERE YEAR(tanggal_terminasi) = '$YEAR' AND MONTH(tanggal_terminasi) = '$MONTH' AND nama_sales = '$NamaSales'
-        ORDER BY tanggal_registrasi ASC");
+        ORDER BY jumlah_month ASC");
 
         return $query->result_array();
     }
