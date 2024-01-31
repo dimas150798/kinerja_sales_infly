@@ -175,8 +175,8 @@
             <!-- top sales -->
             <div class="col-sm-6 col-lg-6 mb-4">
                 <div class="card top-sales d-flex justify-content-center">
-                    <h3 class="mb-1 mt-4 text-center text-uppercase">Top Sales</h3>
-                    <h5 class="mb-4 text-center text-uppercase"><?php echo $DateNow ?></h5>
+                    <h2 class="mb-1 mt-4 fw-bold text-black text-center text-uppercase">Top Sales</h2>
+                    <h4 class="mb-4 text-center fw-bold text-bold-500 text-uppercase"><?php echo $DateNow ?></h4>
                     <div class="topsales-informasi">
                         <div class="rank-list">
                             <?php foreach ($PerolehanSales as $key => $value) : ?>
@@ -209,12 +209,12 @@
             </div>
 
             <!-- jumlah terminasi -->
-            <div class="col-sm-6 col-lg-6">
+            <div class="col-sm-12 col-lg-12">
                 <div class="card terminasi-perolehan d-flex justify-content-center">
                     <div class="d-flex justify-content-between mb-4 mt-4">
                         <div class="mx-3">
-                            <h4>Terminasi Terkecil</h4>
-                            <h6><?php echo $MonthNow ?></h6>
+                            <h2 class="fw-bold text-black">Terminasi Terkecil</h2>
+                            <h4 class="fw-bold text-bold-500"><?php echo $MonthNow ?></h4>
                         </div>
                         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with buttons">
                             <div class="btn-group btn-group-toggle mx-3" data-coreui-toggle="buttons">
@@ -229,19 +229,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="topsales-informasi">
+                    <div class="terminasi-informasi">
                         <div class="rank-list">
                             <?php foreach ($PerolehanSalesPerbulan as $key => $value) : ?>
                                 <div class="rank-item <?php if ($key + 1 <= 1) echo 'first'; ?><?php if ($key + 1 > 1) echo 'rank-two-and-below'; ?>">
 
                                     <div class="username-terminasi">
-                                        <span class="username"><?= $value['nama_sales']; ?></span>
+                                        <span class="username mb-3"><?= $value['nama_sales']; ?></span>
                                         <span class="jumlah"><i class="bi bi-person-check-fill"> </i> Perolehan Aktif = <?= $value['total_aktif']; ?></span>
                                         <span class="jumlah"><i class="bi bi-wifi-off"></i> Perolehan Terminasi = <?= $value['total_terminasi']; ?></span>
                                         <span class="jumlah"><i class="bi bi-wifi-off"></i>
                                             < 6 Bulan&nbsp;=&nbsp;<?= $value['KurangDari_6Bulan']; ?> </span>
 
-                                                <span class="jumlah"><i class="bi bi-wifi-off"></i> > 6 Bulan&nbsp;=&nbsp;<?= $value['LebihDari_6Bulan']; ?></span>
+                                                <span class="jumlah mb-4"><i class="bi bi-wifi-off"></i> > 6 Bulan&nbsp;=&nbsp;<?= $value['LebihDari_6Bulan']; ?></span>
 
                                                 <div class="terminated-customers-container" data-sales-name="<?= $value['nama_sales']; ?>">
                                                 </div>
@@ -286,14 +286,10 @@
                 </div>
             </div>
 
-            <div class="col-12 mb-2 mt-2 d-flex justify-content-center align-items-center d-md-none">
+            <div class="col-12 mb-2 mt-2 d-flex justify-content-center align-items-center">
                 <button onclick="saveImage()" id="download-terminasi" class="btn btn-secondary download-button">Save Image</button>
             </div>
         </div>
-
-
-
-
 
     </div>
 </div>

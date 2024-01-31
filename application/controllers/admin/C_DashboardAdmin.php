@@ -193,18 +193,9 @@ class C_DashboardAdmin extends CI_Controller
 
         $html = "<div>";
         foreach ($terminatedCustomers as $customer) {
-            $YearInstal     = $customer['YearInstal'];
-            $MonthInstal    = $customer['MonthInstal'];
-
-            $tgl_instalasi  = $months[(int)$MonthInstal] . '/' . $YearInstal;
-
-            $YearTerm       = $customer['YearTerm'];
-            $MonthTerm      = $customer['MonthTerm'];
-
-            $tgl_terminasi  = $months[(int)$MonthTerm] . '/' . $YearTerm;
 
 
-            $html .= "<div class='ct_terminasi'><i class='bi bi-exclamation-triangle-fill'></i> {$customer['nama_customer']} <br> ({$tgl_instalasi} <i class='bi bi-arrow-right'></i> {$tgl_terminasi})</div>";
+            $html .= "<div class='ct_terminasi'><i class='bi bi-exclamation-triangle-fill'></i> {$customer['nama_pelanggan']} <br> (berlangganan : {$customer['jumlah_month']} Bulan)</div>";
             $html .= "<div class='ad_terminasi'><i class=''></i>{$customer['alamat_customer']} </div>";
         }
         $html .= "</div>";

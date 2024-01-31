@@ -75,14 +75,14 @@ class M_DataSheets extends CI_Model
 
     public function Pelanggan_Terminasi($YEAR, $MONTH, $NamaSales)
     {
-        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, 
-        nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon, 
-        status_customer, tanggal_instalasi, tanggal_terminasi, nama_sales, keterangan, nama_dp, kode_perolehan, YEAR(tanggal_instalasi) as YearInstal, MONTH(tanggal_instalasi) as MonthInstal, YEAR(tanggal_terminasi) as YearTerm, MONTH(tanggal_terminasi) as MonthTerm
-        FROM data_sheets
+        $query   = $this->db->query("SELECT id_terminasi_sheets, kode_terminasi_sheets, 
+        nama_pelanggan, tanggal_registrasi, tanggal_terminasi, nama_sales, 
+        nama_paket, telepon, alamat_customer, area, keterangan, 
+        nama_dp, jumlah_month, status, status_customer, kode_terminasi 
+        FROM terminasi_sheets
 
-        WHERE YEAR(tanggal_terminasi) = '$YEAR' AND MONTH(tanggal_terminasi) = '$MONTH' AND nama_sales = '$NamaSales' AND status_customer = 'terminated'
-        
-        ORDER BY id_sheet DESC");
+        WHERE YEAR(tanggal_terminasi) = '$YEAR' AND MONTH(tanggal_terminasi) = '$MONTH' AND nama_sales = '$NamaSales'
+        ORDER BY tanggal_registrasi ASC");
 
         return $query->result_array();
     }
