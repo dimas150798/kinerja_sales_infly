@@ -431,14 +431,14 @@
         display: flex;
         align-self: center;
         color: #000000;
-        margin-left: -55px;
+        margin-left: -60px;
     }
 
     .rank-item.rank-two-and-below .jumlah-terminasi {
         font-size: 13px;
         color: #000000;
         font-weight: bold;
-        margin-left: -50px;
+        margin-left: -60px;
     }
 
     .rank-item.first .jumlah-terminasi {
