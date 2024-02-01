@@ -29,8 +29,8 @@ class C_DashboardAdmin extends CI_Controller
 
         date_default_timezone_set("Asia/Jakarta");
 
-        $today = date('Y-m-d');
-        $todayYmd = date('Y-m-d', strtotime($today));
+        $today = date('2024-01-31');
+        $todayYmd = date('2024-01-31', strtotime($today));
 
         // Memisahkan Tanggal Sekarang
         $pecahToday = explode("-", $today);
@@ -44,7 +44,7 @@ class C_DashboardAdmin extends CI_Controller
         $bulanPerolehan = sprintf("%02d", $pecahToday[1]);
 
         // Mendapatkan tanggal 1 bulan sebelumnya
-        $dateOneMonthAgo = date('d-m-Y', strtotime('-1 month', strtotime($todayYmd)));
+        $dateOneMonthAgo = date('31-01-2024', strtotime('-1 month', strtotime($todayYmd)));
 
         if (date('d', strtotime($todayYmd)) == 31) {
             // Ambil tanggal terakhir bulan sebelumnya
@@ -82,9 +82,9 @@ class C_DashboardAdmin extends CI_Controller
         // Perolehan Rangked Pertahun Terminasi
         $data['PerolehanSalesPertahun'] = $this->M_DataPerolehanTerminasi->Perolehan_Sales_Terminasi_Pertahun('2023');
 
-        $data['DateNow']    = date('d-m-Y');
+        $data['DateNow']    = date('31-01-2024');
         $data['MonthNow']   = $months[(int)$bulanPerolehan];
-        $data['Year']       = date('Y');
+        $data['Year']       = date('2024');
         $data['title']      = 'Kinerja Sales';
 
         $this->load->view('template/V_Header', $data);
