@@ -29,7 +29,12 @@
 <!-- Button Pencarian -->
 <script src="<?php echo base_url(); ?>assets/js/buttonPencarian.js"></script>
 
+<!-- Download IMG -->
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+<!-- CDN Chart -->
+<script src="https://cdn.canvasjs.com/ga/canvasjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 <!-- Ajax Show Pelanggan Aktif -->
 <script>
@@ -388,6 +393,256 @@
         });
     });
 </script>
+
+<!-- Chart Bar Month Now -->
+<script type="text/javascript">
+    $.ajax({
+        url: "<?= base_url('admin/C_DashboardAdmin/ChartMonthNow'); ?>",
+        dataType: "json",
+
+        success: function(jsonData) {
+            var options = {
+                series: [{
+                    name: "Perolehan",
+                    data: jsonData.data
+                }],
+                chart: {
+                    type: 'bar',
+                    height: 300,
+                    dropShadow: {
+                        enabled: true,
+                        color: '#000',
+                        top: 18,
+                        left: 7,
+                        blur: 10,
+                        opacity: 0.2
+                    },
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: true,
+                        dataLabels: {
+                            position: 'top',
+                        },
+                    }
+                },
+                colors: ['#268797'],
+                dataLabels: {
+                    enabled: true,
+                    offsetX: -6,
+                    style: {
+                        fontSize: '15px',
+                        colors: ['#fff']
+                    }
+                },
+                stroke: {
+                    show: true,
+                    width: 1,
+                    colors: ['#fff']
+                },
+                tooltip: {
+                    shared: true,
+                    intersect: false
+                },
+                xaxis: {
+                    categories: jsonData.categories,
+                }
+            };
+
+            var chart = new ApexCharts(document.querySelector("#ChartMonthNow"), options);
+            chart.render();
+        }
+    });
+</script>
+
+<!-- Chart Bar Month Before -->
+<script type="text/javascript">
+    $.ajax({
+        url: "<?= base_url('admin/C_DashboardAdmin/ChartMonthBefore'); ?>",
+        dataType: "json",
+
+        success: function(jsonData) {
+            var options = {
+                series: [{
+                    name: "Perolehan",
+                    data: jsonData.data
+                }],
+                chart: {
+                    type: 'bar',
+                    height: 300,
+                    with: 100,
+                    dropShadow: {
+                        enabled: true,
+                        color: '#000',
+                        top: 18,
+                        left: 7,
+                        blur: 10,
+                        opacity: 0.2
+                    },
+
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: true,
+                        dataLabels: {
+                            position: 'top',
+                        },
+                    }
+                },
+                colors: ['#268797'],
+                dataLabels: {
+                    enabled: true,
+                    offsetX: -6,
+                    style: {
+                        fontSize: '15px',
+                        colors: ['#fff']
+                    }
+                },
+                stroke: {
+                    show: true,
+                    width: 1,
+                    colors: ['#fff']
+                },
+                tooltip: {
+                    shared: true,
+                    intersect: false
+                },
+                xaxis: {
+                    categories: jsonData.categories,
+                }
+            };
+
+            var chart = new ApexCharts(document.querySelector("#ChartMonthBefore"), options);
+            chart.render();
+        }
+    });
+</script>
+
+<!-- Chart Bar Date Now -->
+<script type="text/javascript">
+    $.ajax({
+        url: "<?= base_url('admin/C_DashboardAdmin/ChartDateNow'); ?>",
+        dataType: "json",
+
+        success: function(jsonData) {
+            var options = {
+                series: [{
+                    name: "Perolehan",
+                    data: jsonData.data
+                }],
+                chart: {
+                    type: 'bar',
+                    height: 300,
+                    dropShadow: {
+                        enabled: true,
+                        color: '#000',
+                        top: 18,
+                        left: 7,
+                        blur: 10,
+                        opacity: 0.2
+                    },
+
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: true,
+                        dataLabels: {
+                            position: 'top',
+                        },
+                    }
+                },
+                colors: ['#268797'],
+                dataLabels: {
+                    enabled: true,
+                    offsetX: -6,
+                    style: {
+                        fontSize: '15px',
+                        colors: ['#fff']
+                    }
+                },
+                stroke: {
+                    show: true,
+                    width: 1,
+                    colors: ['#fff']
+                },
+                tooltip: {
+                    shared: true,
+                    intersect: false
+                },
+                xaxis: {
+                    categories: jsonData.categories,
+                }
+            };
+
+            var chart = new ApexCharts(document.querySelector("#ChartDateNow"), options);
+            chart.render();
+        }
+    });
+</script>
+
+<!-- Chart Bar Date Before -->
+<script type="text/javascript">
+    $.ajax({
+        url: "<?= base_url('admin/C_DashboardAdmin/ChartDateBefore'); ?>",
+        dataType: "json",
+
+        success: function(jsonData) {
+            var options = {
+                series: [{
+                    name: "Perolehan",
+                    data: jsonData.data
+                }],
+                chart: {
+                    type: 'bar',
+                    height: 300,
+                    dropShadow: {
+                        enabled: true,
+                        color: '#000',
+                        top: 18,
+                        left: 7,
+                        blur: 10,
+                        opacity: 0.2
+                    },
+
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: true,
+                        dataLabels: {
+                            position: 'top',
+                        },
+                    }
+                },
+                colors: ['#268797'],
+                dataLabels: {
+                    enabled: true,
+                    offsetX: -6,
+                    style: {
+                        fontSize: '15px',
+                        colors: ['#fff']
+                    }
+                },
+                stroke: {
+                    show: true,
+                    width: 1,
+                    colors: ['#fff']
+                },
+                tooltip: {
+                    shared: true,
+                    intersect: false
+                },
+                xaxis: {
+                    categories: jsonData.categories,
+                }
+            };
+
+            var chart = new ApexCharts(document.querySelector("#ChartDateBefore"), options);
+            chart.render();
+        }
+    });
+</script>
+
+
 
 </body>
 

@@ -45,6 +45,8 @@ class C_DashboardAdmin extends CI_Controller
 
         // Mendapatkan tanggal 1 bulan sebelumnya
         $dateOneMonthAgo = date('d-m-Y', strtotime('-1 month', strtotime($todayYmd)));
+        $pecahBefore = explode("-", $dateOneMonthAgo);
+        $bulanBefore = sprintf("%02d", $pecahBefore[1]);
 
         if (date('d', strtotime($todayYmd)) == 31) {
             // Ambil tanggal terakhir bulan sebelumnya
@@ -83,14 +85,133 @@ class C_DashboardAdmin extends CI_Controller
         $data['PerolehanSalesPertahun'] = $this->M_DataPerolehanTerminasi->Perolehan_Sales_Terminasi_Pertahun('2023');
 
         $data['DateNow']    = date('d-m-Y');
+        $data['DateBefore']    = $dateOneMonthAgo;
         $data['MonthNow']   = $months[(int)$bulanPerolehan];
+        $data['MonthBefore']   = $months[(int)$bulanBefore];
         $data['Year']       = date('Y');
+        $data['YearBefore']       = $pecahBefore['2'];
+
         $data['title']      = 'Kinerja Sales';
 
         $this->load->view('template/V_Header', $data);
         $this->load->view('template/V_Sidebar', $data);
         $this->load->view('admin/V_DashboardAdmin', $data);
         $this->load->view('template/V_Footer', $data);
+    }
+
+    public function ChartMonthBefore()
+    {
+        date_default_timezone_set("Asia/Jakarta");
+
+        $today = date('Y-m-d');
+        $beforeYmd = date('Y-m-d', strtotime($today));
+
+        // Mendapatkan tanggal 1 bulan sebelumnya
+        $dateOneMonthAgo = date('d-m-Y', strtotime('-1 month', strtotime($beforeYmd)));
+
+        if (date('d', strtotime($beforeYmd)) == 31) {
+            // Ambil tanggal terakhir bulan sebelumnya
+            $dateOneMonthAgo = date('d-m-Y', strtotime('last day of previous month', strtotime($todayYmd)));
+        }
+
+        // Memisahkan Tanggal 1 Bulan sebelumnya
+        $pecahOneMonthAgo = explode("-", $dateOneMonthAgo);
+
+        // Kode Perolehan 1 Bulan Sebelumnnya
+        $kodePerolehan = $pecahOneMonthAgo[2] . '-' . $pecahOneMonthAgo[1];
+
+        $data = $this->M_DataPerolehanSales->Perolehan_Sales_Active_Perbulan($kodePerolehan);
+
+        $chartData = array(
+            'categories' => array(),
+            'data' => array(),
+        );
+
+        foreach ($data as $row) {
+            $chartData['categories'][] = $row['nama_sales'];
+            $chartData['data'][] = (int)$row['perolehan_sales_aktif'];
+        }
+
+        echo json_encode($chartData, JSON_NUMERIC_CHECK);
+    }
+
+    public function ChartMonthNow()
+    {
+        date_default_timezone_set("Asia/Jakarta");
+
+        $today = date('Y-m-d');
+
+        // Memisahkan Tanggal Sekarang
+        $pecahToday = explode("-", $today);
+
+        // Kode Perolehan Tanggal Sekarang
+        $kodePerolehanNow = $pecahToday[0] . '-' . $pecahToday[1];
+
+        $data = $this->M_DataPerolehanSales->Perolehan_Sales_Active_Perbulan($kodePerolehanNow);
+
+        $chartData = array(
+            'categories' => array(),
+            'data' => array(),
+        );
+
+        foreach ($data as $row) {
+            $chartData['categories'][] = $row['nama_sales'];
+            $chartData['data'][] = (int)$row['perolehan_sales_aktif'];
+        }
+
+        echo json_encode($chartData, JSON_NUMERIC_CHECK);
+    }
+
+    public function ChartDateNow()
+    {
+        date_default_timezone_set("Asia/Jakarta");
+
+        $today = date('Y-m-d');
+
+        $data = $this->M_DataPerolehanSales->Perolehan_Sales_Active_Tanggal($today);
+
+        $chartData = array(
+            'categories' => array(),
+            'data' => array(),
+        );
+
+        foreach ($data as $row) {
+            $chartData['categories'][] = $row['nama_sales'];
+            $chartData['data'][] = (int)$row['perolehan_sales_aktif'];
+        }
+
+        echo json_encode($chartData, JSON_NUMERIC_CHECK);
+    }
+
+    public function ChartDateBefore()
+    {
+        date_default_timezone_set("Asia/Jakarta");
+
+        $today = date('Y-m-d');
+        $beforeYmd = date('Y-m-d', strtotime($today));
+
+        // Mendapatkan tanggal 1 bulan sebelumnya
+        $dateOneMonthAgo = date('Y-m-d', strtotime('-1 month', strtotime($beforeYmd)));
+
+        if (date('d', strtotime($beforeYmd)) == 31) {
+            // Ambil tanggal terakhir bulan sebelumnya
+            $dateOneMonthAgo = date('Y-m-d', strtotime('last day of previous month', strtotime($todayYmd)));
+        }
+
+
+        $data = $this->M_DataPerolehanSales->Perolehan_Sales_Active_Tanggal($dateOneMonthAgo);
+
+        $chartData = array(
+            'categories' => array(),
+            'data' => array(),
+        );
+
+        foreach ($data as $row) {
+            $chartData['categories'][] = $row['nama_sales'];
+            $chartData['data'][] = (int)$row['perolehan_sales_aktif'];
+        }
+
+        echo json_encode($chartData, JSON_NUMERIC_CHECK);
     }
 
     public function DasboardAdmin_V2()

@@ -60,14 +60,14 @@ class M_DataPerolehanSales extends CI_Model
 
     public function Perolehan_Sales_Active_Perbulan($KodePerolehan)
     {
-        $query = $this->db->query("SELECT * FROM perolehan_sales
+        $query = $this->db->query("SELECT perolehan_sales.id_perolehan_sales, perolehan_sales.kode_perolehan_sales, perolehan_sales.perolehan_sales_all, perolehan_sales_aktif, UPPER(perolehan_sales.nama_sales) as nama_sales FROM perolehan_sales
 
         LEFT JOIN data_pegawai ON perolehan_sales.nama_sales = data_pegawai.nama_pegawai
 
         WHERE kode_perolehan_sales = '$KodePerolehan' AND perolehan_sales_aktif != 0
         GROUP BY nama_sales
 
-        ORDER BY perolehan_sales_aktif DESC");
+        ORDER BY perolehan_sales_aktif DESC;");
 
         return $query->result_array();
     }
@@ -136,6 +136,24 @@ class M_DataPerolehanSales extends CI_Model
 
         WHERE status_customer = 'active' AND  nama_customer != '' 
         AND kode_perolehan = '$KodePerolehan'
+        ");
+
+        return $query->result_array();
+    }
+
+    public function Perolehan_Sales_Active_Tanggal($Tanggal_Instalasi)
+    {
+        $query   = $this->db->query("SELECT
+        nama_sales,
+        kode_perolehan,
+        COUNT(*) AS perolehan_sales_all,
+        SUM(CASE WHEN status_customer = 'active' THEN 1 ELSE 0 END) AS perolehan_sales_aktif
+    FROM
+        data_sheets
+        WHERE tanggal_instalasi = '$Tanggal_Instalasi' AND nama_sales != ''
+    GROUP BY
+        nama_sales,
+        kode_perolehan;
         ");
 
         return $query->result_array();

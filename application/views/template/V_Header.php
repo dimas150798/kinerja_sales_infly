@@ -45,8 +45,9 @@
     <link href="<?php echo base_url(); ?>assets/css/select2.min.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/select2-bootstrap-5-theme.min.css" rel="stylesheet" />
 
-
     <!-- SweetAlert2 -->
     <link href="<?php echo base_url(); ?>vendor/SweetAlert2/sweetalert2.min.css" rel="stylesheet" />
 
+    <!-- Chart -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
