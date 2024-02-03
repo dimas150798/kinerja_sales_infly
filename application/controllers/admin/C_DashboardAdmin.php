@@ -84,12 +84,12 @@ class C_DashboardAdmin extends CI_Controller
         // Perolehan Rangked Pertahun Terminasi
         $data['PerolehanSalesPertahun'] = $this->M_DataPerolehanTerminasi->Perolehan_Sales_Terminasi_Pertahun('2023');
 
-        $data['DateNow']    = date('d-m-Y');
-        $data['DateBefore']    = $dateOneMonthAgo;
-        $data['MonthNow']   = $months[(int)$bulanPerolehan];
-        $data['MonthBefore']   = $months[(int)$bulanBefore];
-        $data['Year']       = date('Y');
-        $data['YearBefore']       = $pecahBefore['2'];
+        $data['DateNow']        = date('d-m-Y');
+        $data['DateBefore']     = $dateOneMonthAgo;
+        $data['MonthNow']       = $months[(int)$bulanPerolehan];
+        $data['MonthBefore']    = $months[(int)$bulanBefore];
+        $data['Year']           = date('Y');
+        $data['YearBefore']     = $pecahBefore['2'];
 
         $data['title']      = 'Kinerja Sales';
 
