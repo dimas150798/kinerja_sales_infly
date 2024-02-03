@@ -29,8 +29,8 @@ class C_DashboardAdmin extends CI_Controller
 
         date_default_timezone_set("Asia/Jakarta");
 
-        $today = date('Y-m-d');
-        $todayYmd = date('Y-m-d', strtotime($today));
+        $today      = date('Y-m-d');
+        $todayYmd   = date('Y-m-d', strtotime($today));
 
         // Memisahkan Tanggal Sekarang
         $pecahToday = explode("-", $today);
@@ -84,12 +84,19 @@ class C_DashboardAdmin extends CI_Controller
         // Perolehan Rangked Pertahun Terminasi
         $data['PerolehanSalesPertahun'] = $this->M_DataPerolehanTerminasi->Perolehan_Sales_Terminasi_Pertahun('2023');
 
+        // Check Detail Perolehan Aktif
+        $CheckPerolehan_Now     = $this->M_DataPerolehanSales->Check_Perolehan_Aktif($kodePerolehanNow);
+        $CheckPerolehan_Before  = $this->M_DataPerolehanSales->Check_Perolehan_Aktif($kodePerolehan);
+
         $data['DateNow']        = date('d-m-Y');
         $data['DateBefore']     = $dateOneMonthAgo;
         $data['MonthNow']       = $months[(int)$bulanPerolehan];
         $data['MonthBefore']    = $months[(int)$bulanBefore];
         $data['Year']           = date('Y');
         $data['YearBefore']     = $pecahBefore['2'];
+        $data['DatePoint_Now']      = date('d F Y', strtotime($CheckPerolehan_Now->tanggal_aktif));
+        $data['DatePoint_Before']      = date('d F Y', strtotime($CheckPerolehan_Before->tanggal_aktif));
+
 
         $data['title']      = 'Kinerja Sales';
 

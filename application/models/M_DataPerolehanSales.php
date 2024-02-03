@@ -161,4 +161,28 @@ class M_DataPerolehanSales extends CI_Model
 
         return $query->result_array();
     }
+
+    public function Check_Perolehan_Aktif($KodePerolehan)
+    {
+
+        $result   = $this->db->query("SELECT perolehan_sales.id_perolehan_sales, perolehan_sales.kode_perolehan_sales, perolehan_sales.perolehan_sales_all, perolehan_sales_aktif, UPPER(perolehan_sales.nama_sales) as nama_sales, 
+        MAX(data_sheets.tanggal_instalasi) as tanggal_aktif FROM perolehan_sales
+
+        LEFT JOIN data_pegawai ON perolehan_sales.nama_sales = data_pegawai.nama_pegawai
+        LEFT JOIN data_sheets ON perolehan_sales.nama_sales = data_sheets.nama_sales
+
+        WHERE kode_perolehan_sales = '$KodePerolehan' AND perolehan_sales_aktif != 0 AND 
+        data_pegawai.nama_pegawai != 'Dwi Yanti Arinta' AND status_customer = 'active'
+        GROUP BY nama_sales
+
+        ORDER BY tanggal_aktif DESC;
+        ");
+
+        return $result->row();
+        if ($result->num_rows() > 0) {
+            return $result->row();
+        } else {
+            return false;
+        }
+    }
 }

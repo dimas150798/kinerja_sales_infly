@@ -173,27 +173,40 @@
 
         <div class="row">
             <div class="col-12 col-lg-6 mt-2">
-                <div class="card p-4">
-                    <h4 class="fw-bold text-center">Perolehan Sales Aktif <br><?php echo $MonthBefore . ' ' . $YearBefore ?></h4>
+                <div class="card month-before p-4" data-id="<?php echo 'Perolehan Aktif ' . $MonthBefore . ' ' . $YearBefore ?>">
+                    <h4 class="fw-bold text-center">Perolehan Sales Aktif <br><?php echo   $MonthBefore . ' ' . $YearBefore ?></h4>
                     <div id="ChartMonthBefore" style="height: 370px; width: 100%; "></div>
+                    <div id="data" value="<?php echo   $MonthBefore . ' ' . $YearBefore ?>"></div>
+                </div>
+                <div class="col-12 mb-2 mt-2 d-flex justify-content-center align-items-center">
+                    <button onclick="saveImage()" id="month-before" class="btn btn-secondary">Save Image</button>
                 </div>
             </div>
             <div class="col-12 col-lg-6 mt-2">
-                <div class="card p-4">
+                <div class="card month-now p-4" data-id="<?php echo 'Perolehan Aktif ' . $MonthNow . ' ' . $Year ?>">
                     <h4 class="fw-bold text-center">Perolehan Sales Aktif <br><?php echo $MonthNow . ' ' . $Year ?></h4>
                     <div id="ChartMonthNow" style="height: 370px; width: 100%; "></div>
                 </div>
-            </div>
-            <div class="col-12 col-lg-6 mt-2">
-                <div class="card p-4">
-                    <h4 class="fw-bold text-center">Perolehan Sales Aktif <br>(<?php echo $DateBefore ?>)</h4>
-                    <div id="ChartDateBefore" style="height: 370px; width: 100%; "></div>
+                <div class="col-12 mb-2 mt-2 d-flex justify-content-center align-items-center">
+                    <button onclick="saveImage()" id="month-now" class="btn btn-secondary">Save Image</button>
                 </div>
             </div>
             <div class="col-12 col-lg-6 mt-2">
-                <div class="card p-4">
+                <div class="card date-before p-4" data-id="<?php echo 'Perolehan Aktif ' . $DateBefore ?>">
+                    <h4 class="fw-bold text-center">Perolehan Sales Aktif <br>(<?php echo $DateBefore ?>)</h4>
+                    <div id="ChartDateBefore" style="height: 370px; width: 100%; "></div>
+                </div>
+                <div class="col-12 mb-2 mt-2 d-flex justify-content-center align-items-center">
+                    <button onclick="saveImage()" id="date-before" class="btn btn-secondary">Save Image</button>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 mt-2">
+                <div class="card date-now p-4" data-id="<?php echo 'Perolehan Aktif ' . $DateNow ?>">
                     <h4 class="fw-bold text-center">Perolehan Sales Aktif <br>(<?php echo $DateNow ?>)</h4>
                     <div id="ChartDateNow" style="height: 370px; width: 100%; "></div>
+                </div>
+                <div class="col-12 mb-2 mt-2 d-flex justify-content-center align-items-center">
+                    <button onclick="saveImage()" id="date-now" class="btn btn-secondary">Save Image</button>
                 </div>
             </div>
         </div>

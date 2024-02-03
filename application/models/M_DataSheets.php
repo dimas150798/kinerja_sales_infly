@@ -53,7 +53,7 @@ class M_DataSheets extends CI_Model
 
         WHERE kode_perolehan = '$KodePerolehan'
         
-        ORDER BY id_sheet DESC");
+        ORDER BY tanggal_customer DESC");
 
         return $query->result_array();
     }
@@ -67,7 +67,7 @@ class M_DataSheets extends CI_Model
 
         WHERE status_customer = 'active' AND kode_perolehan = '$KodePerolehan'
         
-        ORDER BY id_sheet DESC");
+        ORDER BY tanggal_instalasi DESC");
 
         return $query->result_array();
     }
@@ -162,7 +162,7 @@ class M_DataSheets extends CI_Model
         
         WHERE status_customer = 'survey' AND kode_perolehan = '$KodePerolehan'
         
-        ORDER BY id_sheet DESC");
+        ORDER BY tanggal_customer DESC");
 
         return $query->result_array();
     }
@@ -251,7 +251,7 @@ class M_DataSheets extends CI_Model
         
         WHERE status_customer = 'on net' AND kode_perolehan = '$KodePerolehan'
         
-        ORDER BY id_sheet DESC");
+        ORDER BY tanggal_instalasi DESC");
 
         return $query->result_array();
     }
@@ -382,7 +382,7 @@ class M_DataSheets extends CI_Model
         data_sheets.biaya_instalasi,
         data_sheets.biaya_bundling
     ORDER BY 
-        data_sheets.id_sheet DESC");
+        data_sheets.tanggal_instalasi ASC");
 
         return $query->result_array();
     }

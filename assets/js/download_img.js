@@ -1,13 +1,17 @@
-setUpDownloadPageAsImage('top-sales', '.top-sales');
-setUpDownloadPageAsImage('download-informasi', '.informasi-data');
-setUpDownloadPageAsImage('download-terminasi', '.terminasi-perolehan');
-setUpDownloadPageAsImage('download-perbulan', '.terminasi-perbulan');
+setUpDownloadPageAsImage('month-before', '.month-before');
+setUpDownloadPageAsImage('month-now', '.month-now');
+setUpDownloadPageAsImage('date-before', '.date-before');
+setUpDownloadPageAsImage('date-now', '.date-now');
 
 function setUpDownloadPageAsImage(buttonId, targetSelector) {
     document.getElementById(buttonId).addEventListener("click", function () {
+        // Get the data-id attribute value from the target element
+        var dataId = document.querySelector(targetSelector).getAttribute('data-id');
+
+        // Pass the target element to html2canvas
         html2canvas(document.querySelector(targetSelector)).then(function (canvas) {
             console.log(canvas);
-            simulateDownloadImageClick(canvas.toDataURL(), 'kinerja-sales.png');
+            simulateDownloadImageClick(canvas.toDataURL(),  dataId + '.png');
         });
     });
 }
