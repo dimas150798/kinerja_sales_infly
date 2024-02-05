@@ -128,17 +128,16 @@ class C_Data_On_Net extends CI_Controller
             $tanggal_instalasi = ($dataCustomer['tanggal_instalasi'] == NULL || $dataCustomer['tanggal_instalasi'] == '0000-00-00');
 
             $row = array(
-                ++$no,
-                $dataCustomer['nama_customer'],
-                $dataCustomer['nama_paket'],
-                $dataCustomer['branch_customer'],
-                $dataCustomer['nama_sales'],
-                $dataCustomer['status_customer'],
-                $dataCustomer['telepon'],
-                changeDateFormat('d-m-Y', $dataCustomer['tanggal_customer']),
-                $tanggal_instalasi ? '<span class="badge bg-danger">Data Kosong</span>' : '<span class="badge bg-success">' . changeDateFormat('d-m-Y', $dataCustomer['tanggal_instalasi']) . '</span>',
-                $dataCustomer['alamat_customer'],
-                $dataCustomer['keterangan'],
+                '<div class="text-center text-table">' . ++$no  . '</div>',
+                '<div class="text-center text-table">' . $dataCustomer['nama_customer']  . '</div>',
+                '<div class="text-center text-table">' . $dataCustomer['nama_paket']  . '</div>',
+                '<div class="text-center text-table">' . $dataCustomer['branch_customer']  . '</div>',
+                '<div class="text-center text-table">' . $dataCustomer['nama_sales']  . '</div>',
+                '<div class="text-center text-table">' . changeDateFormat('d-m-Y', $dataCustomer['tanggal_customer'])  . '</div>',
+                '<div class="text-center text-table">' . $tanggal_instalasi ? '<span class="badge bg-danger">Data Kosong</span>' : '<span class="badge bg-success">' . changeDateFormat('d-m-Y', $dataCustomer['tanggal_instalasi']) . '</span>'  . '</div>',
+                '<div class="text-table">' . $dataCustomer['alamat_customer']  . '</div>',
+                '<div class="text-center text-table">' . $dataCustomer['telepon']  . '</div>',
+                '<div class="text-center text-table">' . $dataCustomer['keterangan']  . '</div>',
                 '<div class="text-center">
                     <a onclick="EditPelangganOnNet(' . $dataCustomer['id_sheet'] . ')" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
                 </div>'

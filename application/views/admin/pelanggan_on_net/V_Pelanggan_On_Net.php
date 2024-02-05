@@ -118,11 +118,10 @@
                                     <th class="fw-bold text-uppercase text-center" width="5%">Paket</th>
                                     <th class="fw-bold text-uppercase text-center" width="5%">Area</th>
                                     <th class="fw-bold text-uppercase text-center" width="10%">Nama Sales</th>
-                                    <th class="fw-bold text-uppercase text-center" width="5%">Status</th>
-                                    <th class="fw-bold text-uppercase text-center" width="10%">Telepon</th>
                                     <th class="fw-bold text-uppercase text-center" width="10%">Tgl Reg</th>
                                     <th class="fw-bold text-uppercase text-center" width="10%">Tgl Ins</th>
                                     <th class="fw-bold text-uppercase text-center" width="10%">Alamat</th>
+                                    <th class="fw-bold text-uppercase text-center" width="10%">Telepon</th>
                                     <th class="fw-bold text-uppercase text-center" width="10%">Keterangan</th>
                                     <th class="fw-bold text-uppercase text-center" width="10%">Nama DP</th>
                                     <th class="fw-bold text-uppercase text-center" width="15%">Action</th>

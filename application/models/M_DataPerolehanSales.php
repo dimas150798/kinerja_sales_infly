@@ -26,10 +26,10 @@ class M_DataPerolehanSales extends CI_Model
         ")->result_array();
 
         foreach ($DataSheet as $dataSheet) {
-            $KodePerolehan      = $dataSheet['kode_perolehan'];
-            $NamaSales          = $dataSheet['nama_sales'];
+            $KodePerolehan          = $dataSheet['kode_perolehan'];
+            $NamaSales              = $dataSheet['nama_sales'];
             $Perolehan_Sales_All    = $dataSheet['perolehan_sales_all'];
-            $Perolehan_Sales_Aktif   = $dataSheet['perolehan_sales_aktif'];
+            $Perolehan_Sales_Aktif  = $dataSheet['perolehan_sales_aktif'];
 
             // Periksa apakah data sudah ada di tabel perolehan_sales
             $existingData = $this->db->get_where('perolehan_sales', [

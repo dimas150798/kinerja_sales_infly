@@ -97,7 +97,6 @@ class C_DashboardAdmin extends CI_Controller
         $data['DatePoint_Now']      = date('d F Y', strtotime($CheckPerolehan_Now->tanggal_aktif));
         $data['DatePoint_Before']      = date('d F Y', strtotime($CheckPerolehan_Before->tanggal_aktif));
 
-
         $data['title']      = 'Kinerja Sales';
 
         $this->load->view('template/V_Header', $data);

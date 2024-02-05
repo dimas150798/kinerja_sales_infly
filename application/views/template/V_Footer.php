@@ -40,6 +40,7 @@
 <script>
     $(document).ready(function() {
         $('#mytable').DataTable({
+            "responsive": false,
             "autoFill": true,
             "pagingType": 'numbers',
             "searching": true,
@@ -58,6 +59,7 @@
 <script>
     $(document).ready(function() {
         $('#pelangganAll').DataTable({
+            "responsive": false,
             "autoFill": true,
             "pagingType": 'numbers',
             "searching": true,
@@ -76,6 +78,7 @@
 <script>
     $(document).ready(function() {
         $('#pelangganSurvey').DataTable({
+            "responsive": false,
             "autoFill": true,
             "pagingType": 'numbers',
             "searching": true,
@@ -94,6 +97,7 @@
 <script>
     $(document).ready(function() {
         $('#pelangganOnNet').DataTable({
+            "responsive": false,
             "autoFill": true,
             "pagingType": 'numbers',
             "searching": true,
@@ -130,6 +134,7 @@
 <script>
     $(document).ready(function() {
         $('#pelangganDistribution').DataTable({
+            "responsive": false,
             "autoFill": true,
             "pagingType": 'numbers',
             "searching": true,

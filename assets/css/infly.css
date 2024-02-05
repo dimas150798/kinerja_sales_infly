@@ -537,4 +537,7 @@
     color: inherit; /* Optional: Use the same color as the parent container */
 }
 
-/* chart */
+/* table text */
+.text-table {
+    font-size: 13px;
+}

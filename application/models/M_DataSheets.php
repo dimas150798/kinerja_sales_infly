@@ -53,7 +53,7 @@ class M_DataSheets extends CI_Model
 
         WHERE kode_perolehan = '$KodePerolehan'
         
-        ORDER BY tanggal_customer DESC");
+        ORDER BY id_sheet DESC");
 
         return $query->result_array();
     }
