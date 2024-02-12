@@ -684,7 +684,7 @@
                 dataLabels: {
                     enabled: true,
                     style: {
-                        fontSize: '15px',
+                        fontSize: '12px',
                         colors: ['#fff']
                     }
                 },
@@ -699,9 +699,6 @@
                 },
                 xaxis: {
                     categories: jsonData.nama_paket,
-                },
-                yaxis: {
-                    min: 9,
                 }
             };
 
@@ -750,7 +747,7 @@
                 dataLabels: {
                     enabled: true,
                     style: {
-                        fontSize: '15px',
+                        fontSize: '12px',
                         colors: ['#fff']
                     }
                 },
@@ -765,9 +762,6 @@
                 },
                 xaxis: {
                     categories: jsonData.nama_paket,
-                },
-                yaxis: {
-                    min: 9,
                 }
             };
 
