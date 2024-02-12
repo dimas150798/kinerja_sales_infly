@@ -172,6 +172,7 @@
         </div>
 
         <div class="row">
+            <!-- Perolehan Perbulan -->
             <div class="col-12 col-lg-6 mt-2">
                 <div class="card month-before p-4" data-id="<?php echo 'Perolehan Aktif ' . $MonthBefore . ' ' . $YearBefore ?>">
                     <h4 class="fw-bold text-center">Perolehan Sales Aktif <br><?php echo   $MonthBefore . ' ' . $YearBefore ?></h4>
@@ -191,6 +192,8 @@
                     <button onclick="saveImage()" id="month-now" class="btn btn-secondary">Save Image</button>
                 </div>
             </div>
+
+            <!-- Perolehan Pertanggal -->
             <div class="col-12 col-lg-6 mt-2">
                 <div class="card date-before p-4" data-id="<?php echo 'Perolehan Aktif ' . $DateBefore ?>">
                     <h4 class="fw-bold text-center">Perolehan Sales Aktif <br>(<?php echo $DateBefore ?>)</h4>
@@ -207,6 +210,21 @@
                 </div>
                 <div class="col-12 mb-2 mt-2 d-flex justify-content-center align-items-center">
                     <button onclick="saveImage()" id="date-now" class="btn btn-secondary">Save Image</button>
+                </div>
+            </div>
+
+            <!-- Top Infly Home -->
+
+            <div class="col-12 col-lg-6 mt-2">
+                <div class="card inflyhome-before p-4" data-id="<?php echo 'Perolehan Aktif ' . $DateBefore ?>">
+                    <h4 class="fw-bold text-center">Best Seller Infly Home <br><?php echo $MonthBefore . ' ' . $YearBefore ?></h4>
+                    <div id="ChartInflyHomeBefore" style="height: 370px; width: 100%; "></div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 mt-2">
+                <div class="card inflyhome-now p-4" data-id="<?php echo 'Perolehan Aktif ' . $DateBefore ?>">
+                    <h4 class="fw-bold text-center">Best Seller Infly Home <br><?php echo $MonthNow . ' ' . $Year ?></h4>
+                    <div id="ChartInflyHomeNow" style="height: 370px; width: 100%; "></div>
                 </div>
             </div>
         </div>

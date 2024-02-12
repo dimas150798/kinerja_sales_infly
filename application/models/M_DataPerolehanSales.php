@@ -185,4 +185,22 @@ class M_DataPerolehanSales extends CI_Model
             return false;
         }
     }
+
+    public function InflyHome_Top($KodePerolehan)
+    {
+        $query = $this->db->query("SELECT
+        nama_paket,
+        COUNT(nama_customer) AS jumlah_paket
+    FROM
+        data_sheets
+    WHERE
+        kode_perolehan = '$KodePerolehan'
+        AND status_customer = 'active'
+    GROUP BY
+    nama_paket
+    ORDER BY
+        jumlah_paket DESC");
+
+        return $query->result_array();
+    }
 }

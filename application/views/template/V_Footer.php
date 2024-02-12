@@ -647,6 +647,135 @@
     });
 </script>
 
+<!-- Chart Infly Home Now-->
+<script type="text/javascript">
+    $.ajax({
+        url: "<?= base_url('admin/C_DashboardAdmin/ChartInflyHomeNow'); ?>",
+        dataType: "json",
+
+        success: function(jsonData) {
+            var options = {
+                series: [{
+                    name: "Penjualan",
+                    data: jsonData.jumlah_paket
+                }],
+                chart: {
+                    type: 'bar',
+                    height: 300,
+                    dropShadow: {
+                        enabled: true,
+                        color: '#000',
+                        top: 18,
+                        left: 7,
+                        blur: 10,
+                        opacity: 0.2
+                    },
+
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: false,
+                        dataLabels: {
+                            position: 'top',
+                        },
+                    }
+                },
+                colors: ['#268797'],
+                dataLabels: {
+                    enabled: true,
+                    style: {
+                        fontSize: '15px',
+                        colors: ['#fff']
+                    }
+                },
+                stroke: {
+                    show: true,
+                    width: 1,
+                    colors: ['#fff']
+                },
+                tooltip: {
+                    shared: true,
+                    intersect: false
+                },
+                xaxis: {
+                    categories: jsonData.nama_paket,
+                },
+                yaxis: {
+                    min: 4,
+                }
+            };
+
+            var chart = new ApexCharts(document.querySelector("#ChartInflyHomeNow"), options);
+            chart.render();
+        }
+
+
+    });
+</script>
+
+<!-- Chart Infly Home Before-->
+<script type="text/javascript">
+    $.ajax({
+        url: "<?= base_url('admin/C_DashboardAdmin/ChartInflyHomeBefore'); ?>",
+        dataType: "json",
+
+        success: function(jsonData) {
+            var options = {
+                series: [{
+                    name: "Penjualan",
+                    data: jsonData.jumlah_paket
+                }],
+                chart: {
+                    type: 'bar',
+                    height: 300,
+                    dropShadow: {
+                        enabled: true,
+                        color: '#000',
+                        top: 18,
+                        left: 7,
+                        blur: 10,
+                        opacity: 0.2
+                    },
+
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: false,
+                        dataLabels: {
+                            position: 'top',
+                        },
+                    }
+                },
+                colors: ['#268797'],
+                dataLabels: {
+                    enabled: true,
+                    style: {
+                        fontSize: '15px',
+                        colors: ['#fff']
+                    }
+                },
+                stroke: {
+                    show: true,
+                    width: 1,
+                    colors: ['#fff']
+                },
+                tooltip: {
+                    shared: true,
+                    intersect: false
+                },
+                xaxis: {
+                    categories: jsonData.nama_paket,
+                },
+                yaxis: {
+                    min: 4,
+                }
+            };
+
+            var chart = new ApexCharts(document.querySelector("#ChartInflyHomeBefore"), options);
+            chart.render();
+        }
+    });
+</script>
 
 
 </body>

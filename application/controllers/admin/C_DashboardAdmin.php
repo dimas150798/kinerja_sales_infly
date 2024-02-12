@@ -220,6 +220,69 @@ class C_DashboardAdmin extends CI_Controller
         echo json_encode($chartData, JSON_NUMERIC_CHECK);
     }
 
+    public function ChartInflyHomeNow()
+    {
+        date_default_timezone_set("Asia/Jakarta");
+
+        $today = date('Y-m-d');
+
+        // Memisahkan Tanggal Sekarang
+        $pecahToday = explode("-", $today);
+
+        // Kode Perolehan Tanggal Sekarang
+        $kodePerolehanNow = $pecahToday[0] . '-' . $pecahToday[1];
+
+        $data = $this->M_DataPerolehanSales->InflyHome_Top($kodePerolehanNow);
+
+        $chartData = array(
+            'nama_paket' => array(),
+            'jumlah_paket' => array(),
+        );
+
+        foreach ($data as $row) {
+            $chartData['nama_paket'][] = $row['nama_paket'];
+            $chartData['jumlah_paket'][] = (int)$row['jumlah_paket'];
+        }
+
+        echo json_encode($chartData, JSON_NUMERIC_CHECK);
+    }
+
+    public function ChartInflyHomeBefore()
+    {
+        date_default_timezone_set("Asia/Jakarta");
+
+        $today = date('Y-m-d');
+        $beforeYmd = date('Y-m-d', strtotime($today));
+
+        // Mendapatkan tanggal 1 bulan sebelumnya
+        $dateOneMonthAgo = date('d-m-Y', strtotime('-1 month', strtotime($beforeYmd)));
+
+        if (date('d', strtotime($beforeYmd)) == 31) {
+            // Ambil tanggal terakhir bulan sebelumnya
+            $dateOneMonthAgo = date('d-m-Y', strtotime('last day of previous month', strtotime($todayYmd)));
+        }
+
+        // Memisahkan Tanggal 1 Bulan sebelumnya
+        $pecahOneMonthAgo = explode("-", $dateOneMonthAgo);
+
+        // Kode Perolehan 1 Bulan Sebelumnnya
+        $kodePerolehan = $pecahOneMonthAgo[2] . '-' . $pecahOneMonthAgo[1];
+
+        $data = $this->M_DataPerolehanSales->InflyHome_Top($kodePerolehan);
+
+        $chartData = array(
+            'nama_paket' => array(),
+            'jumlah_paket' => array(),
+        );
+
+        foreach ($data as $row) {
+            $chartData['nama_paket'][] = $row['nama_paket'];
+            $chartData['jumlah_paket'][] = (int)$row['jumlah_paket'];
+        }
+
+        echo json_encode($chartData, JSON_NUMERIC_CHECK);
+    }
+
     public function DasboardAdmin_V2()
     {
         $this->M_UpdatePerolehanKode->index();
