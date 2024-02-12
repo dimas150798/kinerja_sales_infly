@@ -146,7 +146,7 @@ class M_DataPerolehanSales extends CI_Model
     public function Perolehan_Sales_Active_Tanggal($Tanggal_Instalasi)
     {
         $query   = $this->db->query("SELECT
-        nama_sales,
+        UPPER(nama_sales) as nama_sales,
         kode_perolehan,
         COUNT(*) AS perolehan_sales_all,
         SUM(CASE WHEN status_customer = 'active' THEN 1 ELSE 0 END) AS perolehan_sales_aktif
@@ -189,7 +189,7 @@ class M_DataPerolehanSales extends CI_Model
     public function InflyHome_Top($KodePerolehan)
     {
         $query = $this->db->query("SELECT
-        nama_paket,
+        UPPER(nama_paket) as nama_paket,
         COUNT(nama_customer) AS jumlah_paket
     FROM
         data_sheets

@@ -701,7 +701,7 @@
                     categories: jsonData.nama_paket,
                 },
                 yaxis: {
-                    min: 4,
+                    min: 9,
                 }
             };
 
@@ -767,7 +767,7 @@
                     categories: jsonData.nama_paket,
                 },
                 yaxis: {
-                    min: 4,
+                    min: 9,
                 }
             };
 
