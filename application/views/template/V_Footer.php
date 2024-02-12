@@ -680,7 +680,7 @@
                         },
                     }
                 },
-                colors: ['#268797'],
+                colors: ['#023535'],
                 dataLabels: {
                     enabled: true,
                     style: {
@@ -743,7 +743,7 @@
                         },
                     }
                 },
-                colors: ['#268797'],
+                colors: ['#023535'],
                 dataLabels: {
                     enabled: true,
                     style: {
