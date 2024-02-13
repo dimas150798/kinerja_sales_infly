@@ -35,6 +35,8 @@ class C_DashboardUser extends CI_Controller
         $data['JumlahOnNet_Kanigaran']  = $this->M_DataSheets->JumlahPelangganOnNet_Kanigaran_Today($Tanggal_Instalasi);
         $data['JumlahOnNet_Dringu']     = $this->M_DataSheets->JumlahPelangganOnNet_Dringu_Today($Tanggal_Instalasi);
 
+        $data['JumlahAktif_KBS']        = $this->M_DataSheets->TotalPelangganAktif_KBS_Today($Tanggal_Instalasi);
+
         $this->load->view('template/user/V_Header', $data);
         $this->load->view('user/V_DashboardUser', $data);
         $this->load->view('template/user/V_Footer', $data);

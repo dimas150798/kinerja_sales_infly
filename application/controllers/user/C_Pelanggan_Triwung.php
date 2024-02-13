@@ -27,7 +27,7 @@ class C_Pelanggan_Triwung extends CI_Controller
         $data['Month']      = $PecahToDay[1];
         $data['Today']      = $ToDay;
 
-        $data['DataPelaggan']   = $this->M_DataSheets->PelangganOnNet_Area($Tanggal_Instalasi, 'TRW');
+        $data['DataPelaggan']   = $this->M_DataSheets->PelangganOnNet_Area_Today($Tanggal_Instalasi, 'TRW');
 
         $this->load->view('template/user/V_Header', $data);
         $this->load->view('user/V_Pelanggan_Triwung', $data);

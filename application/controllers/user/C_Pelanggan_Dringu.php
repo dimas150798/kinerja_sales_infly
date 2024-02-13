@@ -27,7 +27,7 @@ class C_Pelanggan_Dringu extends CI_Controller
         $data['Month']      = $PecahToDay[1];
         $data['Today']      = $ToDay;
 
-        $data['DataPelaggan']   = $this->M_DataSheets->PelangganOnNet_Area($Tanggal_Instalasi, 'Dringu');
+        $data['DataPelaggan']   = $this->M_DataSheets->PelangganOnNet_Area_Today($Tanggal_Instalasi, 'Dringu');
 
         $this->load->view('template/user/V_Header', $data);
         $this->load->view('user/V_Pelanggan_Dringu', $data);
