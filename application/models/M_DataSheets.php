@@ -289,7 +289,7 @@ class M_DataSheets extends CI_Model
     FROM 
         data_sheets
     WHERE 
-        (status_customer = 'on net' OR status_customer = 'active') 
+        status_customer = 'on net'
         AND branch_customer = 'KBS' 
         AND kode_perolehan = '$KodePerolehan'
     ORDER BY 
