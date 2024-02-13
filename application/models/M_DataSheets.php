@@ -306,7 +306,7 @@ class M_DataSheets extends CI_Model
                         status_customer, tanggal_instalasi, nama_sales, keterangan, nama_dp, kode_perolehan
                         FROM data_sheets
                         
-                        WHERE (status_customer = 'on net' OR status_customer = 'active') AND branch_customer = 'KBS' AND tanggal_instalasi = '$tanggal_instalasi'
+                        WHERE branch_customer = 'KBS' AND tanggal_instalasi = '$tanggal_instalasi'
                         
                         ORDER BY id_sheet DESC");
 
@@ -336,7 +336,7 @@ class M_DataSheets extends CI_Model
                             status_customer, tanggal_instalasi, nama_sales, keterangan, nama_dp, kode_perolehan
                             FROM data_sheets
                             
-                            WHERE (status_customer = 'on net' OR status_customer = 'active') AND branch_customer = 'TRW' AND tanggal_instalasi = '$tanggal_instalasi'
+                            WHERE branch_customer = 'TRW' AND tanggal_instalasi = '$tanggal_instalasi'
                             
                             ORDER BY id_sheet DESC");
 
@@ -366,7 +366,7 @@ class M_DataSheets extends CI_Model
                                 status_customer, tanggal_instalasi, nama_sales, keterangan, nama_dp, kode_perolehan
                                 FROM data_sheets
                                 
-                                WHERE (status_customer = 'on net' OR status_customer = 'active') AND branch_customer = 'Kanigaran' AND tanggal_instalasi = '$tanggal_instalasi'
+                                WHERE branch_customer = 'Kanigaran' AND tanggal_instalasi = '$tanggal_instalasi'
                                 
                                 ORDER BY id_sheet DESC");
 
@@ -396,7 +396,7 @@ class M_DataSheets extends CI_Model
                                 status_customer, tanggal_instalasi, nama_sales, keterangan, nama_dp, kode_perolehan
                                 FROM data_sheets
                                 
-                                WHERE (status_customer = 'on net' OR status_customer = 'active') AND branch_customer = 'DRINGU' AND tanggal_instalasi = '$tanggal_instalasi'
+                                WHERE branch_customer = 'DRINGU' AND tanggal_instalasi = '$tanggal_instalasi'
                                 
                                 ORDER BY id_sheet DESC");
 
@@ -488,8 +488,7 @@ class M_DataSheets extends CI_Model
     LEFT JOIN 
         data_paket ON data_sheets.nama_paket = data_paket.nama_paket
     WHERE 
-    (data_sheets.status_customer = 'on net' OR data_sheets.status_customer = 'active')
-        AND data_sheets.tanggal_instalasi = '$Tanggal_Instalasi' 
+    data_sheets.tanggal_instalasi = '$Tanggal_Instalasi' 
         AND data_sheets.branch_customer = '$Branch_Customer'
         AND data_sheets.tanggal_instalasi != ''
 
