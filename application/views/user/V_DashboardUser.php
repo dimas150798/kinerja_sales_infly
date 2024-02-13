@@ -6,7 +6,7 @@
                 <h2 class="judul-jadwal text-center">Jadwal Instalasi <br> All Pop Infly Networks</h2>
             </div>
             <div class="col-12 d-flex justify-content-center mb-4">
-                <h2><?php echo $Today ?></h2>
+                <h3><?php echo $Today ?></h3>
             </div>
 
             <div class="col-12 col-lg-3 mb-2">

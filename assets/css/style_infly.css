@@ -17,7 +17,7 @@ body {
 .judul-jadwal {
     font-family: "Lato", sans-serif;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 27px;
     display: flex;
     justify-content: center;
     text-align: center;
@@ -85,6 +85,42 @@ body {
     font-size: 45px;
     display: flex;
     justify-content: center;
+}
+
+.customer-info {
+    margin-bottom: 10px;
+}
+
+.status-customer {
+    background-color: #023535;
+    color: #fff;
+    padding: 4px 4px;
+    margin-top: 10px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.status-active {
+    color: #fff;
+    background-color: green;
+}
+
+.status-on-net {
+    color: #fff;
+    background-color: blue;
+}
+
+.status-survey {
+    color: #fff;
+    background-color: yellow;
+}
+
+.status-need-distribution {
+    color: #fff;
+    background-color: orangered;
 }
 
 /* Tombol CSS */
