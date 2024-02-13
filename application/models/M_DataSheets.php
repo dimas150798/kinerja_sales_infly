@@ -286,6 +286,21 @@ class M_DataSheets extends CI_Model
         return $query->num_rows();
     }
 
+    // Jumlah Data Pelanggan Berstatus On Net Kebonsari To Day
+    public function JumlahPelangganOnNet_KBS_Today($tanggal_instalasi)
+    {
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, 
+                        nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon,
+                        status_customer, tanggal_instalasi, nama_sales, keterangan, nama_dp, kode_perolehan
+                        FROM data_sheets
+                        
+                        WHERE status_customer = 'on net' AND branch_customer = 'KBS' AND tanggal_instalasi = '$tanggal_instalasi'
+                        
+                        ORDER BY id_sheet DESC");
+
+        return $query->num_rows();
+    }
+
     // Jumlah Data Pelanggan Berstatus On Net Triwung
     public function JumlahPelangganOnNet_TRW($KodePerolehan)
     {
@@ -297,6 +312,21 @@ class M_DataSheets extends CI_Model
                         WHERE status_customer = 'on net' AND branch_customer = 'TRW' AND kode_perolehan = '$KodePerolehan'
                         
                         ORDER BY id_sheet DESC");
+
+        return $query->num_rows();
+    }
+
+    // Jumlah Data Pelanggan Berstatus On Net Triwung To Day
+    public function JumlahPelangganOnNet_TRW_Today($tanggal_instalasi)
+    {
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, 
+                            nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon,
+                            status_customer, tanggal_instalasi, nama_sales, keterangan, nama_dp, kode_perolehan
+                            FROM data_sheets
+                            
+                            WHERE status_customer = 'on net' AND branch_customer = 'TRW' AND tanggal_instalasi = '$tanggal_instalasi'
+                            
+                            ORDER BY id_sheet DESC");
 
         return $query->num_rows();
     }
@@ -316,6 +346,21 @@ class M_DataSheets extends CI_Model
         return $query->num_rows();
     }
 
+    // Jumlah Data Pelanggan Berstatus On Net Kanigaran To Day
+    public function JumlahPelangganOnNet_Kanigaran_Today($tanggal_instalasi)
+    {
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, 
+                                nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon,
+                                status_customer, tanggal_instalasi, nama_sales, keterangan, nama_dp, kode_perolehan
+                                FROM data_sheets
+                                
+                                WHERE status_customer = 'on net' AND branch_customer = 'Kanigaran' AND tanggal_instalasi = '$tanggal_instalasi'
+                                
+                                ORDER BY id_sheet DESC");
+
+        return $query->num_rows();
+    }
+
     // Jumlah Data Pelanggan Berstatus On Net Dringu
     public function JumlahPelangganOnNet_Dringu($KodePerolehan)
     {
@@ -324,7 +369,22 @@ class M_DataSheets extends CI_Model
                                 status_customer, tanggal_instalasi, nama_sales, keterangan, nama_dp, kode_perolehan
                                 FROM data_sheets
                                 
-                                WHERE status_customer = 'on net' AND branch_customer = 'DRINGU' AND kode_perolehan = '$KodePerolehan'
+                                WHERE status_customer = 'on net' AND branch_customer = 'Dringu' AND kode_perolehan = '$KodePerolehan'
+                                
+                                ORDER BY id_sheet DESC");
+
+        return $query->num_rows();
+    }
+
+    // Jumlah Data Pelanggan Berstatus On Net Dringu To Day
+    public function JumlahPelangganOnNet_Dringu_Today($tanggal_instalasi)
+    {
+        $query   = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, 
+                                nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon,
+                                status_customer, tanggal_instalasi, nama_sales, keterangan, nama_dp, kode_perolehan
+                                FROM data_sheets
+                                
+                                WHERE status_customer = 'on net' AND branch_customer = 'DRINGU' AND tanggal_instalasi = '$tanggal_instalasi'
                                 
                                 ORDER BY id_sheet DESC");
 
@@ -337,7 +397,7 @@ class M_DataSheets extends CI_Model
         data_sheets.id_sheet, 
         data_sheets.kode_sheet, 
         data_sheets.tanggal_customer, 
-        data_sheets.nama_customer, 
+        UPPER(data_sheets.nama_customer) as nama_customer, 
         data_sheets.nama_paket, 
         data_sheets.branch_customer, 
         data_sheets.alamat_customer, 
@@ -705,6 +765,27 @@ class M_DataSheets extends CI_Model
         WHERE id_sheet = '$id_sheet'
         
         ORDER BY tanggal_customer DESC");
+
+        return $query->result_array();
+    }
+
+    // Top Produk
+    public function TopProduk($tahun)
+    {
+        $query   = $this->db->query("SELECT 
+        YEAR(tanggal_instalasi) AS tahun,
+        MONTH(tanggal_instalasi) AS bulan,
+        MONTHNAME(tanggal_instalasi) AS nama_bulan,
+        nama_paket,
+        COUNT(nama_customer) AS jumlah_customer
+    FROM 
+        data_sheets
+    WHERE 
+        status_customer = 'active' AND YEAR(tanggal_instalasi) = 2024
+    GROUP BY 
+        YEAR(tanggal_instalasi), MONTH(tanggal_instalasi), nama_paket  
+    ORDER BY 
+        tahun ASC, bulan ASC;");
 
         return $query->result_array();
     }

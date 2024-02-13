@@ -76,28 +76,14 @@ class C_DashboardAdmin extends CI_Controller
         $data['TotalPelangganKNG_Before']  = $this->M_DataSheets->TotalPelangganAktif_KNG($kodePerolehan);
         $data['TotalPelangganDRG_Before']  = $this->M_DataSheets->TotalPelangganAktif_DRG($kodePerolehan);
 
-        $data['PerolehanSales']         = $this->M_DataPerolehanSales->Perolehan_Sales_Active_Perbulan($kodePerolehanNow);
-
-        // Perolehan Rangked Perbulan Terminasi
-        $data['PerolehanSalesPerbulan'] = $this->M_DataPerolehanTerminasi->Perolehan_Sales_Terminasi_Perbulan($kodePerolehanNow);
-
-        // Perolehan Rangked Pertahun Terminasi
-        $data['PerolehanSalesPertahun'] = $this->M_DataPerolehanTerminasi->Perolehan_Sales_Terminasi_Pertahun('2023');
-
-        // Check Detail Perolehan Aktif
-        $CheckPerolehan_Now     = $this->M_DataPerolehanSales->Check_Perolehan_Aktif($kodePerolehanNow);
-        $CheckPerolehan_Before  = $this->M_DataPerolehanSales->Check_Perolehan_Aktif($kodePerolehan);
-
         $data['DateNow']        = date('d-m-Y');
         $data['DateBefore']     = $dateOneMonthAgo;
         $data['MonthNow']       = $months[(int)$bulanPerolehan];
         $data['MonthBefore']    = $months[(int)$bulanBefore];
         $data['Year']           = date('Y');
         $data['YearBefore']     = $pecahBefore['2'];
-        $data['DatePoint_Now']      = date('d F Y', strtotime($CheckPerolehan_Now->tanggal_aktif));
-        $data['DatePoint_Before']      = date('d F Y', strtotime($CheckPerolehan_Before->tanggal_aktif));
 
-        $data['title']      = 'Kinerja Sales';
+        $data['title']          = 'Kinerja Sales';
 
         $this->load->view('template/V_Header', $data);
         $this->load->view('template/V_Sidebar', $data);
@@ -271,6 +257,33 @@ class C_DashboardAdmin extends CI_Controller
         $data = $this->M_DataPerolehanSales->InflyHome_Top($kodePerolehan);
 
         $chartData = array(
+            'nama_paket' => array(),
+            'jumlah_paket' => array(),
+        );
+
+        foreach ($data as $row) {
+            $chartData['nama_paket'][] = $row['nama_paket'];
+            $chartData['jumlah_paket'][] = (int)$row['jumlah_paket'];
+        }
+
+        echo json_encode($chartData, JSON_NUMERIC_CHECK);
+    }
+
+    public function ChartInflyHome()
+    {
+        date_default_timezone_set("Asia/Jakarta");
+
+        $today      = date('Y-m-d');
+
+        // Memisahkan Tanggal Sekarang
+        $pecahToday = explode("-", $today);
+
+        // Kode Perolehan Tanggal Sekarang
+        $tahun      = $pecahToday[0];
+
+        $data       = $this->M_DataSheets->TopProduk($tahun);
+
+        $chartData  = array(
             'nama_paket' => array(),
             'jumlah_paket' => array(),
         );

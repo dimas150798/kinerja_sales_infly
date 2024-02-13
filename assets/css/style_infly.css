@@ -1,0 +1,119 @@
+:root {
+    font-size: 20px;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+body {
+    font: 1em/1.618 Inter, sans-serif;
+    color: #224;
+    background: url(https://source.unsplash.com/E8Ufcyxz514/2400x1823) center/cover no-repeat fixed;
+}
+
+.judul-jadwal {
+    font-family: "Lato", sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Rangked Perolehan Sales Terminasi */
+@media only screen and (max-width: 600px) {
+    .judul-jadwal {
+        font-family: "Lato", sans-serif;
+        font-weight: bold;
+        font-size: 30px;
+        display: flex;
+        color: #fff;
+        justify-content: center;
+    }
+}
+
+.card {
+    width: auto;
+    height: auto;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    border: 1px solid rgba(255, 255, 255, .25);
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(15px);
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+.cardPelanggan {
+    width: auto;
+    height: auto;
+    padding: 20px;
+    text-decoration: none;
+
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid rgba(255, 255, 255, .25);
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(15px);
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+.card h4 {
+    font-family: "Protest Strike", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 45px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Tombol CSS */
+.custom-button {
+    display: inline-block;
+    padding: 10px 20px;
+    text-align: center;
+    width: 180px;
+    text-decoration: none;
+    background-color: #023535;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.custom-button {
+    display: inline-block;
+    padding: 10px 20px;
+    text-align: center;
+    width: 180px;
+    text-decoration: none;
+    background-color: #023535;
+    color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease; /* tambahan untuk animasi perubahan warna */
+}
+
+.custom-button:hover,
+.custom-button:active {
+    background-color: #015151; /* warna yang diinginkan saat tombol dihover atau diactive (diklik) */
+    color: #fff;
+
+}
