@@ -13,4 +13,13 @@ class M_DataPegawai extends CI_Model
 
         return $query->result_array();
     }
+
+    public function DataPegawai_All()
+    {
+        $query   = $this->db->query("SELECT nama_pegawai, jabatan, status FROM data_pegawai
+        
+        ORDER BY nama_pegawai ASC");
+
+        return $query->result_array();
+    }
 }

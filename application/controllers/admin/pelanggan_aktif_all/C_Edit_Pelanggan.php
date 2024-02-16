@@ -21,7 +21,7 @@ class C_Edit_Pelanggan extends CI_Controller
     {
         $data['DataPelanggan']  = $this->M_DataSheets->Edit_Sheets($id_sheet);
 
-        $data['DataPegawai'] = $this->M_DataPegawai->Data_Pegawai();
+        $data['DataPegawai'] = $this->M_DataPegawai->DataPegawai_All();
         $data['DataPaket'] = $this->M_DataPaket->Data_Paket();
         $data['DataArea'] = $this->M_DataArea->Data_Area();
         $data['DataStatus'] = $this->M_DataStatus->Data_Status();

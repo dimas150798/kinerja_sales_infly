@@ -69,6 +69,8 @@ class C_Pelanggan_Terminasi extends CI_Controller
         $data['JumlahTerminasi_TRW'] = $this->M_DataTerminasi->JumlahPelangganTerminasi_TRW($this->session->userdata('KodePerolehan_Now'));
         $data['JumlahTerminasi_Kanigaran'] = $this->M_DataTerminasi->JumlahPelangganTerminasi_Kanigaran($this->session->userdata('KodePerolehan_Now'));
 
+        // $API_KBS = $this->M_API_Terminasi->API_Kebonsari();
+
         $this->load->view('template/V_Header', $data);
         $this->load->view('template/V_Sidebar', $data);
         $this->load->view('admin/pelanggan_terminasi/V_Pelanggan_Terminasi', $data);
