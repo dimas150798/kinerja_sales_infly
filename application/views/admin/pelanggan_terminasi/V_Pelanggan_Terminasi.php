@@ -4,10 +4,11 @@
             <div class="card">
 
                 <div class="card-body">
-                    <div class="row">
+                    <div class="row align-items-center justify-content-between">
                         <form action="<?php echo base_url('admin/pelanggan_terminasi/C_Pelanggan_Terminasi') ?>" method="get" class="row g-3 mt-2">
                             <h4 class="fs-3 fw-bold">Data Pelanggan Terminasi</h4>
-                            <div class="col-md-3">
+
+                            <div class="col-xl-5">
                                 <label for="tahun" class="form-label">Tahun:</label>
                                 <select class="form-control" id="tahun" name="tahun">
                                     <?php
@@ -23,7 +24,7 @@
                                 </select>
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-xl-5">
                                 <label for="bulan" class="form-label">Bulan:</label>
                                 <select class="form-control" id="bulan" name="bulan">
                                     <?php
@@ -39,14 +40,13 @@
                                 </select>
                             </div>
 
-                            <div class="col-md-6 d-flex justify-content-end align-items-center">
-                                <div class="button-container">
-                                    <button type="submit" class="btn btn-primary mt-lg-4 text-white fw-bold">Cari</button>
-                                </div>
+                            <div class="col-xl-2 mt-5 col-xl-auto">
+                                <button type="submit" class="btn btn-primary text-white fw-bold">Cari</button>
+                                <a href="<?php echo base_url('admin/pelanggan_terminasi/C_Pelanggan_Terminasi/UpdateData') ?>" class="btn btn-warning text-white fw-bold">Update Data</a>
                             </div>
+
                         </form>
                     </div>
-
 
                 </div>
 

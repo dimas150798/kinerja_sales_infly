@@ -5,8 +5,6 @@ class M_API_Terminasi extends CI_Model
 {
     public function API_Kebonsari()
     {
-        $response = [];
-
         $json_string = 'https://kebonsari.inflydata.net/admin/TerminasiPelanggan/C_API_TerminasiPelanggan/ApiTerminasi';
         $jsondata = file_get_contents($json_string);
         $obj = json_decode($jsondata, TRUE);
@@ -18,29 +16,63 @@ class M_API_Terminasi extends CI_Model
         status_customer, tanggal_instalasi, nama_sales, keterangan, kode_perolehan
         FROM data_sheets")->result_array();
 
-        foreach ($obj as $data) {
-            $existingData = $this->db
-                ->where('nama_customer', $data->name)
-                ->where('tanggal_customer', $data->start_date)
-                ->get('data_sheets')
-                ->row();
+        for ($i = 0; $i < $arrayObj; $i++) {
+            $dataExist = false;
 
-            if (empty($existingData) || !isset($existingData->nama_customer)) {
+            foreach ($getData as $data) {
+                // Memeriksa apakah data dengan nama sales dan nama customer yang sama sudah ada (case-insensitive)
+                if (strcasecmp($data['nama_sales'], $obj[$i]['nama_sales']) === 0 && strcasecmp($data['nama_customer'], $obj[$i]['name']) === 0) {
+                    $dataExist = true;
+
+                    $tanggal_instalasi  = $obj[$i]['start_date'];
+
+                    $Split_Tanggal      = explode("-", $tanggal_instalasi);
+
+                    $KodePerolehan      = $Split_Tanggal[0] . '-' . $Split_Tanggal[1];
+
+                    $updateData = [
+                        "tanggal_customer"  => $obj[$i]['start_date'],
+                        "tanggal_instalasi" => $obj[$i]['start_date'],
+                        "tanggal_terminasi" => $obj[$i]['stop_date'],
+                        "nama_paket"        => $obj[$i]['nama_paket'],
+                        "nama_customer"     => $obj[$i]['name'], // Mengubah 'nama_customer' menjadi 'name'
+                        "nama_sales"        => $obj[$i]['nama_sales'],
+                        "branch_customer"   => 'KBS',
+                        "alamat_customer"   => $obj[$i]['address'],
+                        "keterangan"        => $obj[$i]['keterangan'],
+                        "status_customer"   => 'terminated',
+                        "kode_perolehan"    => $KodePerolehan
+                    ];
+
+                    $this->db->where('nama_customer', $data['nama_customer']);
+                    $this->db->where('nama_sales', $data['nama_sales']);
+                    $this->db->update("data_sheets", $updateData);
+                }
+            }
+
+            // Jika data belum ada, sisipkan data baru
+            if (!$dataExist) {
+                $tanggal_instalasi  = $obj[$i]['start_date'];
+
+                $Split_Tanggal      = explode("-", $tanggal_instalasi);
+
+                $KodePerolehan      = $Split_Tanggal[0] . '-' . $Split_Tanggal[1];
+
                 $insertData = [
-                    "tanggal_customer"  => $data->start_date,
-                    "nama_customer"     => $data->name,
-                    "nama_paket"        => $data->nama_paket,
+                    "tanggal_customer"  => $obj[$i]['start_date'],
+                    "tanggal_instalasi" => $obj[$i]['start_date'],
+                    "tanggal_terminasi" => $obj[$i]['stop_date'],
+                    "nama_paket"        => $obj[$i]['nama_paket'],
+                    "nama_customer"     => $obj[$i]['name'], // Mengubah 'nama_customer' menjadi 'name'
+                    "nama_sales"        => $obj[$i]['nama_sales'],
                     "branch_customer"   => 'KBS',
-                    "alamat_customer"   => $data->address,
+                    "alamat_customer"   => $obj[$i]['address'],
+                    "keterangan"        => $obj[$i]['keterangan'],
                     "status_customer"   => 'terminated',
-                    "nama_sales"        => $data->nama_sales,
+                    "kode_perolehan"    => $KodePerolehan
                 ];
 
-                // Menyisipkan data baru
                 $this->db->insert("data_sheets", $insertData);
-            } else {
-                // Data sudah ada, lakukan sesuatu jika diperlukan
-                // Misalnya, update data atau lakukan operasi lainnya
             }
         }
     }

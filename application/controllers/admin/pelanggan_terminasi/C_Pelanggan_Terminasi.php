@@ -111,4 +111,18 @@ class C_Pelanggan_Terminasi extends CI_Controller
         $output = array('data' => $data);
         $this->output->set_content_type('application/json')->set_output(json_encode($output));
     }
+
+    public function UpdateData()
+    {
+        $this->M_API_Terminasi->API_Kebonsari();
+        $this->M_DataPerolehanTerminasi->index();
+        $this->M_SpreadsheetTerminasi->index();
+
+        // Notifikasi 
+        $this->session->set_flashdata('Success_icon', 'success');
+        $this->session->set_flashdata('Success_title', 'Update Data Berhasil');
+
+        // Redirect ke halaman index
+        redirect($_SERVER['HTTP_REFERER']); // Mengarahkan pengguna kembali ke halaman sebelumnya
+    }
 }
