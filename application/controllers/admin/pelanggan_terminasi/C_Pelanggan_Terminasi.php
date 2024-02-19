@@ -115,6 +115,8 @@ class C_Pelanggan_Terminasi extends CI_Controller
     public function UpdateData()
     {
         $this->M_API_Terminasi->API_Kebonsari();
+        $this->M_API_Terminasi->API_Kanigaran();
+
         $this->M_DataPerolehanTerminasi->index();
         $this->M_SpreadsheetTerminasi->index();
 
