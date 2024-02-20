@@ -170,7 +170,7 @@ class M_DataSheets extends CI_Model
         
         WHERE status_customer = 'survey' AND kode_perolehan = '$KodePerolehan'
         
-        ORDER BY tanggal_customer DESC");
+        ORDER BY tanggal_instalasi DESC");
 
         return $query->result_array();
     }
@@ -306,7 +306,7 @@ class M_DataSheets extends CI_Model
                         status_customer, tanggal_instalasi, nama_sales, keterangan, nama_dp, kode_perolehan
                         FROM data_sheets
                         
-                        WHERE branch_customer = 'KBS' AND tanggal_instalasi = '$tanggal_instalasi'
+                        WHERE status_customer IN ('active', 'need distribution', 'on net') AND branch_customer = 'KBS' AND tanggal_instalasi = '$tanggal_instalasi'
                         
                         ORDER BY id_sheet DESC");
 
@@ -336,7 +336,7 @@ class M_DataSheets extends CI_Model
                             status_customer, tanggal_instalasi, nama_sales, keterangan, nama_dp, kode_perolehan
                             FROM data_sheets
                             
-                            WHERE branch_customer = 'TRW' AND tanggal_instalasi = '$tanggal_instalasi'
+                            WHERE status_customer IN ('active', 'need distribution', 'on net') AND branch_customer = 'TRW' AND tanggal_instalasi = '$tanggal_instalasi'
                             
                             ORDER BY id_sheet DESC");
 
@@ -366,7 +366,7 @@ class M_DataSheets extends CI_Model
                                 status_customer, tanggal_instalasi, nama_sales, keterangan, nama_dp, kode_perolehan
                                 FROM data_sheets
                                 
-                                WHERE branch_customer = 'Kanigaran' AND tanggal_instalasi = '$tanggal_instalasi'
+                                WHERE status_customer IN ('active', 'need distribution', 'on net') AND branch_customer = 'Kanigaran' AND tanggal_instalasi = '$tanggal_instalasi'
                                 
                                 ORDER BY id_sheet DESC");
 
@@ -396,7 +396,7 @@ class M_DataSheets extends CI_Model
                                 status_customer, tanggal_instalasi, nama_sales, keterangan, nama_dp, kode_perolehan
                                 FROM data_sheets
                                 
-                                WHERE branch_customer = 'DRINGU' AND tanggal_instalasi = '$tanggal_instalasi'
+                                WHERE status_customer IN ('active', 'need distribution', 'on net') AND branch_customer = 'DRINGU' AND tanggal_instalasi = '$tanggal_instalasi'
                                 
                                 ORDER BY id_sheet DESC");
 
@@ -454,7 +454,7 @@ class M_DataSheets extends CI_Model
         data_sheets.biaya_instalasi,
         data_sheets.biaya_bundling
     ORDER BY 
-        data_sheets.tanggal_instalasi ASC");
+        data_sheets.tanggal_instalasi DESC");
 
         return $query->result_array();
     }
@@ -488,6 +488,7 @@ class M_DataSheets extends CI_Model
     LEFT JOIN 
         data_paket ON data_sheets.nama_paket = data_paket.nama_paket
     WHERE 
+    data_sheets.status_customer IN ('active', 'need distribution', 'on net') AND
     data_sheets.tanggal_instalasi = '$Tanggal_Instalasi' 
         AND data_sheets.branch_customer = '$Branch_Customer'
         AND data_sheets.tanggal_instalasi != ''
