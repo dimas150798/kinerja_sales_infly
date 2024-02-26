@@ -60,16 +60,31 @@ class M_DataPerolehanSales extends CI_Model
 
     public function Perolehan_Sales_Active_Perbulan($KodePerolehan)
     {
-        $query = $this->db->query("SELECT perolehan_sales.id_perolehan_sales, perolehan_sales.kode_perolehan_sales, perolehan_sales.perolehan_sales_all, perolehan_sales_aktif, UPPER(perolehan_sales.nama_sales) as nama_sales FROM perolehan_sales
-
-        LEFT JOIN data_pegawai ON perolehan_sales.nama_sales = data_pegawai.nama_pegawai
-        LEFT JOIn data_sheets ON perolehan_sales.nama_sales = data_sheets.nama_sales
-
-        WHERE kode_perolehan_sales = '$KodePerolehan' AND perolehan_sales_aktif != 0 AND
+        $query = $this->db->query("SELECT 
+        perolehan_sales.id_perolehan_sales, 
+        perolehan_sales.kode_perolehan_sales, 
+        perolehan_sales.perolehan_sales_all, 
+        CASE 
+            WHEN perolehan_sales.perolehan_sales_terminasi_6Month_Minus != 0 
+            THEN (perolehan_sales.perolehan_sales_aktif - (perolehan_sales.perolehan_sales_terminasi_6Month_Minus * 3))
+            ELSE perolehan_sales.perolehan_sales_aktif
+        END AS perolehan_sales_aktif, 
+        
+        UPPER(perolehan_sales.nama_sales) AS nama_sales 
+    FROM 
+        perolehan_sales
+    LEFT JOIN 
+        data_pegawai ON perolehan_sales.nama_sales = data_pegawai.nama_pegawai
+    LEFT JOIN 
+        data_sheets ON perolehan_sales.nama_sales = data_sheets.nama_sales
+    WHERE 
+        perolehan_sales.kode_perolehan_sales = '$KodePerolehan' AND 
+        perolehan_sales.perolehan_sales_aktif != 0 AND
         data_pegawai.nama_pegawai != 'Dwi Yanti Arinta'
-        GROUP BY nama_sales
-
-        ORDER BY perolehan_sales_aktif DESC");
+    GROUP BY 
+        nama_sales
+    ORDER BY 
+    perolehan_sales_aktif DESC");
 
         return $query->result_array();
     }

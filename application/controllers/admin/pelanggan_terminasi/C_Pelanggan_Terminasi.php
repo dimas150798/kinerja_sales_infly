@@ -117,6 +117,9 @@ class C_Pelanggan_Terminasi extends CI_Controller
         $this->M_API_Terminasi->API_Kebonsari();
         $this->M_API_Terminasi->API_Kanigaran();
 
+        $this->M_UpdatePerolehanKode->index();
+        $this->M_DataPerolehanPerbulan->index();
+        $this->M_DataPerolehanSales->index();
         $this->M_DataPerolehanTerminasi->index();
         $this->M_SpreadsheetTerminasi->index();
 
