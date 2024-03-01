@@ -112,6 +112,7 @@ class C_Pelanggan_Aktif extends CI_Controller
                 '<div class="text-center text-table">' . $dataCustomer['telepon'] . '</div>',
                 '<div class="text-center text-table">' . $dataCustomer['keterangan'] . '</div>',
                 '<div class="text-center text-table">' . $dataCustomer['nama_dp'] . '</div>',
+                '<div class="text-center text-table">' . $dataCustomer['total'] . '</div>',
                 '<div class="text-center">
                     <a onclick="EditPelangganAktif(' . $dataCustomer['id_sheet'] . ')" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
                 </div>'

@@ -123,6 +123,7 @@
                                     <th class="fw-bold text-uppercase text-center" width="10%">Telepon</th>
                                     <th class="fw-bold text-uppercase text-center" width="10%">Keterangan</th>
                                     <th class="fw-bold text-uppercase text-center" width="10%">Nama DP</th>
+                                    <th class="fw-bold text-uppercase text-center" width="10%">Nominal</th>
                                     <th class="fw-bold text-uppercase text-center" width="15%">Action</th>
                                 </tr>
                             </thead>
