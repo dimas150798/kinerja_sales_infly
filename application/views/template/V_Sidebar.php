@@ -34,6 +34,12 @@
                     <li class="nav-item"><a class="nav-link" href="<?php echo base_url('admin/terminasi/C_Terminasi_Perbulan') ?>"><i class="bi bi-clipboard2-data-fill">&nbsp;</i> Jumlah Persales</a></li>
                 </ul>
             </li>
+            <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+                    <i class="bi bi-bookmarks-fill">&nbsp;</i> Data DP</a>
+                <ul class="nav-group-items">
+                    <li class="nav-item"><a class="nav-link" href="<?php echo base_url('admin/data_dp/C_DP_Pelanggan') ?>"><i class="bi bi-clipboard2-data-fill">&nbsp;</i> Data DP Pelanggan</a></li>
+                </ul>
+            </li>
         </ul>
         <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
     </div>

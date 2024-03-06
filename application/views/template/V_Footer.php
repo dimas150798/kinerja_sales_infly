@@ -167,6 +167,25 @@
     })
 </script>
 
+
+<!-- Ajax Show Nama DP Pelanggan-->
+<script>
+    $(document).ready(function() {
+        $('#dppelanggan').DataTable({
+            "autoFill": true,
+            "pagingType": 'numbers',
+            "searching": true,
+            "paging": true,
+            "stateSave": true,
+            "processing": true,
+            "serverside": true,
+            "ajax": {
+                "url": "<?= base_url('admin/data_dp/C_DP_Pelanggan/Ajax_DP_Pelanggan'); ?>",
+            },
+        })
+    })
+</script>
+
 <!-- Ajax Show Pelanggan Terminasi Persales-->
 <script>
     $(document).ready(function() {
