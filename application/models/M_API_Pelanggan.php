@@ -44,6 +44,8 @@ class M_API_Pelanggan extends CI_Model
                         "nama_sales"        => $obj[$i]['nama_sales'],
                         "branch_customer"   => 'KBS',
                         "alamat_customer"   => $obj[$i]['address'],
+                        "email"             => $obj[$i]['email'],
+                        "telepon"           => $obj[$i]['phone'],
                         "status_customer"   => 'active',
                         "nama_dp"           => $nama_dp,
                         "kode_perolehan"    => $KodePerolehan
@@ -76,6 +78,8 @@ class M_API_Pelanggan extends CI_Model
                     "nama_sales"        => $obj[$i]['nama_sales'],
                     "branch_customer"   => 'KBS',
                     "alamat_customer"   => $obj[$i]['address'],
+                    "email"             => $obj[$i]['email'],
+                    "telepon"           => $obj[$i]['phone'],
                     "status_customer"   => 'active',
                     "nama_dp"           => $nama_dp,
                     "kode_perolehan"    => $KodePerolehan
