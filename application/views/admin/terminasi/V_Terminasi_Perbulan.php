@@ -51,11 +51,11 @@
         <div class="row mt-4">
             <div class="card top-sales">
                 <h3 class="text-center mt-3 mb-1">Terminasi Sales Terendah Perbulan</h3>
-                <h5 class="text-center mb-3"> <?php if ($YearGET == NULL && $MonthGET == NULL) {
-                                                    echo $Month . ' / ' . $Year;
-                                                } else {
-                                                    echo $MonthGET . ' / ' . $YearGET;
-                                                } ?></h5>
+                <h4 class="text-center mb-3 fw-bold"> <?php if ($YearGET == NULL && $Name_MonthGET == NULL) {
+                                                            echo $Name_Month . ' / ' . $Year;
+                                                        } else {
+                                                            echo $Name_MonthGET . ' / ' . $YearGET;
+                                                        } ?></h4>
                 <div class="topsales-informasi">
                     <div class="rank-list">
                         <?php foreach ($PerolehanSales as $key => $value) : ?>

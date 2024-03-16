@@ -58,7 +58,8 @@ class C_Terminasi_Perbulan extends CI_Controller
 
             $data['DateNow'] = $ToDay;
             $data['YearGET']   = $tahunGET;
-            $data['MonthGET']   = $months[(int)$bulanGET];
+            $data['MonthGET']   = $bulanGET;
+            $data['Name_MonthGET']   = $months[(int)$bulanGET];
             $data['title'] = 'Kinerja Sales';
 
             $data['Name_Month'] = $months[(int)$bulanGET];
@@ -103,7 +104,8 @@ class C_Terminasi_Perbulan extends CI_Controller
             $data['MonthGET']   = NULL;
 
             $data['Year']   = $PecahToDay[2];
-            $data['Month']   = $months[(int)$PecahToDay[1]];
+            $data['Month']   = $PecahToDay[1];
+            $data['Name_Month']   = $months[(int)$PecahToDay[1]];
             $data['title'] = 'Kinerja Sales';
 
             $data['Name_Month'] = $months[(int)$PecahToDay[1]];

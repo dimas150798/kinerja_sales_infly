@@ -102,7 +102,7 @@ class M_DataPerolehanTerminasi extends CI_Model
         
         LEFT JOIN data_pegawai ON data_pegawai.nama_pegawai = perolehan_sales.nama_sales
     WHERE
-        kode_perolehan_sales = '$KodePerolehan' AND perolehan_sales_terminasi != '' AND nama_sales NOT IN ('Qoderi Tri Riestana', 'Dwi Yanti Arinta')
+        kode_perolehan_sales = '$KodePerolehan' AND perolehan_sales_terminasi != '' AND nama_sales NOT IN ('Qoderi Tri Riestana', 'Dwi Yanti Arinta', 'Other', 'Agus Fajar')
     GROUP BY
         nama_sales  
     ORDER BY persentase_terminasi ASC");
