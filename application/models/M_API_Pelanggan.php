@@ -13,7 +13,7 @@ class M_API_Pelanggan extends CI_Model
         $arrayObj = count($obj);
 
         $getData = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, 
-        nama_customer, nama_paket, branch_customer, alamat_customer, email, telepon, 
+        nama_customer, name_pppoe, nama_paket, branch_customer, alamat_customer, email, telepon, 
         status_customer, tanggal_instalasi, nama_sales, keterangan, nama_dp, kode_perolehan
         FROM data_sheets")->result_array();
 
@@ -22,7 +22,8 @@ class M_API_Pelanggan extends CI_Model
 
             foreach ($getData as $data) {
                 // Memeriksa apakah data dengan nama sales dan nama customer yang sama sudah ada (case-insensitive)
-                if (strcasecmp($data['nama_sales'], $obj[$i]['nama_sales']) === 0 && strcasecmp($data['nama_customer'], $obj[$i]['name']) === 0) {
+                // if (strcasecmp($data['nama_sales'], $obj[$i]['nama_sales']) === 0 && strcasecmp($data['nama_customer'], $obj[$i]['name']) === 0) {
+                if ($data['name_pppoe'] == $obj[$i]['name_pppoe']) {
 
                     $dataExist = true;
 
