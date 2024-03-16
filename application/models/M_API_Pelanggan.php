@@ -22,8 +22,7 @@ class M_API_Pelanggan extends CI_Model
 
             foreach ($getData as $data) {
                 // Memeriksa apakah data dengan nama sales dan nama customer yang sama sudah ada (case-insensitive)
-                // if (strcasecmp($data['nama_sales'], $obj[$i]['nama_sales']) === 0 && strcasecmp($data['nama_customer'], $obj[$i]['name']) === 0) {
-                if ($data['name_pppoe'] == $obj[$i]['name_pppoe'] && strcasecmp($data['nama_sales'], $obj[$i]['nama_sales']) === 0 && strcasecmp($data['nama_customer'], $obj[$i]['name']) === 0) {
+                if (strcasecmp($data['nama_sales'], $obj[$i]['nama_sales']) === 0 && strcasecmp($data['nama_customer'], $obj[$i]['name']) === 0 && strcasecmp($data['name_pppoe'], $obj[$i]['name_pppoe']) === 0) {
 
                     $dataExist = true;
 
@@ -37,6 +36,7 @@ class M_API_Pelanggan extends CI_Model
                     $KodePerolehan      = $Split_Tanggal[0] . '-' . $Split_Tanggal[1];
 
                     $updateData = [
+                        "kode_sheet"        => $obj[$i]['id'],
                         "tanggal_customer"  => $obj[$i]['start_date'],
                         "tanggal_instalasi" => $obj[$i]['start_date'],
                         "tanggal_terminasi" => $obj[$i]['stop_date'],
@@ -72,6 +72,7 @@ class M_API_Pelanggan extends CI_Model
                 $KodePerolehan      = $Split_Tanggal[0] . '-' . $Split_Tanggal[1];
 
                 $insertData = [
+                    "kode_sheet"        => $obj[$i]['id'],
                     "tanggal_customer"  => $obj[$i]['start_date'],
                     "tanggal_instalasi" => $obj[$i]['start_date'],
                     "tanggal_terminasi" => $obj[$i]['stop_date'],
