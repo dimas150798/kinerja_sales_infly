@@ -20,33 +20,35 @@ class M_API_Pelanggan extends CI_Model
 
             foreach ($getData as $existingData) {
                 // Memeriksa apakah data dengan kode sheet dan tanggal instalasi yang sama sudah ada
-                if ($data['id'] == $existingData['kode_sheet'] && $data['start_date'] == $existingData['tanggal_instalasi']) {
-                    $status = true;
+                if (strcasecmp($data['nama_sales'], $existingData['nama_sales']) === 0 && strcasecmp($data['nama_customer'], $existingData['name']) === 0) {
+                    if ($data['id'] == $existingData['kode_sheet'] && $data['start_date'] == $existingData['tanggal_instalasi']) {
+                        $status = true;
 
-                    $tanggal_instalasi = $data['start_date'];
-                    $Split_Tanggal = explode("-", $tanggal_instalasi);
-                    $KodePerolehan = $Split_Tanggal[0] . '-' . $Split_Tanggal[1];
+                        $tanggal_instalasi = $data['start_date'];
+                        $Split_Tanggal = explode("-", $tanggal_instalasi);
+                        $KodePerolehan = $Split_Tanggal[0] . '-' . $Split_Tanggal[1];
 
-                    $updateData = [
-                        "kode_sheet" => $data['id'],
-                        "tanggal_customer" => $data['start_date'],
-                        "tanggal_instalasi" => $data['start_date'],
-                        "tanggal_terminasi" => $data['stop_date'],
-                        "nama_paket" => $data['nama_paket'],
-                        "nama_customer" => $data['name'],
-                        "name_pppoe" => $data['name_pppoe'],
-                        "nama_sales" => $data['nama_sales'],
-                        "branch_customer" => 'KBS',
-                        "alamat_customer" => $data['address'],
-                        "email" => $data['email'],
-                        "telepon" => $data['phone'],
-                        "status_customer" => 'active',
-                        "nama_dp" => $data['nama_dp'] . ' / ' . $data['nama_area'],
-                        "kode_perolehan" => $KodePerolehan
-                    ];
+                        $updateData = [
+                            "kode_sheet" => $data['id'],
+                            "tanggal_customer" => $data['start_date'],
+                            "tanggal_instalasi" => $data['start_date'],
+                            "tanggal_terminasi" => $data['stop_date'],
+                            "nama_paket" => $data['nama_paket'],
+                            "nama_customer" => $data['name'],
+                            "name_pppoe" => $data['name_pppoe'],
+                            "nama_sales" => $data['nama_sales'],
+                            "branch_customer" => 'KBS',
+                            "alamat_customer" => $data['address'],
+                            "email" => $data['email'],
+                            "telepon" => $data['phone'],
+                            "status_customer" => 'active',
+                            "nama_dp" => $data['nama_dp'] . ' / ' . $data['nama_area'],
+                            "kode_perolehan" => $KodePerolehan
+                        ];
 
-                    $this->db->where('id_sheet', $existingData['id_sheet']);
-                    $this->db->update("data_sheets", $updateData);
+                        $this->db->where('id_sheet', $existingData['id_sheet']);
+                        $this->db->update("data_sheets", $updateData);
+                    }
                 }
             }
 
