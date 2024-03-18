@@ -20,7 +20,7 @@ class M_API_Pelanggan extends CI_Model
         for ($i = 0; $i < $arrayObj; $i++) {
             $status = false;
 
-            if (!empty($obj[$i]['nama_dp'])) {
+            if (!empty($obj[$i]['nama_dp']) && !empty($obj[$i]['nama_dp'])) {
                 foreach ($getData as $data) {
                     // Memeriksa apakah data dengan nama sales dan nama customer yang sama sudah ada (case-insensitive)
                     if ($obj[$i]['id'] == $data['kode_sheet'] && $obj[$i]['start_date'] == $data['tanggal_instalasi']) {
@@ -45,7 +45,7 @@ class M_API_Pelanggan extends CI_Model
                             "email"             => $obj[$i]['email'],
                             "telepon"           => $obj[$i]['phone'],
                             "status_customer"   => 'active',
-                            "nama_dp"           => $obj[$i]['nama_dp'],
+                            "nama_dp"           => $obj[$i]['nama_dp'] . ' / ' . $obj[$i]['nama_area'],
                             "kode_perolehan"    => $KodePerolehan
                         ];
 
@@ -56,7 +56,7 @@ class M_API_Pelanggan extends CI_Model
                 }
             }
 
-            if (!empty($obj[$i]['nama_dp'])) {
+            if (!empty($obj[$i]['nama_dp']) && !empty($obj[$i]['nama_dp'])) {
                 // Jika data belum ada, sisipkan data baru
                 if (!$status) {
                     $tanggal_instalasi  = $obj[$i]['start_date'];
@@ -78,7 +78,7 @@ class M_API_Pelanggan extends CI_Model
                         "email"             => $obj[$i]['email'],
                         "telepon"           => $obj[$i]['phone'],
                         "status_customer"   => 'active',
-                        "nama_dp"           => $obj[$i]['nama_dp'],
+                        "nama_dp"           => $obj[$i]['nama_dp'] . ' / ' . $obj[$i]['nama_area'],
                         "kode_perolehan"    => $KodePerolehan
                     ];
 
