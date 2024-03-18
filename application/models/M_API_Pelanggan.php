@@ -18,25 +18,53 @@ class M_API_Pelanggan extends CI_Model
         FROM data_sheets")->result_array();
 
         for ($i = 0; $i < $arrayObj; $i++) {
-            $dataExist = false;
+            $status = false;
 
-            foreach ($getData as $data) {
-                // Memeriksa apakah data dengan nama sales dan nama customer yang sama sudah ada (case-insensitive)
-                // if (strcasecmp($data['nama_sales'], $obj[$i]['nama_sales']) === 0 && strcasecmp($data['nama_customer'], $obj[$i]['name']) === 0 && strcasecmp($data['name_pppoe'], $obj[$i]['name_pppoe']) === 0) {
-                if ($data['kode_sheet'] == $obj[$i]['id'] && strcasecmp($data['nama_sales'], $obj[$i]['nama_sales']) === 0) {
+            if (!empty($obj[$i]['nama_dp'])) {
+                foreach ($getData as $data) {
+                    // Memeriksa apakah data dengan nama sales dan nama customer yang sama sudah ada (case-insensitive)
+                    if ($obj[$i]['id'] == $data['kode_sheet'] && $obj[$i]['start_date'] == $data['tanggal_instalasi']) {
+                        $status = true;
 
-                    $dataExist = true;
+                        $tanggal_instalasi  = $obj[$i]['start_date'];
 
-                    if (!empty($obj[$i]['nama_dp']) && !empty($obj[$i]['nama_area'])) {
-                        $nama_dp = $obj[$i]['nama_dp'] . ' / ' . $obj[$i]['nama_area'];
+                        $Split_Tanggal      = explode("-", $tanggal_instalasi);
+                        $KodePerolehan      = $Split_Tanggal[0] . '-' . $Split_Tanggal[1];
+
+                        $updateData = [
+                            "kode_sheet"        => $obj[$i]['id'],
+                            "tanggal_customer"  => $obj[$i]['start_date'],
+                            "tanggal_instalasi" => $obj[$i]['start_date'],
+                            "tanggal_terminasi" => $obj[$i]['stop_date'],
+                            "nama_paket"        => $obj[$i]['nama_paket'],
+                            "nama_customer"     => $obj[$i]['name'],
+                            "name_pppoe"        => $obj[$i]['name_pppoe'],
+                            "nama_sales"        => $obj[$i]['nama_sales'],
+                            "branch_customer"   => 'KBS',
+                            "alamat_customer"   => $obj[$i]['address'],
+                            "email"             => $obj[$i]['email'],
+                            "telepon"           => $obj[$i]['phone'],
+                            "status_customer"   => 'active',
+                            "nama_dp"           => $obj[$i]['nama_dp'],
+                            "kode_perolehan"    => $KodePerolehan
+                        ];
+
+                        $this->db->where('nama_customer', $data['nama_customer']);
+                        $this->db->where('nama_sales', $data['nama_sales']);
+                        $this->db->update("data_sheets", $updateData);
                     }
+                }
+            }
 
+            if (!empty($obj[$i]['nama_dp'])) {
+                // Jika data belum ada, sisipkan data baru
+                if (!$status) {
                     $tanggal_instalasi  = $obj[$i]['start_date'];
 
                     $Split_Tanggal      = explode("-", $tanggal_instalasi);
                     $KodePerolehan      = $Split_Tanggal[0] . '-' . $Split_Tanggal[1];
 
-                    $updateData = [
+                    $insertData = [
                         "kode_sheet"        => $obj[$i]['id'],
                         "tanggal_customer"  => $obj[$i]['start_date'],
                         "tanggal_instalasi" => $obj[$i]['start_date'],
@@ -50,47 +78,12 @@ class M_API_Pelanggan extends CI_Model
                         "email"             => $obj[$i]['email'],
                         "telepon"           => $obj[$i]['phone'],
                         "status_customer"   => 'active',
-                        "nama_dp"           => $nama_dp,
+                        "nama_dp"           => $obj[$i]['nama_dp'],
                         "kode_perolehan"    => $KodePerolehan
                     ];
 
-                    $this->db->where('nama_customer', $data['nama_customer']);
-                    $this->db->where('nama_sales', $data['nama_sales']);
-                    $this->db->update("data_sheets", $updateData);
+                    $this->db->insert("data_sheets", $insertData);
                 }
-            }
-
-            // Jika data belum ada, sisipkan data baru
-            if (!$dataExist) {
-
-                if (!empty($obj[$i]['nama_dp']) && !empty($obj[$i]['nama_area'])) {
-                    $nama_dp = $obj[$i]['nama_dp'] . ' / ' . $obj[$i]['nama_area'];
-                }
-
-                $tanggal_instalasi  = $obj[$i]['start_date'];
-
-                $Split_Tanggal      = explode("-", $tanggal_instalasi);
-                $KodePerolehan      = $Split_Tanggal[0] . '-' . $Split_Tanggal[1];
-
-                $insertData = [
-                    "kode_sheet"        => $obj[$i]['id'],
-                    "tanggal_customer"  => $obj[$i]['start_date'],
-                    "tanggal_instalasi" => $obj[$i]['start_date'],
-                    "tanggal_terminasi" => $obj[$i]['stop_date'],
-                    "nama_paket"        => $obj[$i]['nama_paket'],
-                    "nama_customer"     => $obj[$i]['name'],
-                    "name_pppoe"        => $obj[$i]['name_pppoe'],
-                    "nama_sales"        => $obj[$i]['nama_sales'],
-                    "branch_customer"   => 'KBS',
-                    "alamat_customer"   => $obj[$i]['address'],
-                    "email"             => $obj[$i]['email'],
-                    "telepon"           => $obj[$i]['phone'],
-                    "status_customer"   => 'active',
-                    "nama_dp"           => $nama_dp,
-                    "kode_perolehan"    => $KodePerolehan
-                ];
-
-                $this->db->insert("data_sheets", $insertData);
             }
         }
     }
