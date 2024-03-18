@@ -10,83 +10,76 @@ class M_API_Pelanggan extends CI_Model
         $jsondata = file_get_contents($json_string);
         $obj = json_decode($jsondata, TRUE);
 
-        $arrayObj = count($obj);
-
         $getData = $this->db->query("SELECT id_sheet, kode_sheet, tanggal_customer, 
         nama_customer, name_pppoe, nama_paket, branch_customer, alamat_customer, email, telepon, 
         status_customer, tanggal_instalasi, nama_sales, keterangan, nama_dp, kode_perolehan
         FROM data_sheets")->result_array();
 
-        for ($i = 0; $i < $arrayObj; $i++) {
+        foreach ($obj as $data) {
             $status = false;
 
-            if (!empty($obj[$i]['nama_dp']) && !empty($obj[$i]['nama_dp'])) {
-                foreach ($getData as $data) {
-                    // Memeriksa apakah data dengan nama sales dan nama customer yang sama sudah ada (case-insensitive)
-                    if ($obj[$i]['id'] == $data['kode_sheet'] && $obj[$i]['start_date'] == $data['tanggal_instalasi']) {
-                        $status = true;
+            foreach ($getData as $existingData) {
+                // Memeriksa apakah data dengan kode sheet dan tanggal instalasi yang sama sudah ada
+                if ($data['id'] == $existingData['kode_sheet'] && $data['start_date'] == $existingData['tanggal_instalasi']) {
+                    $status = true;
 
-                        $tanggal_instalasi  = $obj[$i]['start_date'];
+                    $tanggal_instalasi = $data['start_date'];
+                    $Split_Tanggal = explode("-", $tanggal_instalasi);
+                    $KodePerolehan = $Split_Tanggal[0] . '-' . $Split_Tanggal[1];
 
-                        $Split_Tanggal      = explode("-", $tanggal_instalasi);
-                        $KodePerolehan      = $Split_Tanggal[0] . '-' . $Split_Tanggal[1];
+                    $updateData = [
+                        "kode_sheet" => $data['id'],
+                        "tanggal_customer" => $data['start_date'],
+                        "tanggal_instalasi" => $data['start_date'],
+                        "tanggal_terminasi" => $data['stop_date'],
+                        "nama_paket" => $data['nama_paket'],
+                        "nama_customer" => $data['name'],
+                        "name_pppoe" => $data['name_pppoe'],
+                        "nama_sales" => $data['nama_sales'],
+                        "branch_customer" => 'KBS',
+                        "alamat_customer" => $data['address'],
+                        "email" => $data['email'],
+                        "telepon" => $data['phone'],
+                        "status_customer" => 'active',
+                        "nama_dp" => $data['nama_dp'] . ' / ' . $data['nama_area'],
+                        "kode_perolehan" => $KodePerolehan
+                    ];
 
-                        $updateData = [
-                            "kode_sheet"        => $obj[$i]['id'],
-                            "tanggal_customer"  => $obj[$i]['start_date'],
-                            "tanggal_instalasi" => $obj[$i]['start_date'],
-                            "tanggal_terminasi" => $obj[$i]['stop_date'],
-                            "nama_paket"        => $obj[$i]['nama_paket'],
-                            "nama_customer"     => $obj[$i]['name'],
-                            "name_pppoe"        => $obj[$i]['name_pppoe'],
-                            "nama_sales"        => $obj[$i]['nama_sales'],
-                            "branch_customer"   => 'KBS',
-                            "alamat_customer"   => $obj[$i]['address'],
-                            "email"             => $obj[$i]['email'],
-                            "telepon"           => $obj[$i]['phone'],
-                            "status_customer"   => 'active',
-                            "nama_dp"           => $obj[$i]['nama_dp'] . ' / ' . $obj[$i]['nama_area'],
-                            "kode_perolehan"    => $KodePerolehan
-                        ];
-
-                        $this->db->where('nama_customer', $data['nama_customer']);
-                        $this->db->where('nama_sales', $data['nama_sales']);
-                        $this->db->update("data_sheets", $updateData);
-                    }
+                    $this->db->where('id_sheet', $existingData['id_sheet']);
+                    $this->db->update("data_sheets", $updateData);
                 }
             }
 
-            if (!empty($obj[$i]['nama_dp']) && !empty($obj[$i]['nama_dp'])) {
-                // Jika data belum ada, sisipkan data baru
-                if (!$status) {
-                    $tanggal_instalasi  = $obj[$i]['start_date'];
+            // Jika data belum ada, sisipkan data baru
+            if (!$status) {
 
-                    $Split_Tanggal      = explode("-", $tanggal_instalasi);
-                    $KodePerolehan      = $Split_Tanggal[0] . '-' . $Split_Tanggal[1];
+                $tanggal_instalasi = $data['start_date'];
+                $Split_Tanggal = explode("-", $tanggal_instalasi);
+                $KodePerolehan = $Split_Tanggal[0] . '-' . $Split_Tanggal[1];
 
-                    $insertData = [
-                        "kode_sheet"        => $obj[$i]['id'],
-                        "tanggal_customer"  => $obj[$i]['start_date'],
-                        "tanggal_instalasi" => $obj[$i]['start_date'],
-                        "tanggal_terminasi" => $obj[$i]['stop_date'],
-                        "nama_paket"        => $obj[$i]['nama_paket'],
-                        "nama_customer"     => $obj[$i]['name'],
-                        "name_pppoe"        => $obj[$i]['name_pppoe'],
-                        "nama_sales"        => $obj[$i]['nama_sales'],
-                        "branch_customer"   => 'KBS',
-                        "alamat_customer"   => $obj[$i]['address'],
-                        "email"             => $obj[$i]['email'],
-                        "telepon"           => $obj[$i]['phone'],
-                        "status_customer"   => 'active',
-                        "nama_dp"           => $obj[$i]['nama_dp'] . ' / ' . $obj[$i]['nama_area'],
-                        "kode_perolehan"    => $KodePerolehan
-                    ];
+                $insertData = [
+                    "kode_sheet" => $data['id'],
+                    "tanggal_customer" => $data['start_date'],
+                    "tanggal_instalasi" => $data['start_date'],
+                    "tanggal_terminasi" => $data['stop_date'],
+                    "nama_paket" => $data['nama_paket'],
+                    "nama_customer" => $data['name'],
+                    "name_pppoe" => $data['name_pppoe'],
+                    "nama_sales" => $data['nama_sales'],
+                    "branch_customer" => 'KBS',
+                    "alamat_customer" => $data['address'],
+                    "email" => $data['email'],
+                    "telepon" => $data['phone'],
+                    "status_customer" => 'active',
+                    "nama_dp" => $data['nama_dp'] . ' / ' . $data['nama_area'],
+                    "kode_perolehan" => $KodePerolehan
+                ];
 
-                    $this->db->insert("data_sheets", $insertData);
-                }
+                $this->db->insert("data_sheets", $insertData);
             }
         }
     }
+
 
     public function API_Kanigaran()
     {
