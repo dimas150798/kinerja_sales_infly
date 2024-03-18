@@ -11,12 +11,12 @@ class M_SpreadsheetTerminasi extends CI_Model
         status_customer, tanggal_instalasi, tanggal_terminasi, nama_sales, 
         keterangan, nama_dp, biaya_instalasi, biaya_bundling, kode_perolehan 
         FROM data_sheets
-        WHERE status_customer = 'terminated'")->result_array();
+        WHERE status_customer = 'terminated' AND denda_terminated IS NULL")->result_array();
 
         // Fetching termination data
         $getData = $this->db->query("SELECT id_terminasi_sheets, kode_terminasi_sheets, 
         nama_pelanggan, tanggal_registrasi, tanggal_terminasi, nama_sales, nama_paket, 
-        telepon, alamat_customer, area, keterangan, nama_dp, jumlah_month, 
+        telepon, alamat_customer, area, keteran gan, nama_dp, jumlah_month, 
         status, status_customer, kode_terminasi FROM terminasi_sheets")->result_array();
 
         foreach ($getDataSheet as $obj) {

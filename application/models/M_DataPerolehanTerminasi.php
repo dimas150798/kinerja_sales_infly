@@ -18,7 +18,7 @@ class M_DataPerolehanTerminasi extends CI_Model
         SUM(CASE WHEN status = 'Lebih Dari' THEN 1 ELSE 0 END) AS perolehan_sales_terminasi_6Month_Plus
         FROM
         terminasi_sheets
-        WHERE kode_terminasi = '$KodePerolehanDate'
+        WHERE kode_terminasi = '$KodePerolehanDate' AND denda_terminated IS NULL
         GROUP BY
         nama_sales,
         kode_terminasi
