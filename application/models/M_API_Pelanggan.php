@@ -23,7 +23,7 @@ class M_API_Pelanggan extends CI_Model
             foreach ($getData as $data) {
                 // Memeriksa apakah data dengan nama sales dan nama customer yang sama sudah ada (case-insensitive)
                 // if (strcasecmp($data['nama_sales'], $obj[$i]['nama_sales']) === 0 && strcasecmp($data['nama_customer'], $obj[$i]['name']) === 0 && strcasecmp($data['name_pppoe'], $obj[$i]['name_pppoe']) === 0) {
-                if ($obj[$i]['id'] == $data['kode_sheet'] && $obj[$i]['name_pppoe'] == $data['name_pppoe']) {
+                if ($data['kode_sheet'] == $obj[$i]['id'] && strcasecmp($data['nama_sales'], $obj[$i]['nama_sales']) === 0) {
 
                     $dataExist = true;
 
