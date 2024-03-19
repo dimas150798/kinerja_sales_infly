@@ -100,6 +100,8 @@ class C_DP_Pelanggan extends CI_Controller
 
     public function UpdateDataKBS()
     {
+        $this->M_API_Pelanggan->M_API_NamePppoe_KBS();
+
         $this->M_API_Pelanggan->M_API_PelangganKBS();
 
         // Notifikasi 
