@@ -92,16 +92,13 @@ class M_API_Pelanggan extends CI_Model
         FROM data_sheets")->result_array();
 
         foreach ($obj as $data) {
-            $status = false;
 
             foreach ($getData as $existingData) {
                 // Memeriksa apakah data dengan kode sheet dan tanggal instalasi yang sama sudah ada
                 if (
-                    $data['name'] !== null && $existingData['nama_customer'] !== null && strcasecmp(strtolower($data['name']), strtolower($existingData['nama_customer'])) === 0 &&
+                    $existingData['name_pppoe'] === NULL && $data['name'] !== null && $existingData['nama_customer'] !== null && strcasecmp(strtolower($data['name']), strtolower($existingData['nama_customer'])) === 0 &&
                     $data['start_date'] !== null && $existingData['tanggal_instalasi'] !== null &&  $data['start_date'] == $existingData['tanggal_instalasi']
                 ) {
-                    $status = true;
-
                     $updateData = [
                         "kode_sheet" => $data['id'],
                         "name_pppoe" => $data['name_pppoe']
@@ -110,17 +107,6 @@ class M_API_Pelanggan extends CI_Model
                     $this->db->where('id_sheet', $existingData['id_sheet']);
                     $this->db->update("data_sheets", $updateData);
                 }
-            }
-
-            // Jika data belum ada, sisipkan data baru
-            if (!$status) {
-
-                $insertData = [
-                    "kode_sheet" => $data['id'],
-                    "name_pppoe" => $data['name_pppoe']
-                ];
-
-                $this->db->insert("data_sheets", $insertData);
             }
         }
     }
