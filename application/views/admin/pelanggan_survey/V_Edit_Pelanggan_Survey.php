@@ -143,6 +143,23 @@
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <div class="col-sm-12 col-lg-6 mt-2">
+                                    <label class="form-label fs-5 fw-bold">Biaya Instalasi</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-secondary"><i class="bi bi-cash"></i></span>
+                                        <input class="form-control fw-bold" name="biaya_instalasi" value="<?php echo $data['biaya_instalasi'] ?>" placeholder="Masukkan Biaya Instalasi..."></input>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-lg-6 mt-2">
+                                    <label class="form-label fs-5 fw-bold">Biaya Bundling</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-secondary"><i class="bi bi-cash"></i></span>
+                                        <input class="form-control fw-bold" name="biaya_bundling" value="<?php echo $data['biaya_bundling'] ?>" placeholder="Masukkan Biaya Bundling..."></input>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="row mt-3">
                                 <div class="col-sm-12 d-flex justify-content-end">
                                     <button type="submit" class="btn btn-success mt-2 fw-bold text-white justify-content-end">Save</button>

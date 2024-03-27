@@ -58,6 +58,8 @@ class C_Edit_Pelanggan_Survey extends CI_Controller
         $tanggal_instalasi = $this->input->post('tanggal_instalasi');
         $nama_sales = $this->input->post('nama_sales');
         $keterangan = $this->input->post('keterangan');
+        $biaya_instalasi = $this->input->post('biaya_instalasi');
+        $biaya_bundling = $this->input->post('biaya_bundling');
         $nama_dp = $this->input->post('nama_dp');
 
         // Check Tanggal Instalasi Buat Kode Perolehan
@@ -84,6 +86,8 @@ class C_Edit_Pelanggan_Survey extends CI_Controller
             'keterangan'        => $keterangan,
             'nama_dp'           => $nama_dp,
             'kode_perolehan'    => $KodePerolehan_New,
+            'biaya_instalasi'   => $biaya_instalasi,
+            'biaya_bundling'    => $biaya_bundling,
         );
 
         // Data Customer
